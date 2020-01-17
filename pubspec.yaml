@@ -13,6 +13,7 @@ dependencies:
   path_provider: ^1.1.0
   http: ^0.12.0+2
   pokeapi: any
+  cached_network_image: ^2.0.0
 
 dev_dependencies:
   flutter_test:

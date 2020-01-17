@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:poke_magic/util.dart/format.dart';
 import 'package:poke_magic/view/poke_detalhes.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +11,6 @@ class PokeView extends StatefulWidget {
 }
 
 class _PokeViewState extends State<PokeView> {
-  var url =
-      "https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json";
-
   List<Pokemon> pokemons;
 
   @override
@@ -40,51 +38,58 @@ class _PokeViewState extends State<PokeView> {
         title: Text("PokéMagic"),
         backgroundColor: Colors.cyan,
       ),
-      body: pokemons.isEmpty
+      body: pokemons == null
           ? Center(
               child: CircularProgressIndicator(),
             )
           : GridView.count(
               crossAxisCount: 2,
-              children: pokemons
-                  .map((poke) => Padding(
-                      padding: EdgeInsets.all(2),
-                      child: InkWell(
+              children: List.generate(890, (index) {
+                return Padding(
+                    padding: EdgeInsets.all(2),
+                    child: InkWell(
                         onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PokemonDetalhes(poke)));
+                                  builder: (context) =>
+                                      PokemonDetalhes(pokemons[index])));
                         },
-                        child: Hero(
-                          tag: formatID(poke.id),
-                          child: Card(
-                              elevation: 3,
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Container(
-                                      // height:
-                                      //     MediaQuery.of(context).size.height *
-                                      //         0.4,
-                                      // width: MediaQuery.of(context).size.width *
-                                      //     0.2,
-                                      height: 100,
-                                      width: 100,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            image: NetworkImage(
-                                                formatID(poke.id))),
-                                      )),
-                                  Text(poke.name.replaceRange(
-                                      0, 1, poke.name[0].toUpperCase())),
-                                ],
-                              )),
-                        ),
-                      )))
-                  .toList(),
-            ),
+                        // child: Hero(
+                        //     tag: pokemons.length > index
+                        //                   ? formatID(pokemons[index].id):"00",
+                        child: Card(
+                          elevation: 3,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
+                                  // height:
+                                  //     MediaQuery.of(context).size.height *
+                                  //         0.4,
+                                  // width: MediaQuery.of(context).size.width *
+                                  //     0.2,
+                                  height: 100,
+                                  width: 100,
+                                  child: pokemons.length > index
+                                  ?CachedNetworkImage(
+                                    imageUrl: formatID(pokemons[index].id),
+                                    placeholder: (context, url) =>
+                                        CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ):Container()
+                                  ),
+                              pokemons.length > index
+                                  ? Text(
+                                      "#${pokemons[index].id} - ${pokemons[index].name.replaceRange(0, 1, pokemons[index].name[0].toUpperCase())}")
+                                  : Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                            ],
+                          ),
+                        )));
+              })),
       drawer: Drawer(),
       floatingActionButton:
           FloatingActionButton(onPressed: () {}, child: Icon(Icons.refresh)),

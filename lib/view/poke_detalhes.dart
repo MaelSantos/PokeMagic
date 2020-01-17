@@ -1,12 +1,22 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:poke_magic/util.dart/format.dart';
+import 'package:pokeapi/model/evolution/evolution-chain.dart';
 import 'package:pokeapi/model/pokemon/pokemon.dart';
+import 'package:pokeapi/pokeapi.dart';
 
 class PokemonDetalhes extends StatelessWidget {
   final Pokemon pokemon;
+  EvolutionChain evolucao;
   String titulo;
   PokemonDetalhes(this.pokemon) {
     titulo = pokemon.name.replaceRange(0, 1, pokemon.name[0].toUpperCase());
+    carregarDados();
+  }
+
+  void carregarDados() async {
+    evolucao = await PokeAPI.getObject<EvolutionChain>(pokemon.id);
+    // print(evolucao.chain.evolvesTo[0].evolvesTo);
   }
 
   @override
@@ -73,18 +83,20 @@ class PokemonDetalhes extends StatelessWidget {
             ),
           ),
           Align(
-              alignment: Alignment.topCenter,
-              child: Hero(
-                tag: formatID(pokemon.id),
-                child: Container(
-                  width: 200,
-                  height: 200,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(formatID(pokemon.id)))),
-                ),
-              )),
+            alignment: Alignment.topCenter,
+            // child: Hero(
+            //   tag: formatID(pokemon.id),
+            child: Container(
+              width: 200,
+              height: 200,
+              child: CachedNetworkImage(
+                imageUrl: formatID(pokemon.id),
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
         ],
       );
 
