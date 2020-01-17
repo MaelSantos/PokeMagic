@@ -1,5 +1,5 @@
 # PokéMagic
-Pokédex desenvolvida em Flutter Consumindo a PokeAPI
+Pokédex desenvolvida em [Flutter](https://flutter.dev/) Consumindo a [PokeAPI](https://pub.dev/packages/pokeapi)
 
 ## Desenvolvimento
 
