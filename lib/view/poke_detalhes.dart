@@ -94,6 +94,8 @@ class PokemonDetalhes extends StatelessWidget {
                 placeholder: (context, url) => CircularProgressIndicator(),
                 errorWidget: (context, url, error) => Icon(Icons.error),
                 fit: BoxFit.cover,
+                fadeInDuration: Duration(days: 30),
+                fadeOutDuration: Duration(days: 30),
               ),
             ),
           ),
