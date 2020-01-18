@@ -34,7 +34,7 @@ class _PokeViewState extends State<PokeView> {
       // print("$i");
       List result =
           await db.query("Pokemon", where: "id = ?", whereArgs: ["$i"]);
-      print(result);
+      // print(result);
       if (result.length > 0) {
         p = Pokemon.fromJson(jsonDecode(result.first["json"]));
       }
@@ -84,6 +84,9 @@ class _PokeViewState extends State<PokeView> {
                         //     tag: pokemons.length > index
                         //                   ? formatID(pokemons[index].id):"00",
                         child: Card(
+                          color: pokemons.length > index
+                                      ? formatColor(pokemons[index])
+                                      : Colors.white,
                           elevation: 3,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

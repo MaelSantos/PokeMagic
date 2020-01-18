@@ -21,26 +21,32 @@ String formatID(int i) {
 }
 
 Map<String, Color> colors = {
-  "normal": Colors.blueGrey,
+  "normal": Colors.brown[200],
   "fighting": Colors.red[800],
-  "flying": Colors.purple[300],
+  "flying": Colors.purple[200],
   "poison": Colors.purple,
   "ground": Colors.yellow[700],
-  "rock": Colors.blue,
-  "bug": Colors.blue,
-  "ghost": Colors.blue,
+  "rock": Colors.lime[900],
+  "bug": Colors.lightGreenAccent,
+  "ghost": Colors.purple[800],
   "steel": Colors.blueGrey[200],
   "fire": Colors.red,
   "water": Colors.blue,
-  "grass": Colors.blue,
-  "eletric": Colors.blue,
-  "psychic": Colors.blue,
-  "ice": Colors.blue,
-  "dragon": Colors.blue,
-  "dark": Colors.blue,
-  "fairy": Colors.blue,
+  "grass": Colors.green[800],
+  "electric": Colors.yellow,
+  "psychic": Colors.pink,
+  "ice": Colors.blue[100],
+  "dragon": Colors.purple[900],
+  "dark": Colors.brown[900],
+  "fairy": Colors.pink[300],
 };
 
-Color getc(Pokemon pokemon) {
+
+
+Color formatColor(Pokemon pokemon) {
   return colors[pokemon.types[0].type.name];
+}
+
+Color formatColorExist(String pokemon) {
+  return colors[pokemon];
 }

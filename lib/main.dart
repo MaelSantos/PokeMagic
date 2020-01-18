@@ -14,10 +14,9 @@ class PokeMagic extends StatelessWidget {
       theme: ThemeData(
           textTheme: TextTheme(
               body1: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              body2: TextStyle(
-                fontSize: 18,
-                color: Colors.white,
-              ))),
+              body2: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white,
+              decorationColor: Colors.white,)
+              )),
       home: PokeView(),
     );
   }

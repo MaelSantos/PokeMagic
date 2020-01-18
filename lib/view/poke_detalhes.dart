@@ -22,7 +22,7 @@ class PokemonDetalhes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.cyan,
+      backgroundColor: formatColor(pokemon),
       appBar: AppBar(
           elevation: 0,
           centerTitle: true,
@@ -56,7 +56,7 @@ class PokemonDetalhes extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: pokemon.types
                         .map((t) => FilterChip(
-                              backgroundColor: Colors.amber,
+                              backgroundColor: formatColorExist(t.type.name),
                               label: Text(t.type.name),
                               onSelected: (b) {},
                             ))
