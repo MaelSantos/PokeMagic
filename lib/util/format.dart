@@ -44,7 +44,7 @@ Map<String, Color> colors = {
 
 
 Color formatColor(Pokemon pokemon) {
-  return colors[pokemon.types[0].type.name];
+  return colors[pokemon.types.reversed.first.type.name];
 }
 
 Color formatColorExist(String pokemon) {

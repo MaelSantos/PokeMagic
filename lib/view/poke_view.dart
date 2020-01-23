@@ -1,147 +1,98 @@
-import 'dart:convert';
-
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:poke_magic/util/format.dart';
-import 'package:poke_magic/util/sqlite.dart';
-import 'package:poke_magic/view/poke_detalhes.dart';
 import 'package:flutter/material.dart';
+import 'package:poke_magic/view/poke_detalhes.dart';
+import 'package:poke_magic/view/poke_evolucao.dart';
+import 'package:poke_magic/view/poke_movimentos.dart';
 import 'package:pokeapi/model/pokemon/pokemon.dart';
-import 'package:pokeapi/pokeapi.dart';
-import 'package:sqflite/sqflite.dart';
 
 class PokeView extends StatefulWidget {
+  final Pokemon pokemon;
+
+  PokeView(this.pokemon);
+
   @override
-  _PokeViewState createState() => _PokeViewState();
+  _PokeViewState createState() => _PokeViewState(pokemon);
 }
 
 class _PokeViewState extends State<PokeView> {
-  List<Pokemon> pokemons;
-  // int pokemonCont = 890;//erro de pokeapi
-  int pokemonCont = 807;
+  Widget corrente;
+  PokeDetalhes pokeDetalhes;
+  PokeMove pokeMove;
+  PokeEvolucao pokeEvolucao;
 
-  @override
-  void initState() {
-    super.initState();
+  final Pokemon pokemon;
+  String titulo;
+  int indexCorrente;
+
+  _PokeViewState(this.pokemon) {
+    pokeDetalhes = PokeDetalhes(pokemon);
+    pokeMove = PokeMove(pokemon);
+    pokeEvolucao = PokeEvolucao(pokemon);
+    corrente = pokeDetalhes;
+    indexCorrente = 0;
+    titulo = pokemon.name.replaceRange(0, 1, pokemon.name[0].toUpperCase());
     carregarDados();
   }
 
   void carregarDados() async {
-    Database db = await SqlUtil().db;
-    pokemons = List();
-    Pokemon p;
-    int i = 1;
+    // print(pokemon.species.name);
 
-    do {
-      // print("$i");
-      List result =
-          await db.query("Pokemon", where: "id = ?", whereArgs: ["$i"]);
-      // print(result);
-      if (result.length > 0) {
-        p = Pokemon.fromJson(jsonDecode(result.first["json"]));
-      }
+    // evolucao = await PokeAPI.getObject<EvolutionChain>(pokemon.id);
+    // print(evolucao.chain.evolvesTo[0].species.name);
 
-      if (p == null) {
-        p = await PokeAPI.getObject<Pokemon>(i);
-        int insert =
-            await db.insert("Pokemon", {"json": "${jsonEncode(p.toJson())}"});
-        print("Inserindo: $insert -  Quantidade: $i");
-      }
-      if (p != null) {
-        pokemons.add(p);
-        setState(() {});
-        i++;
-        p = null;
-      }
-      // print("Incrementado $i");
-    } while (i <= pokemonCont);
+    // PokemonSpecie evolucao = await PokeAPI.getObject<PokemonSpecie>(int.parse(pokemon.species.id));
+    // print(evolucao.);
+
+    // Characteristic r = await PokeAPI.getObject<Characteristic>(1);
+    // print(r.highestStat);
   }
 
   @override
   Widget build(BuildContext context) {
-    return pokemons == null
-        ? Center(
-            child: CircularProgressIndicator(),
-          )
-        : GridView.count(
-            // maxCrossAxisExtent: 2,
-            crossAxisCount: 2,
-            children: List.generate(pokemonCont, (index) {
-              return Container(
-                  // padding: EdgeInsets.all(2),
-                  // margin: EdgeInsets.all(10),
-                  // height: 100,
-                  // width: 100,
-                  // color: pokemons.length > index?formatColor(pokemons[index]):Colors.white,
-                  child: InkWell(
-                onTap: () {
-                  if (pokemons.length > index)
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                PokemonDetalhes(pokemons[index])));
-                },
-                child: pokemons.length > index
-                    ? Hero(
-                        tag: formatID(pokemons[index].id),
-                        child: Card(
-                            // color: pokemons.length > index
-                            //             ? formatColor(pokemons[index])
-                            //             : Colors.white,
-                            elevation: 3,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                    child: CachedNetworkImage(
-                                  imageUrl: formatID(pokemons[index].id),
-                                  placeholder: (context, url) =>
-                                      CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
-                                  fadeInDuration: Duration(days: 30),
-                                  fadeOutDuration: Duration(days: 30),
-                                )),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                        "#${pokemons[index].id} - ${pokemons[index].name.replaceRange(0, 1, pokemons[index].name[0].toUpperCase())}"),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: pokemons[index]
-                                          .types
-                                          .reversed
-                                          .map((t) => Container(
-                                                padding: EdgeInsets.all(5),
-                                                margin: EdgeInsets.all(5),
-                                                decoration: BoxDecoration(
-                                                    color: formatColorExist(
-                                                        t.type.name),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            15)),
-                                                child: Text(
-                                                  t.type.name,
-                                                  style: TextStyle(
-                                                      color: Colors.white),
-                                                ),
-                                              ))
-                                          .toList(),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            )))
-                    : Container(),
-              ));
-            }),
-          );
+    return Scaffold(
+      backgroundColor: Colors.cyan,
+      appBar: AppBar(
+          elevation: 0,
+          centerTitle: true,
+          title: Text(titulo),
+          backgroundColor: Colors.cyan),
+      body: corrente,
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: mudar,
+        currentIndex: indexCorrente,
+        selectedItemColor: Colors.cyan,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assignment),
+            title: Text("Detail"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.attach_file),
+            title: Text("Moves"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.device_hub),
+            title: Text("Evolution"),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void mudar(int i) {
+    setState(() {
+      indexCorrente = i;
+      switch (i) {
+        case 0:
+          corrente = pokeDetalhes;
+          break;
+        case 1:
+          corrente = pokeMove;
+          break;
+        case 2:
+          corrente = pokeEvolucao;
+          break;
+        default:
+      }
+    });
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:poke_magic/view/poke_view.dart';
+import 'package:poke_magic/view/poke_principal.dart';
 
 void main() async {
   runApp(PokeMagic());
@@ -68,7 +68,7 @@ class PokeMagic extends StatelessWidget {
           //         carregarDados();
           //       });
           //     }, child: Icon(Icons.refresh)),
-          body: PokeView(),
+          body: PokePricipal(),
         ));
   }
 }
