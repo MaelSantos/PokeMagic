@@ -7,6 +7,6 @@ Aplicação desenvolvida utilizando o framework [Flutter](https://flutter.dev/) 
 
 ## Screenshots
 
-![Principal](screenshots/principal.jpg)
+![Principal](screenshots/principal.jpg) 
 ![Detalhes](screenshots/detalhes.jpg)
 

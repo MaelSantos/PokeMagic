@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:pokeapi/model/move/move.dart';
 import 'package:pokeapi/model/pokemon/pokemon.dart';
+import 'package:pokeapi/pokeapi.dart';
 
 class PokeMove extends StatelessWidget {
   final Pokemon pokemon;
+  List<Move> movimentos;
   List<Moves> egg;
   List<Moves> level;
   List<Moves> tutor;
@@ -25,7 +28,8 @@ class PokeMove extends StatelessWidget {
       return false;
     }).toList();
     level = pokemon.moves.where((m) {
-      if (m.versionGroupDetails[0].moveLearnMethod.name == "level-up") return true;
+      if (m.versionGroupDetails[0].moveLearnMethod.name == "level-up")
+        return true;
       return false;
     }).toList();
     machine = pokemon.moves.where((m) {
@@ -37,6 +41,16 @@ class PokeMove extends StatelessWidget {
       if (m.versionGroupDetails[0].moveLearnMethod.name == "tutor") return true;
       return false;
     }).toList();
+
+    teste();
+  }
+
+  void teste() async {
+    movimentos = List();
+    for (Moves m in pokemon.moves) {
+      movimentos.add(await PokeAPI.getObject<Move>(int.parse(m.move.id)));
+    }
+    print(movimentos[0].power);
   }
 
   @override
@@ -56,24 +70,146 @@ class PokeMove extends StatelessWidget {
                 "Movimentos",
                 style: TextStyle(fontSize: 23),
               ),
-              Expanded(
-                child: ListView(
-                    children: level
-                        // .sort((a, b) => a.length.compareTo(b.length))
-                        .map((t) => FilterChip(
-                              backgroundColor: Colors.red,
-                              label: Text(t.move.name,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  )),
-                              onSelected: (b) {},
-                            ))
-                        .toList()),
+              Container(
+                padding: EdgeInsets.all(5),
+                margin: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all()),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Text("Nível"),
+                    Text("Move"),
+                    Text("Type"),
+                    Text("Acc"),
+                    Text("PP"),
+                  ],
+                ),
               ),
+              Expanded(
+                  child: ListView(
+                children: [
+                  Container(
+                      padding: EdgeInsets.all(10),
+                      child: Table(
+                        // defaultColumnWidth: FixedColumnWidth(10),
+                        defaultVerticalAlignment:
+                            TableCellVerticalAlignment.middle,
+                        // border: TableBorder(
+                        //   horizontalInside: BorderSide(
+                        //     color: Colors.black,
+                        //     style: BorderStyle.solid,
+                        //     width: 1.0,
+                        //   ),
+                        //   verticalInside: BorderSide(
+                        //     color: Colors.black,
+                        //     style: BorderStyle.solid,
+                        //     width: 1.0,
+                        //   ),
+                        // ),
+                        children: gerarTabela(),
+                      )),
+                ],
+              )
+
+                  // child: ListView(
+                  //     children: movimentos
+                  //         // .sort((a, b) => a.length.compareTo(b.length))
+                  //         .map((t) => Container(
+                  //               padding: EdgeInsets.all(20),
+                  //               margin: EdgeInsets.all(5),
+                  //               decoration: BoxDecoration(
+                  //                   color: Colors.red,
+                  //                   borderRadius: BorderRadius.circular(15)),
+                  //               child: Row(
+                  //                 mainAxisAlignment:
+                  //                     MainAxisAlignment.spaceBetween,
+                  //                 mainAxisSize: MainAxisSize.max,
+                  //                 textBaseline: TextBaseline.alphabetic,
+                  //                 crossAxisAlignment: CrossAxisAlignment.end,
+                  //                 children: [
+                  //                   // Text(t.id.toString(),
+                  //                   //     style: TextStyle(
+                  //                   //       color: Colors.white,
+                  //                   //     )),
+                  //                   Text(t.name,
+                  //                       style: TextStyle(
+                  //                         color: Colors.white,
+                  //                       )),
+                  //                   Text(t.type.name,
+                  //                       style: TextStyle(
+                  //                         color: Colors.white,
+                  //                       )),
+                  //                   Text(
+                  //                       t.accuracy != null
+                  //                           ? t.accuracy.toString()
+                  //                           : "-",
+                  //                       style: TextStyle(
+                  //                         color: Colors.white,
+                  //                       )),
+                  //                   Text(t.pp.toString(),
+                  //                       style: TextStyle(
+                  //                         color: Colors.white,
+                  //                       )),
+                  //                 ],
+                  //               ),
+                  //             ))
+                  //         .toList()),
+                  ),
             ],
           ),
         ),
       ],
     );
+  }
+
+  List<TableRow> gerarTabela() {
+    List<TableRow> rows = movimentos
+        .map(
+          (m) => TableRow(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Colors.red,
+                border: Border.all()),
+            children: [
+              Container(
+                  // margin: EdgeInsets.all(10),
+                  padding:  EdgeInsets.all(8),
+                  height: 50,
+                  alignment: Alignment.center,
+                  child: Column(
+                    children: [
+                      Text(m.name,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                          )),
+                    ],
+                  )),
+              Text(m.type.name,
+                  style: TextStyle(
+                    color: Colors.white,
+                  )),
+              Text(m.accuracy != null ? m.accuracy.toString() : "-",
+                  style: TextStyle(
+                    color: Colors.white,
+                  )),
+              Text(m.pp.toString(),
+                  style: TextStyle(
+                    color: Colors.white,
+                  ))
+            ],
+          ),
+        )
+        .toList();
+
+    // for (int i = 1; i < rows.length; i++) {
+    //   rows.insert(i, TableRow(children: [Text(""),Text(""),Text(""),Text("")]));
+    // }
+
+    // rows.insert(1, TableRow(children: [Text(""),Text(""),Text(""),Text("")]));
+
+    return rows;
   }
 }

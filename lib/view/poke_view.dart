@@ -66,7 +66,7 @@ class _PokeViewState extends State<PokeView> {
             title: Text("Detail"),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.attach_file),
+            icon: Icon(Icons.star),
             title: Text("Moves"),
           ),
           BottomNavigationBarItem(

@@ -15,14 +15,26 @@ class PokeMagic extends StatelessWidget {
             textTheme: TextTheme(
                 body1: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 body2: TextStyle(
-                  // fontSize: 20,
+                  fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                   // decorationColor: Colors.white,
                 ))),
         home: Scaffold(
           appBar: AppBar(
-            // actions: <Widget>[Text("teste")],
+            // actions: [
+            //   DropdownButton(
+            //     onChanged: null,
+            //     items: [
+            //       DropdownMenuItem(
+            //         child: Text(""),
+            //       ),
+            //       DropdownMenuItem(
+            //         child: Text(""),
+            //       ),
+            //     ],
+            //   )
+            // ],
             title: Text("PokéMagic", style: TextStyle(fontSize: 20)),
             backgroundColor: Colors.cyan,
           ),

@@ -64,77 +64,79 @@ class _PokeViewState extends State<PokePricipal> {
             child: CircularProgressIndicator(),
           )
         : GridView.count(
-            // maxCrossAxisExtent: 2,
             crossAxisCount: 2,
             children: List.generate(pokemonCont, (index) {
               return InkWell(
-                borderRadius: BorderRadius.circular(10),
-                onTap: () {
-                  if (pokemons.length > index)
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PokeView(pokemons[index])));
-                },
-                child: pokemons.length > index
-                    ? Hero(
-                        tag: formatID(pokemons[index].id),
-                        child: Card(
-                            // color: pokemons.length > index
-                            //             ? formatColor(pokemons[index])
-                            //             : Colors.white,
-                            elevation: 3,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                    // padding: EdgeInsets.all(2),
-                                    child: CachedNetworkImage(
-                                  imageUrl: formatID(pokemons[index].id),
-                                  placeholder: (context, url) =>
-                                      CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
-                                )),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                        "#${pokemons[index].id} - ${pokemons[index].name.replaceRange(0, 1, pokemons[index].name[0].toUpperCase())}"),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: pokemons[index]
-                                          .types
-                                          .reversed
-                                          .map((t) => Container(
-                                                padding: EdgeInsets.all(4),
-                                                margin: EdgeInsets.all(4),
-                                                decoration: BoxDecoration(
-                                                    color: formatColorExist(
-                                                        t.type.name),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            15)),
-                                                child: Text(
-                                                  t.type.name,
-                                                  style: TextStyle(
-                                                      color: Colors.white),
-                                                ),
-                                              ))
-                                          .toList(),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            )))
-                    : Container(),
-              );
+                  borderRadius: BorderRadius.circular(10),
+                  onTap: () {
+                    if (pokemons.length > index)
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PokeView(pokemons[index])));
+                  },
+                  child: Hero(
+                      tag: pokemons.length > index
+                          ? formatID(pokemons[index].id)
+                          : "0",
+                      child: Card(
+                        // color: pokemons.length > index
+                        //             ? formatColor(pokemons[index])
+                        //             : Colors.white,
+                        elevation: 3,
+                        child: pokemons.length > index
+                            ? Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      child: CachedNetworkImage(
+                                    imageUrl: formatID(pokemons[index].id),
+                                    placeholder: (context, url) =>
+                                        CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                    fit: BoxFit.cover,
+                                  )),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                          "#${pokemons[index].id} - ${pokemons[index].name.replaceRange(0, 1, pokemons[index].name[0].toUpperCase())}"),
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: pokemons[index]
+                                            .types
+                                            .reversed
+                                            .map((t) => Container(
+                                                  padding: EdgeInsets.all(4),
+                                                  margin: EdgeInsets.all(4),
+                                                  decoration: BoxDecoration(
+                                                      color: formatColorExist(
+                                                          t.type.name),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15)),
+                                                  child: Text(
+                                                    t.type.name,
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  ),
+                                                ))
+                                            .toList(),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              )
+                            : Container(),
+                      )));
             }),
           );
   }
