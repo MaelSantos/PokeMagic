@@ -29,7 +29,7 @@ class PokeDetalhes extends StatelessWidget {
                       tag: formatID(pokemon.id),
                       child: Container(
                         width: 200,
-                        height: 175,
+                        height: 165,
                         child: CachedNetworkImage(
                           imageUrl: formatID(pokemon.id),
                           placeholder: (context, url) =>

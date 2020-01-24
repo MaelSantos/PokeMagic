@@ -23,7 +23,6 @@ class PokeMove extends StatelessWidget {
     });
 
     egg = pokemon.moves.where((m) {
-      print(m.versionGroupDetails[0].moveLearnMethod.name);
       if (m.versionGroupDetails[0].moveLearnMethod.name == "egg") return true;
       return false;
     }).toList();
@@ -50,7 +49,6 @@ class PokeMove extends StatelessWidget {
     for (Moves m in pokemon.moves) {
       movimentos.add(await PokeAPI.getObject<Move>(int.parse(m.move.id)));
     }
-    print(movimentos[0].power);
   }
 
   @override

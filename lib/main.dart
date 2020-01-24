@@ -12,30 +12,23 @@ class PokeMagic extends StatelessWidget {
         title: "PokéMagic",
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+            appBarTheme: AppBarTheme(
+                textTheme: TextTheme(
+                    title: TextStyle(fontSize: 18, fontFamily: "FredokaOne"))),
             textTheme: TextTheme(
-                body1: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                body2: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  // decorationColor: Colors.white,
-                ))),
+                // button: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
+                // headline: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
+                // display1: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
+                // overline: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
+                // caption: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
+                // title: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
+                // subtitle: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
+                subhead: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
+                body1: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
+                body2: TextStyle(fontSize: 14, fontFamily: "FredokaOne"))),
         home: Scaffold(
           appBar: AppBar(
-            // actions: [
-            //   DropdownButton(
-            //     onChanged: null,
-            //     items: [
-            //       DropdownMenuItem(
-            //         child: Text(""),
-            //       ),
-            //       DropdownMenuItem(
-            //         child: Text(""),
-            //       ),
-            //     ],
-            //   )
-            // ],
-            title: Text("PokéMagic", style: TextStyle(fontSize: 20)),
+            title: Text("PokéMagic"),
             backgroundColor: Colors.cyan,
           ),
           drawer: Drawer(
@@ -50,19 +43,15 @@ class PokeMagic extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  title: Text(
-                    "Pokémons",
-                    style: TextStyle(color: Colors.black),
-                  ),
+                  title:
+                      Text("Pokémons", style: TextStyle(color: Colors.black)),
                   trailing: Text("807"),
                   // selected: true,
                   onTap: () {
                     Navigator.pop(context);
                   },
                 ),
-                Divider(
-                  thickness: 1,
-                ),
+                Divider(thickness: 1),
                 ListTile(
                   title: Text("Habilidades"),
                   trailing: Text("-"),

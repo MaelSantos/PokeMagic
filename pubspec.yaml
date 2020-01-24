@@ -22,10 +22,10 @@ dev_dependencies:
 
 
 flutter:
-  # fonts:
-  #   - family: Special
-  #     fonts:
-  #       - asset: assets/fonts/SpecialElite.ttf
+  fonts:
+    - family: FredokaOne
+      fonts:
+        - asset: assets/fonts/FredokaOne.ttf
 
   uses-material-design: true
   # assets:
