@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:poke_magic/model/pokemon.dart';
 import 'package:poke_magic/view/poke_detalhes.dart';
 import 'package:poke_magic/view/poke_evolucao.dart';
 import 'package:poke_magic/view/poke_movimentos.dart';
-import 'package:pokeapi/model/pokemon/pokemon.dart';
+// import 'package:pokeapi/model/pokemon/pokemon.dart';
 
 class PokeView extends StatefulWidget {
   final Pokemon pokemon;

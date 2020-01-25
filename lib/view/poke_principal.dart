@@ -1,14 +1,11 @@
 import 'dart:convert';
-
+import "package:flutter/services.dart" show rootBundle;
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:poke_magic/model/pokedex.dart';
+import 'package:poke_magic/model/pokemon.dart';
 import 'package:poke_magic/util/format.dart';
-import 'package:poke_magic/util/sqlite.dart';
-
 import 'package:flutter/material.dart';
 import 'package:poke_magic/view/poke_view.dart';
-import 'package:pokeapi/model/pokemon/pokemon.dart';
-import 'package:pokeapi/pokeapi.dart';
-import 'package:sqflite/sqflite.dart';
 
 class PokePricipal extends StatefulWidget {
   @override
@@ -16,7 +13,7 @@ class PokePricipal extends StatefulWidget {
 }
 
 class _PokeViewState extends State<PokePricipal> {
-  List<Pokemon> poke;
+  Pokedex pokedex;
   List<Pokemon> get pokemons => _filtroPoke();
   int pokemonCont = 807; //total de pokemons
   bool isFiltro;
@@ -28,54 +25,32 @@ class _PokeViewState extends State<PokePricipal> {
     isFiltro = false;
     filtro = "todos";
     super.initState();
-    carregarDados();
+    carregarPokedex();
   }
 
-  void carregarDados() async {
-    Database db = await SqlUtil().db;
-    poke = List();
-    Pokemon p;
-    int i = 1;
-
-    do {
-      List result =
-          await db.query("Pokemon", where: "id = ?", whereArgs: ["$i"]);
-      if (result.length > 0) {
-        p = Pokemon.fromJson(jsonDecode(result.first["json"]));
-      }
-
-      if (p == null) {
-        p = await PokeAPI.getObject<Pokemon>(i);
-        db.insert("Pokemon", {"json": "${jsonEncode(p.toJson())}"});
-      }
-      if (p != null) {
-        poke.add(p);
-        setState(() {});
-        i++;
-        p = null;
-      }
-    } while (i <= pokemonCont);
-
-    // pokemons = pokemons.reversed.toList();
-    // setState(() {});
+  carregarPokedex() async {
+    String raw = await rootBundle.loadString("assets/data/pokedex.json");
+    Map<String, dynamic> data = await json.decode(raw);
+    pokedex = Pokedex.fromJson(data);
+    setState(() {});
   }
 
   List<Pokemon> _filtroPoke() {
     List<Pokemon> retorno;
 
-    if (poke != null && isFiltro)
-      retorno = poke.where((p) {
+    if (pokedex != null && isFiltro)
+      retorno = pokedex.pokemons.where((p) {
         bool ret = true;
 
-        for(Types t in p.types){
+        for (Types t in p.types) {
           ret = t.type.name == filtro ? true : false;
           if (ret) break;
         }
 
         return ret;
       }).toList();
-    else
-      retorno = poke;
+    else if(pokedex != null)
+      retorno = pokedex.pokemons;
     return retorno;
   }
 
@@ -108,7 +83,7 @@ class _PokeViewState extends State<PokePricipal> {
                       },
                       child: Hero(
                           tag: pokemons.length > index
-                              ? formatID(pokemons[index].id)
+                              ? formatID(pokemons[index].number)
                               : "0",
                           child: Card(
                             // color: pokemons.length > index
@@ -123,7 +98,8 @@ class _PokeViewState extends State<PokePricipal> {
                                     children: [
                                       Container(
                                           child: CachedNetworkImage(
-                                        imageUrl: formatID(pokemons[index].id),
+                                        imageUrl:
+                                            formatID(pokemons[index].number),
                                         placeholder: (context, url) =>
                                             CircularProgressIndicator(),
                                         errorWidget: (context, url, error) =>
@@ -137,7 +113,7 @@ class _PokeViewState extends State<PokePricipal> {
                                             MainAxisAlignment.spaceEvenly,
                                         children: [
                                           Text(
-                                              "#${pokemons[index].id} - ${pokemons[index].name.replaceRange(0, 1, pokemons[index].name[0].toUpperCase())}"),
+                                              "${pokemons[index].number} - ${pokemons[index].name.replaceRange(0, 1, pokemons[index].name[0].toUpperCase())}"),
                                           Row(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,

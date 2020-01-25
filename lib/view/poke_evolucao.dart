@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokeapi/model/pokemon/pokemon.dart';
+import 'package:poke_magic/model/pokemon.dart';
+// import 'package:pokeapi/model/pokemon/pokemon.dart';
 
 class PokeEvolucao extends StatelessWidget {
   final Pokemon pokemon;

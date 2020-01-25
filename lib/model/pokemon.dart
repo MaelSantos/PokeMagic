@@ -1,32 +1,30 @@
+import 'package:poke_magic/model/comum.dart';
+
 class Pokemon {
   List<Abilities> abilities;
   int baseExperience;
+  List<Comum> forms;
   int height;
   int id;
-  bool isDefault;
-  String locationAreaEncounters;
+  List<Moves> moves;
   String name;
-  int order;
-  Ability species;
-  Sprites sprites;
   List<Stats> stats;
   List<Types> types;
   int weight;
+  String number;
 
   Pokemon(
       {this.abilities,
       this.baseExperience,
+      this.forms,
       this.height,
       this.id,
-      this.isDefault,
-      this.locationAreaEncounters,
+      this.moves,
       this.name,
-      this.order,
-      this.species,
-      this.sprites,
       this.stats,
       this.types,
-      this.weight});
+      this.weight,
+      this.number});
 
   Pokemon.fromJson(Map<String, dynamic> json) {
     if (json['abilities'] != null) {
@@ -36,16 +34,21 @@ class Pokemon {
       });
     }
     baseExperience = json['base_experience'];
+    if (json['forms'] != null) {
+      forms = new List<Comum>();
+      json['forms'].forEach((v) {
+        forms.add(new Comum.fromJson(v));
+      });
+    }
     height = json['height'];
     id = json['id'];
-    isDefault = json['is_default'];
-    locationAreaEncounters = json['location_area_encounters'];
+    if (json['moves'] != null) {
+      moves = new List<Moves>();
+      json['moves'].forEach((v) {
+        moves.add(new Moves.fromJson(v));
+      });
+    }
     name = json['name'];
-    order = json['order'];
-    species =
-        json['species'] != null ? new Ability.fromJson(json['species']) : null;
-    sprites =
-        json['sprites'] != null ? new Sprites.fromJson(json['sprites']) : null;
     if (json['stats'] != null) {
       stats = new List<Stats>();
       json['stats'].forEach((v) {
@@ -59,6 +62,7 @@ class Pokemon {
       });
     }
     weight = json['weight'];
+    number = json['num'];
   }
 
   Map<String, dynamic> toJson() {
@@ -67,18 +71,15 @@ class Pokemon {
       data['abilities'] = this.abilities.map((v) => v.toJson()).toList();
     }
     data['base_experience'] = this.baseExperience;
+    if (this.forms != null) {
+      data['forms'] = this.forms.map((v) => v.toJson()).toList();
+    }
     data['height'] = this.height;
     data['id'] = this.id;
-    data['is_default'] = this.isDefault;
-    data['location_area_encounters'] = this.locationAreaEncounters;
+    if (this.moves != null) {
+      data['moves'] = this.moves.map((v) => v.toJson()).toList();
+    }
     data['name'] = this.name;
-    data['order'] = this.order;
-    if (this.species != null) {
-      data['species'] = this.species.toJson();
-    }
-    if (this.sprites != null) {
-      data['sprites'] = this.sprites.toJson();
-    }
     if (this.stats != null) {
       data['stats'] = this.stats.map((v) => v.toJson()).toList();
     }
@@ -86,12 +87,13 @@ class Pokemon {
       data['types'] = this.types.map((v) => v.toJson()).toList();
     }
     data['weight'] = this.weight;
+    data['num'] = this.number;
     return data;
   }
 }
 
 class Abilities {
-  Ability ability;
+  Comum ability;
   bool isHidden;
   int slot;
 
@@ -99,7 +101,7 @@ class Abilities {
 
   Abilities.fromJson(Map<String, dynamic> json) {
     ability =
-        json['ability'] != null ? new Ability.fromJson(json['ability']) : null;
+        json['ability'] != null ? new Comum.fromJson(json['ability']) : null;
     isHidden = json['is_hidden'];
     slot = json['slot'];
   }
@@ -115,66 +117,20 @@ class Abilities {
   }
 }
 
-class Ability {
-  String name;
-  String url;
+class Moves {
+  Comum move;
 
-  Ability({this.name, this.url});
+  Moves({this.move});
 
-  Ability.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    url = json['url'];
+  Moves.fromJson(Map<String, dynamic> json) {
+    move = json['move'] != null ? new Comum.fromJson(json['move']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['url'] = this.url;
-    return data;
-  }
-}
-
-class Sprites {
-  String backDefault;
-  Null backFemale;
-  String backShiny;
-  Null backShinyFemale;
-  String frontDefault;
-  Null frontFemale;
-  String frontShiny;
-  Null frontShinyFemale;
-
-  Sprites(
-      {this.backDefault,
-      this.backFemale,
-      this.backShiny,
-      this.backShinyFemale,
-      this.frontDefault,
-      this.frontFemale,
-      this.frontShiny,
-      this.frontShinyFemale});
-
-  Sprites.fromJson(Map<String, dynamic> json) {
-    backDefault = json['back_default'];
-    backFemale = json['back_female'];
-    backShiny = json['back_shiny'];
-    backShinyFemale = json['back_shiny_female'];
-    frontDefault = json['front_default'];
-    frontFemale = json['front_female'];
-    frontShiny = json['front_shiny'];
-    frontShinyFemale = json['front_shiny_female'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['back_default'] = this.backDefault;
-    data['back_female'] = this.backFemale;
-    data['back_shiny'] = this.backShiny;
-    data['back_shiny_female'] = this.backShinyFemale;
-    data['front_default'] = this.frontDefault;
-    data['front_female'] = this.frontFemale;
-    data['front_shiny'] = this.frontShiny;
-    data['front_shiny_female'] = this.frontShinyFemale;
+    if (this.move != null) {
+      data['move'] = this.move.toJson();
+    }
     return data;
   }
 }
@@ -182,14 +138,14 @@ class Sprites {
 class Stats {
   int baseStat;
   int effort;
-  Ability stat;
+  Comum stat;
 
   Stats({this.baseStat, this.effort, this.stat});
 
   Stats.fromJson(Map<String, dynamic> json) {
     baseStat = json['base_stat'];
     effort = json['effort'];
-    stat = json['stat'] != null ? new Ability.fromJson(json['stat']) : null;
+    stat = json['stat'] != null ? new Comum.fromJson(json['stat']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -205,13 +161,13 @@ class Stats {
 
 class Types {
   int slot;
-  Ability type;
+  Comum type;
 
   Types({this.slot, this.type});
 
   Types.fromJson(Map<String, dynamic> json) {
     slot = json['slot'];
-    type = json['type'] != null ? new Ability.fromJson(json['type']) : null;
+    type = json['type'] != null ? new Comum.fromJson(json['type']) : null;
   }
 
   Map<String, dynamic> toJson() {

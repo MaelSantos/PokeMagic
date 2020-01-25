@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:poke_magic/model/pokemon.dart';
 import 'package:poke_magic/util/format.dart';
-import 'package:pokeapi/model/pokemon/pokemon.dart';
+// import 'package:pokeapi/model/pokemon/pokemon.dart';
 
 class PokeDetalhes extends StatelessWidget {
   final Pokemon pokemon;
@@ -26,12 +27,12 @@ class PokeDetalhes extends StatelessWidget {
                 Align(
                     alignment: Alignment.topCenter,
                     child: Hero(
-                      tag: formatID(pokemon.id),
+                      tag: formatID(pokemon.number),
                       child: Container(
                         width: 200,
-                        height: 165,
+                        height: 175,
                         child: CachedNetworkImage(
-                          imageUrl: formatID(pokemon.id),
+                          imageUrl: formatID(pokemon.number),
                           placeholder: (context, url) =>
                               CircularProgressIndicator(),
                           errorWidget: (context, url, error) =>

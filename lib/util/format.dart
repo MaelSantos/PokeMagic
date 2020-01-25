@@ -1,23 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pokeapi/model/pokemon/pokemon.dart';
 
-String formatID(int i) {
-  String linkImagens = "https://www.serebii.net/pokemongo/pokemon/";
-
-  switch (i.toString().length) {
-    case 1:
-      linkImagens += "00$i.png";
-      break;
-    case 2:
-      linkImagens += "0$i.png";
-      break;
-    case 3:
-      linkImagens += "$i.png";
-      break;
-    // default:
-    //   linkImagens += "$i.png";
-  }
-  return linkImagens;
+String formatID(String i) {
+  return "https://www.serebii.net/pokemongo/pokemon/${i.replaceFirst("#", "")}.png";
 }
 
 Map<String, Color> colors = {
@@ -41,12 +25,6 @@ Map<String, Color> colors = {
   "fairy": Colors.pink[300],
 };
 
-
-
-Color formatColor(Pokemon pokemon) {
-  return colors[pokemon.types.reversed.first.type.name];
-}
-
-Color formatColorExist(String pokemon) {
-  return colors[pokemon];
+Color formatColorExist(String cor) {
+  return colors[cor];
 }
