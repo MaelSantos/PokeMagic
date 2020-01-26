@@ -5,6 +5,7 @@ import 'package:poke_magic/model/evolutions.dart';
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/model/pokemon.dart';
 import 'package:poke_magic/util/format.dart';
+import 'package:poke_magic/view/componentes/poke_card.dart';
 import 'package:poke_magic/view/poke_view.dart';
 // import 'package:pokeapi/model/pokemon/pokemon.dart';
 
@@ -49,6 +50,7 @@ class PokeEvolucao extends StatelessWidget {
             children: [
               Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                 evolution.chain != null
+                    // ? PokeCard()
                     ? pokeCard(evolution.chain.species.name, context)
                     : Container(),
               ]),
@@ -81,33 +83,10 @@ class PokeEvolucao extends StatelessWidget {
 
   Widget pokeCard(String nome, BuildContext context) {
     Pokemon poke = Pokedex().toPokemon(nome);
-    return Center(
-        child: Container(
-            width: MediaQuery.of(context).size.width * 0.25,
-            height: 160,
-            alignment: Alignment.center,
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PokeView(poke, evolutions)));
-              },
-              child: Card(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CachedNetworkImage(
-                      imageUrl: formatID(poke.number),
-                      placeholder: (context, url) =>
-                          CircularProgressIndicator(),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
-                      fit: BoxFit.contain),
-                  Text("${poke.number} - $nome", textAlign: TextAlign.center)
-                ],
-              )),
-            )));
+    return PokeCard(poke, onSelecionar: () {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => PokeView(poke, evolutions)));
+    });
   }
 
   Widget pokeLink(List list) {
@@ -131,8 +110,8 @@ class PokeEvolucao extends StatelessWidget {
             motivo = e.evolutionDetails[0].minAffection.toString();
           if (motivo == "null" && e.evolutionDetails[0].location != null)
             motivo = e.evolutionDetails[0].location.name;
-          if (motivo == "null" && e.evolutionDetails[0].knownMoveType != "null")
-          {
+          if (motivo == "null" &&
+              e.evolutionDetails[0].knownMoveType != "null") {
             gatilho += "move";
             motivo = e.evolutionDetails[0].knownMoveType.toString();
           }

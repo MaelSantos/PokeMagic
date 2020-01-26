@@ -6,6 +6,8 @@ import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/model/pokemon.dart';
 import 'package:poke_magic/util/format.dart';
 import 'package:flutter/material.dart';
+import 'package:poke_magic/view/componentes/field_custom.dart';
+import 'package:poke_magic/view/componentes/poke_card.dart';
 import 'package:poke_magic/view/poke_view.dart';
 
 class PokePricipal extends StatefulWidget {
@@ -22,10 +24,20 @@ class _PokeViewState extends State<PokePricipal> {
   String filtro;
   int get contFiltro => pokemons.length;
 
+  FieldCustom pesquisa;
+
   @override
   void initState() {
     isFiltro = false;
     filtro = "todos";
+    pesquisa = FieldCustom("Pesquisar", iconData: Icons.search, onDigitar: (s) {
+      setState(() {
+        if (s.isEmpty)
+          isFiltro = false;
+        else
+          isFiltro = true;
+      });
+    });
     super.initState();
     carregarPokedex();
   }
@@ -53,8 +65,14 @@ class _PokeViewState extends State<PokePricipal> {
 
         for (Types t in p.types) {
           ret = t.type.name == filtro ? true : false;
+          if (pesquisa.text.isNotEmpty)
+            ret = t.type.name == filtro && p.name.contains(pesquisa.text)
+                ? true
+                : false;
           if (ret) break;
         }
+        if (filtro == "todos" && pesquisa.text.isNotEmpty)
+          ret = p.name.contains(pesquisa.text);
 
         return ret;
       }).toList();
@@ -67,96 +85,35 @@ class _PokeViewState extends State<PokePricipal> {
     return Column(
       children: [
         Container(
-          child: _down(),
-        ),
+            margin: EdgeInsets.all(5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                _down(),
+                pesquisa,
+              ],
+            )),
         pokemons == null
             ? Center(
                 child: CircularProgressIndicator(),
               )
             : Expanded(
-                // alignment: Alignment.center,
                 child: GridView.count(
                 crossAxisCount: 2,
                 children:
                     List.generate(isFiltro ? contFiltro : pokemonCont, (index) {
-                  return InkWell(
-                      borderRadius: BorderRadius.circular(10),
-                      onTap: () {
-                        if (pokemons.length > index)
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      PokeView(pokemons[index], evolutions)));
-                      },
-                      child: Hero(
-                          tag: pokemons.length > index
-                              ? formatID(pokemons[index].number)
-                              : "0",
-                          child: Card(
-                            // color: pokemons.length > index
-                            //             ? formatColor(pokemons[index])
-                            //             : Colors.white,
-                            elevation: 3,
-                            child: pokemons.length > index
-                                ? Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                          child: CachedNetworkImage(
-                                        imageUrl:
-                                            formatID(pokemons[index].number),
-                                        placeholder: (context, url) =>
-                                            CircularProgressIndicator(),
-                                        errorWidget: (context, url, error) =>
-                                            Icon(Icons.error),
-                                        fit: BoxFit.cover,
-                                      )),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Text(
-                                              "${pokemons[index].number} - ${pokemons[index].name.replaceRange(0, 1, pokemons[index].name[0].toUpperCase())}"),
-                                          Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: pokemons[index]
-                                                .types
-                                                .reversed
-                                                .map((t) => Container(
-                                                      padding:
-                                                          EdgeInsets.all(4),
-                                                      margin: EdgeInsets.all(4),
-                                                      decoration: BoxDecoration(
-                                                          color:
-                                                              formatColorExist(
-                                                                  t.type.name),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      15)),
-                                                      child: Text(
-                                                        t.type.name,
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                    ))
-                                                .toList(),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  )
-                                : Container(),
-                          )));
+                  return PokeCard(
+                    pokemons[index],
+                    onSelecionar: () {
+                      if (pokemons.length > index)
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    PokeView(pokemons[index], evolutions)));
+                    },
+                  );
                 }),
               ))
       ],

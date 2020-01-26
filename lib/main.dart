@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poke_magic/view/componentes/field_custom.dart';
 import 'package:poke_magic/view/poke_principal.dart';
 
 void main() async {
