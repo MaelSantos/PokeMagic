@@ -1,6 +1,7 @@
 import 'dart:convert';
 import "package:flutter/services.dart" show rootBundle;
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:poke_magic/model/evolutions.dart';
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/model/pokemon.dart';
 import 'package:poke_magic/util/format.dart';
@@ -13,6 +14,7 @@ class PokePricipal extends StatefulWidget {
 }
 
 class _PokeViewState extends State<PokePricipal> {
+  Evolutions evolutions;
   Pokedex pokedex;
   List<Pokemon> get pokemons => _filtroPoke();
   int pokemonCont = 807; //total de pokemons
@@ -29,10 +31,17 @@ class _PokeViewState extends State<PokePricipal> {
   }
 
   carregarPokedex() async {
-    String raw = await rootBundle.loadString("assets/data/pokedex.json");
-    Map<String, dynamic> data = await json.decode(raw);
-    pokedex = Pokedex.fromJson(data);
+    pokedex = Pokedex.fromJson(await carregarJson("assets/data/pokedex.json"));
+    evolutions =
+        Evolutions.fromJson(await carregarJson("assets/data/evolution.json"));
+
     setState(() {});
+  }
+
+  Future<Map<String, dynamic>> carregarJson(String url) async {
+    String raw = await rootBundle.loadString(url);
+    Map<String, dynamic> data = await json.decode(raw);
+    return data;
   }
 
   List<Pokemon> _filtroPoke() {
@@ -49,8 +58,7 @@ class _PokeViewState extends State<PokePricipal> {
 
         return ret;
       }).toList();
-    else if(pokedex != null)
-      retorno = pokedex.pokemons;
+    else if (pokedex != null) retorno = pokedex.pokemons;
     return retorno;
   }
 
@@ -79,7 +87,7 @@ class _PokeViewState extends State<PokePricipal> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      PokeView(pokemons[index])));
+                                      PokeView(pokemons[index], evolutions)));
                       },
                       child: Hero(
                           tag: pokemons.length > index

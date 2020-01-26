@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poke_magic/model/evolutions.dart';
 import 'package:poke_magic/model/pokemon.dart';
 import 'package:poke_magic/view/poke_detalhes.dart';
 import 'package:poke_magic/view/poke_evolucao.dart';
@@ -7,11 +8,12 @@ import 'package:poke_magic/view/poke_movimentos.dart';
 
 class PokeView extends StatefulWidget {
   final Pokemon pokemon;
+  final Evolutions evolutions;
 
-  PokeView(this.pokemon);
+  PokeView(this.pokemon, this.evolutions);
 
   @override
-  _PokeViewState createState() => _PokeViewState(pokemon);
+  _PokeViewState createState() => _PokeViewState(pokemon, evolutions);
 }
 
 class _PokeViewState extends State<PokeView> {
@@ -21,30 +23,17 @@ class _PokeViewState extends State<PokeView> {
   PokeEvolucao pokeEvolucao;
 
   final Pokemon pokemon;
+  final Evolutions evolutions;
   String titulo;
   int indexCorrente;
 
-  _PokeViewState(this.pokemon) {
+  _PokeViewState(this.pokemon, this.evolutions) {
     pokeDetalhes = PokeDetalhes(pokemon);
     pokeMove = PokeMove(pokemon);
-    pokeEvolucao = PokeEvolucao(pokemon);
+    pokeEvolucao = PokeEvolucao(pokemon, evolutions);
     corrente = pokeDetalhes;
     indexCorrente = 0;
     titulo = pokemon.name.replaceRange(0, 1, pokemon.name[0].toUpperCase());
-    carregarDados();
-  }
-
-  void carregarDados() async {
-    // print(pokemon.species.name);
-
-    // evolucao = await PokeAPI.getObject<EvolutionChain>(pokemon.id);
-    // print(evolucao.chain.evolvesTo[0].species.name);
-
-    // PokemonSpecie evolucao = await PokeAPI.getObject<PokemonSpecie>(int.parse(pokemon.species.id));
-    // print(evolucao.);
-
-    // Characteristic r = await PokeAPI.getObject<Characteristic>(1);
-    // print(r.highestStat);
   }
 
   @override

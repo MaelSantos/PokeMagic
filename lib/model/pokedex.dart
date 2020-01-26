@@ -5,12 +5,16 @@ class Pokedex {
 
   List<Pokemon> pokemons;
 
-  Pokedex({this.pokemons});
+  static final Pokedex _instance = Pokedex.internal();
+  factory Pokedex() => _instance;
+  Pokedex.internal();
 
-  Pokedex.fromJson(Map<String, dynamic> json) {
-    pokemons = List();
+  static Pokedex fromJson(Map<String, dynamic> json) {
+    _instance.pokemons = List();
     for (int i = 1; i <= pokeTotal; i++)
-      pokemons.add(json['$i'] != null ? Pokemon.fromJson(json['$i']) : null);
+      _instance.pokemons
+          .add(json['$i'] != null ? Pokemon.fromJson(json['$i']) : null);
+    return _instance;
   }
 
   Map<String, dynamic> toJson() {
@@ -20,5 +24,9 @@ class Pokedex {
         data['$i'] = this.pokemons[i].toJson();
     }
     return data;
+  }
+
+  Pokemon toPokemon(String poke) {
+    return pokemons.firstWhere((p) => poke == p.name);
   }
 }

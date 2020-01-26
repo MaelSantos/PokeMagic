@@ -27,6 +27,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/data/pokedex.json
+    - assets/data/evolution.json
 
 # flutter_icons:
 #  android: "launcher_icon"
