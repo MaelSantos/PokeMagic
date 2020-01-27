@@ -4,6 +4,8 @@ import 'package:poke_magic/model/pokemon.dart';
 import 'package:poke_magic/util/format.dart';
 // import 'package:pokeapi/model/pokemon/pokemon.dart';
 
+import 'package:poke_magic/view/componentes/bar_custom.dart';
+
 class PokeDetalhes extends StatelessWidget {
   final Pokemon pokemon;
   String titulo;
@@ -78,24 +80,12 @@ class PokeDetalhes extends StatelessWidget {
                 Text("Statistics",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 16)),
-                Column(
-                    children: pokemon.stats.reversed
-                        .map((s) => Container(
-                            margin: EdgeInsets.only(top: 5),
-                            padding: EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                                color: Colors.red,
-                                borderRadius: BorderRadius.circular(15)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(s.stat.name,
-                                    style: TextStyle(color: Colors.white)),
-                                Text(s.baseStat.toString(),
-                                    style: TextStyle(color: Colors.white)),
-                              ],
-                            )))
-                        .toList()),
+                SingleChildScrollView(
+                    child: Container(
+                  height: 190,
+                  child: BarCustom(BarCustom.createSampleData(
+                      pokemon.stats.reversed.toList())),
+                ))
               ],
             ),
           )),

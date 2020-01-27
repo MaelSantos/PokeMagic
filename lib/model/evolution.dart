@@ -102,10 +102,10 @@ class EvolvesTo {
 
 class EvolutionDetails {
   int gender; //não string
-  String heldItem;
+  Comum heldItem;
   Comum item;
-  String knownMove;
-  String knownMoveType;
+  Comum knownMove;
+  Comum knownMoveType;
   Comum location;
   int minAffection; //não string
   int minBeauty; //não string
@@ -142,11 +142,16 @@ class EvolutionDetails {
 
   EvolutionDetails.fromJson(Map<String, dynamic> json) {
     gender = json['gender'];
-    heldItem = json['held_item'].toString(); //corrigir
+    heldItem =
+        json['held_item'] != null ? Comum.fromJson(json['held_item']) : null;
     item = json['item'] != null ? Comum.fromJson(json['item']) : null;
-    knownMove = json['known_move'].toString(); //corrigir
-    knownMoveType = json['known_move_type'].toString(); //corrigir
-    location = json['item'] != null ? Comum.fromJson(json['item']) : null;
+    knownMove =
+        json['known_move'] != null ? Comum.fromJson(json['known_move']) : null;
+    knownMoveType = json['known_move_type'] != null
+        ? Comum.fromJson(json['known_move_type'])
+        : null;
+    location =
+        json['location'] != null ? Comum.fromJson(json['location']) : null;
     minAffection = json['min_affection'];
     minBeauty = json['min_beauty'];
     minHappiness = json['min_happiness'];

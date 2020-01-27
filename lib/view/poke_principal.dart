@@ -32,7 +32,7 @@ class _PokeViewState extends State<PokePricipal> {
     filtro = "todos";
     pesquisa = FieldCustom("Pesquisar", iconData: Icons.search, onDigitar: (s) {
       setState(() {
-        if (s.isEmpty)
+        if (s.isEmpty && filtro == "todos")
           isFiltro = false;
         else
           isFiltro = true;

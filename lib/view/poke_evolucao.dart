@@ -50,31 +50,21 @@ class PokeEvolucao extends StatelessWidget {
             children: [
               Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                 evolution.chain != null
-                    // ? PokeCard()
                     ? pokeCard(evolution.chain.species.name, context)
                     : Container(),
               ]),
               evolution.chain.evolvesTo.isNotEmpty
-                  ? pokeLink(evolution.chain.evolvesTo)
-                  : Container(),
-              evolution.chain.evolvesTo.isNotEmpty
                   ? SingleChildScrollView(
                       child: Column(
-                          children: evolution.chain.evolvesTo
-                              .map((f) => pokeCard(f.species.name, context))
-                              .toList()))
-                  : Container(),
-              evolution.chain.evolvesTo.isNotEmpty &&
-                      evolution.chain.evolvesTo[0].evolvesToTo.isNotEmpty
-                  ? pokeLink(evolution.chain.evolvesTo[0].evolvesToTo)
+                          children: nextEvolution(
+                              context, evolution.chain.evolvesTo, true)))
                   : Container(),
               evolution.chain.evolvesTo.isNotEmpty &&
                       evolution.chain.evolvesTo[0].evolvesToTo.isNotEmpty
                   ? Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: evolution.chain.evolvesTo[0].evolvesToTo
-                          .map((f) => pokeCard(f.species.name, context))
-                          .toList())
+                      children: nextEvolution(
+                          context, evolution.chain.evolvesTo, false))
                   : Container(),
             ],
           ),
@@ -83,49 +73,103 @@ class PokeEvolucao extends StatelessWidget {
 
   Widget pokeCard(String nome, BuildContext context) {
     Pokemon poke = Pokedex().toPokemon(nome);
-    return PokeCard(poke, onSelecionar: () {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => PokeView(poke, evolutions)));
-    });
+    return Container(
+        width: MediaQuery.of(context).size.width * 0.25,
+        // height: 165,
+        child: PokeCard(poke, size: 10, onSelecionar: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => PokeView(poke, evolutions)));
+        }));
   }
 
-  Widget pokeLink(List list) {
+  List<Widget> nextEvolution(
+      BuildContext context, List<dynamic> to, bool next) {
+    List<Widget> cont = List();
+
+    for (dynamic a in to) {
+      if (!next)
+        for (EvolvesToTo b in a.evolvesToTo) {
+          Row row = Row(
+            children: [
+              pokeLink(b.evolutionDetails, context),
+              pokeCard(b.species.name, context)
+            ],
+          );
+          cont.add(row);
+        }
+      else {
+        Row row = Row(
+          children: [
+            pokeLink(a.evolutionDetails, context),
+            pokeCard(a.species.name, context)
+          ],
+        );
+        cont.add(row);
+      }
+    }
+
+    return cont;
+  }
+
+  Widget pokeLink(List list, BuildContext context) {
     List<Widget> colunas = List();
     String gatilho = "";
     String motivo = "";
 
     // evolution.chain.evolvesTo[0].evolutionDetails[0].knownMoveType;
-    for (dynamic e in list) {
-      gatilho = e.evolutionDetails[0].trigger.name;
+
+    if (list.length > 1)
+
+      //   gatilho = list[0].trigger.name;
+      //   if (list[0].location != null) motivo += list[0].location.name;
+      for (dynamic e in list) {
+        gatilho = e.trigger.name;
+        if (e.location != null)
+          motivo.isEmpty
+              ? motivo += e.location.name
+              : motivo += " or " + e.location.name;
+      }
+    else {
+      gatilho = list[0].trigger.name;
 
       switch (gatilho) {
         case "level-up":
-          motivo = e.evolutionDetails[0].minLevel.toString();
-          print(motivo);
-          if (motivo == "null" && e.evolutionDetails[0].minHappiness != null) {
+          motivo = list[0].minLevel.toString();
+          if (list[0].minHappiness != null) gatilho = "happiness";
+          if (list[0].timeOfDay != null && list[0].minHappiness != null) {
             gatilho = "happiness";
-            motivo = e.evolutionDetails[0].timeOfDay;
+            motivo = list[0].timeOfDay;
           }
-          if (e.evolutionDetails[0].minAffection != null)
-            motivo = e.evolutionDetails[0].minAffection.toString();
-          if (motivo == "null" && e.evolutionDetails[0].location != null)
-            motivo = e.evolutionDetails[0].location.name;
-          if (motivo == "null" &&
-              e.evolutionDetails[0].knownMoveType != "null") {
-            gatilho += "move";
-            motivo = e.evolutionDetails[0].knownMoveType.toString();
-          }
-
+          if (list[0].location != null) motivo = list[0].location.name;
+          if (list[0].knownMoveType != null)
+            motivo = "move " + list[0].knownMoveType.name;
+          if (list[0].heldItem != null) motivo = list[0].heldItem.name;
+          if (list[0].timeOfDay != null) motivo += "\n" + list[0].timeOfDay;
+          if (list[0].knownMove != null)
+            motivo = "move " + list[0].knownMove.name;
           break;
         case "use-item":
-          motivo = e.evolutionDetails[0].item.name;
+          motivo = list[0].item.name;
+          break;
+        case "trade":
+          if (list[0].heldItem != null) motivo = list[0].heldItem.name;
           break;
         default:
       }
-      colunas.add(Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text("---->"), Text("$gatilho"), Text("$motivo")]));
     }
+
+    colunas.add(Container(
+        width: MediaQuery.of(context).size.width * 0.18,
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("---->", textAlign: TextAlign.center),
+              Text("$gatilho", textAlign: TextAlign.center),
+              Text("$motivo", textAlign: TextAlign.center)
+            ])));
 
     return Column(
         mainAxisAlignment: MainAxisAlignment.center, children: colunas);
