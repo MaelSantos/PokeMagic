@@ -29,10 +29,10 @@ class _PokeViewState extends State<PokePricipal> {
   @override
   void initState() {
     isFiltro = false;
-    filtro = "todos";
-    pesquisa = FieldCustom("Pesquisar", iconData: Icons.search, onDigitar: (s) {
+    filtro = "all";
+    pesquisa = FieldCustom("Search", iconData: Icons.search, onDigitar: (s) {
       setState(() {
-        if (s.isEmpty && filtro == "todos")
+        if (s.isEmpty && filtro == "all")
           isFiltro = false;
         else
           isFiltro = true;
@@ -46,7 +46,6 @@ class _PokeViewState extends State<PokePricipal> {
     pokedex = Pokedex.fromJson(await carregarJson("assets/data/pokedex.json"));
     evolutions =
         Evolutions.fromJson(await carregarJson("assets/data/evolution.json"));
-
     setState(() {});
   }
 
@@ -71,7 +70,7 @@ class _PokeViewState extends State<PokePricipal> {
                 : false;
           if (ret) break;
         }
-        if (filtro == "todos" && pesquisa.text.isNotEmpty)
+        if (filtro == "all" && pesquisa.text.isNotEmpty)
           ret = p.name.contains(pesquisa.text);
 
         return ret;
@@ -122,7 +121,7 @@ class _PokeViewState extends State<PokePricipal> {
 
   DropdownButton _down() => DropdownButton<String>(
         items: [
-          DropdownMenuItem(value: "todos", child: Text("Todos")),
+          DropdownMenuItem(value: "all", child: Text("All")),
           DropdownMenuItem(value: "normal", child: Text("Normal")),
           DropdownMenuItem(value: "fighting", child: Text("Fighting")),
           DropdownMenuItem(value: "flying", child: Text("Flying")),
@@ -144,7 +143,7 @@ class _PokeViewState extends State<PokePricipal> {
         ],
         onChanged: (p) {
           setState(() {
-            if (p == "todos")
+            if (p == "all")
               isFiltro = false;
             else
               isFiltro = true;

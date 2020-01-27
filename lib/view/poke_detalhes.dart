@@ -5,6 +5,7 @@ import 'package:poke_magic/util/format.dart';
 // import 'package:pokeapi/model/pokemon/pokemon.dart';
 
 import 'package:poke_magic/view/componentes/bar_custom.dart';
+import 'package:poke_magic/view/componentes/poke_button.dart';
 
 class PokeDetalhes extends StatelessWidget {
   final Pokemon pokemon;
@@ -55,27 +56,24 @@ class PokeDetalhes extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: pokemon.types.reversed
-                      .map((t) => FilterChip(
-                            backgroundColor: formatColorExist(t.type.name),
-                            label: Text(t.type.name,
-                                style: TextStyle(color: Colors.white)),
-                            onSelected: (b) {},
-                          ))
+                      .map((t) => PokeButton(t.type.name,
+                          cor: formatColorExist(t.type.name)))
                       .toList(),
                 ),
                 Text("Abilities",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 16)),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: pokemon.abilities.reversed
-                      .map((t) => FilterChip(
-                            backgroundColor: Colors.cyan,
-                            label: Text(t.ability.name,
-                                style: TextStyle(color: Colors.white)),
-                            onSelected: (b) {},
-                          ))
-                      .toList(),
+                Center(
+                  child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: pokemon.abilities.reversed
+                            .map((t) => PokeButton(t.ability.name,
+                                isEscondido: t.isHidden))
+                            .toList(),
+                      )),
                 ),
                 Text("Statistics",
                     textAlign: TextAlign.center,
@@ -85,7 +83,7 @@ class PokeDetalhes extends StatelessWidget {
                   height: 190,
                   child: BarCustom(BarCustom.createSampleData(
                       pokemon.stats.reversed.toList())),
-                ))
+                )),
               ],
             ),
           )),

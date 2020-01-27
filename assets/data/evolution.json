@@ -17305,7 +17305,10 @@
                                     "item": null,
                                     "known_move": null,
                                     "known_move_type": null,
-                                    "location": null,
+                                    "location": {
+                                        "name": "vast-poni-canyon",
+                                        "url": "https://pokeapi.co/api/v2/evolution-trigger/#/"
+                                    },
                                     "min_affection": null,
                                     "min_beauty": null,
                                     "min_happiness": null,
@@ -18658,5 +18661,85 @@
             }
         },
         "id": 427
+    },
+    "428": {
+        "baby_trigger_item": null,
+        "chain": {
+            "evolves_to": [
+                {
+                    "evolution_details": [
+                        {
+                            "gender": null,
+                            "held_item": null,
+                            "item": null,
+                            "known_move": null,
+                            "known_move_type": null,
+                            "location": null,
+                            "min_affection": null,
+                            "min_beauty": null,
+                            "min_happiness": null,
+                            "min_level": 24,
+                            "needs_overworld_rain": false,
+                            "party_species": null,
+                            "party_type": null,
+                            "relative_physical_stats": null,
+                            "time_of_day": "",
+                            "trade_species": null,
+                            "trigger": {
+                                "name": "level-up",
+                                "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+                            },
+                            "turn_upside_down": false
+                        }
+                    ],
+                    "evolves_to": [
+                        {
+                            "evolution_details": [
+                                {
+                                    "gender": null,
+                                    "held_item": null,
+                                    "item": null,
+                                    "known_move": null,
+                                    "known_move_type": null,
+                                    "location": null,
+                                    "min_affection": null,
+                                    "min_beauty": null,
+                                    "min_happiness": null,
+                                    "min_level": 48,
+                                    "needs_overworld_rain": false,
+                                    "party_species": null,
+                                    "party_type": null,
+                                    "relative_physical_stats": null,
+                                    "time_of_day": "",
+                                    "trade_species": null,
+                                    "trigger": {
+                                        "name": "level-up",
+                                        "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+                                    },
+                                    "turn_upside_down": false
+                                }
+                            ],
+                            "evolves_to": [],
+                            "is_baby": false,
+                            "species": {
+                                "name": "garchomp",
+                                "url": "https://pokeapi.co/api/v2/pokemon-species/804/"
+                            }
+                        }
+                    ],
+                    "is_baby": false,
+                    "species": {
+                        "name": "gabite",
+                        "url": "https://pokeapi.co/api/v2/pokemon-species/804/"
+                    }
+                }
+            ],
+            "is_baby": false,
+            "species": {
+                "name": "gible",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/807/"
+            }
+        },
+        "id": 428
     }
 }

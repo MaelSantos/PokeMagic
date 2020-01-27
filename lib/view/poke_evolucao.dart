@@ -15,8 +15,11 @@ class PokeEvolucao extends StatelessWidget {
   Evolution evolution;
 
   PokeEvolucao(this.pokemon, this.evolutions) {
-    evolution = evolutions.evolution.firstWhere(escolherEvolucao);
-    if (evolution == null) evolution = evolutions.evolution[0];
+    try {
+      evolution = evolutions.evolution.firstWhere(escolherEvolucao);
+    } catch (e) {
+      if (evolution == null) evolution = evolutions.evolution[0];
+    }
   }
 
   bool escolherEvolucao(Evolution e) {
@@ -121,15 +124,14 @@ class PokeEvolucao extends StatelessWidget {
     // evolution.chain.evolvesTo[0].evolutionDetails[0].knownMoveType;
 
     if (list.length > 1)
-
-      //   gatilho = list[0].trigger.name;
-      //   if (list[0].location != null) motivo += list[0].location.name;
       for (dynamic e in list) {
         gatilho = e.trigger.name;
+        motivo = e.minLevel.toString();
         if (e.location != null)
           motivo.isEmpty
-              ? motivo += e.location.name
+              ? motivo += "location: " + e.location.name
               : motivo += " or " + e.location.name;
+        if (e.minBeauty != null) motivo = "beauty: " + e.minBeauty.toString();
       }
     else {
       gatilho = list[0].trigger.name;
@@ -137,24 +139,56 @@ class PokeEvolucao extends StatelessWidget {
       switch (gatilho) {
         case "level-up":
           motivo = list[0].minLevel.toString();
+
+          if (list[0].gender != null)
+            motivo = (list[0].gender == 1 ? "female ♀" : "male ♂") + "\n";
+
           if (list[0].minHappiness != null) gatilho = "happiness";
-          if (list[0].timeOfDay != null && list[0].minHappiness != null) {
-            gatilho = "happiness";
-            motivo = list[0].timeOfDay;
+
+          if (list[0].timeOfDay != null && list[0].timeOfDay.isNotEmpty) {
+            motivo != "null"
+                ? motivo = list[0].timeOfDay
+                : motivo += list[0].timeOfDay;
           }
-          if (list[0].location != null) motivo = list[0].location.name;
+
+          if (list[0].location != null)
+            motivo = "location: " + list[0].location.name;
+
           if (list[0].knownMoveType != null)
             motivo = "move " + list[0].knownMoveType.name;
+
+          if (list[0].knownMoveType != null && list[0].timeOfDay != null)
+            motivo += "\n" + list[0].timeOfDay;
+
           if (list[0].heldItem != null) motivo = list[0].heldItem.name;
-          if (list[0].timeOfDay != null) motivo += "\n" + list[0].timeOfDay;
+
           if (list[0].knownMove != null)
             motivo = "move " + list[0].knownMove.name;
+
+          if (list[0].minBeauty != null)
+            motivo = "beauty: " + list[0].minBeauty.toString();
+
+          if (list[0].relativePhysicalStats != null) {
+            if (list[0].relativePhysicalStats == 1)
+              motivo += "\nattack > defense";
+            if (list[0].relativePhysicalStats == -1)
+              motivo += "\nattack < defense";
+            if (list[0].relativePhysicalStats == 0)
+              motivo += "\nattack = defense";
+          }
+
+          if (list[0].partySpecies != null)
+            motivo = list[0].partySpecies.name + " in the team";
+
           break;
         case "use-item":
           motivo = list[0].item.name;
+          if (list[0].gender != null)
+            motivo += "\n" + (list[0].gender == 1 ? "female ♀" : "male ♂");
           break;
         case "trade":
-          if (list[0].heldItem != null) motivo = list[0].heldItem.name;
+          if (list[0].heldItem != null)
+            motivo = "item: " + list[0].heldItem.name;
           break;
         default:
       }

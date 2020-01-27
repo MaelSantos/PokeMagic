@@ -4,13 +4,12 @@ class Evolutions {
   List<Evolution> evolution;
 
   //(427-9) 210,222,225,226,227,230,231,238,251 dando erro
-  int get pokeTotal => 418;
 
   Evolutions({this.evolution});
 
   Evolutions.fromJson(Map<String, dynamic> json) {
     evolution = List();
-    for (int i = 1; i <= pokeTotal; i++)
+    for (int i = 1; i <= 428; i++)
       if (i != 210 &&
           i != 222 &&
           i != 225 &&
@@ -19,9 +18,8 @@ class Evolutions {
           i != 230 &&
           i != 231 &&
           i != 238 &&
-          i != 251)
-        evolution
-            .add(json['$i'] != null ? Evolution.fromJson(json['$i']) : null);
+          i != 251) if (json['$i'] != null)
+        evolution.add(Evolution.fromJson(json['$i']));
   }
 
   Map<String, dynamic> toJson() {

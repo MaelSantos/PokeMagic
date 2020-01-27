@@ -112,7 +112,7 @@ class EvolutionDetails {
   int minHappiness;
   int minLevel;
   bool needsOverworldRain;
-  String partySpecies;
+  Comum partySpecies;
   String partyType;
   int relativePhysicalStats; //não  string
   String timeOfDay;
@@ -157,7 +157,8 @@ class EvolutionDetails {
     minHappiness = json['min_happiness'];
     minLevel = json['min_level'];
     needsOverworldRain = json['needs_overworld_rain'];
-    partySpecies = json['party_species'].toString(); //corrigir;
+    partySpecies =
+        json['party_species'] != null ? Comum.fromJson(json['party_species']) : null;
     partyType = json['party_type'].toString(); //corrigir;
     relativePhysicalStats = json['relative_physical_stats'];
     timeOfDay = json['time_of_day'];

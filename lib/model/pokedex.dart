@@ -1,8 +1,6 @@
 import 'package:poke_magic/model/pokemon.dart';
 
 class Pokedex {
-  static final int pokeTotal = 807;
-
   List<Pokemon> pokemons;
 
   static final Pokedex _instance = Pokedex.internal();
@@ -11,7 +9,7 @@ class Pokedex {
 
   static Pokedex fromJson(Map<String, dynamic> json) {
     _instance.pokemons = List();
-    for (int i = 1; i <= pokeTotal; i++)
+    for (int i = 1; i <= json.length; i++)
       _instance.pokemons
           .add(json['$i'] != null ? Pokemon.fromJson(json['$i']) : null);
     return _instance;

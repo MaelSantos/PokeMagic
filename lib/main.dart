@@ -29,7 +29,7 @@ class PokeMagic extends StatelessWidget {
                 // subtitle: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
                 subhead: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
                 body1: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
-                body2: TextStyle(fontSize: 14, fontFamily: "FredokaOne"))),
+                body2: TextStyle(fontSize: 14, fontFamily: "FredokaOne",color: Colors.white))),
         home: Scaffold(
           appBar: AppBar(
             title: Text("PokéMagic"),
@@ -40,7 +40,7 @@ class PokeMagic extends StatelessWidget {
               padding: EdgeInsets.zero,
               children: <Widget>[
                 DrawerHeader(
-                  child: Text("PokéMagic"),
+                  child: Text("PokéMagic", style: TextStyle(fontSize: 23)),
                   duration: Duration(seconds: 1),
                   decoration: BoxDecoration(
                     color: Colors.cyan,
@@ -57,7 +57,7 @@ class PokeMagic extends StatelessWidget {
                 ),
                 Divider(thickness: 1),
                 ListTile(
-                  title: Text("Habilidades"),
+                  title: Text("Abilities"),
                   trailing: Text("-"),
                   enabled: false,
                   onTap: () {
