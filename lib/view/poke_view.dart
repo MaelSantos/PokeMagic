@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poke_magic/model/evolutions.dart';
+import 'package:poke_magic/model/moves.dart';
 import 'package:poke_magic/model/pokemon.dart';
 import 'package:poke_magic/view/poke_detalhes.dart';
 import 'package:poke_magic/view/poke_evolucao.dart';
@@ -10,11 +11,12 @@ import 'package:poke_magic/view/poke_movimentos.dart';
 class PokeView extends StatefulWidget {
   final Pokemon pokemon;
   final Evolutions evolutions;
+  final Moves movimentos;
 
-  PokeView(this.pokemon, this.evolutions);
+  PokeView(this.pokemon, this.evolutions, this.movimentos);
 
   @override
-  _PokeViewState createState() => _PokeViewState(pokemon, evolutions);
+  _PokeViewState createState() => _PokeViewState(pokemon, evolutions, movimentos);
 }
 
 class _PokeViewState extends State<PokeView> {
@@ -26,13 +28,14 @@ class _PokeViewState extends State<PokeView> {
 
   final Pokemon pokemon;
   final Evolutions evolutions;
+  final Moves movimentos;
   String titulo;
   int indexCorrente;
 
-  _PokeViewState(this.pokemon, this.evolutions) {
+  _PokeViewState(this.pokemon, this.evolutions, this.movimentos) {
     pokeDetalhes = PokeDetalhes(pokemon);
-    pokeMove = PokeMove(pokemon);
-    pokeEvolucao = PokeEvolucao(pokemon, evolutions);
+    pokeMove = PokeMove(pokemon, movimentos);
+    pokeEvolucao = PokeEvolucao(pokemon, evolutions, movimentos);
     pokeMore = PokeMore();
     corrente = pokeDetalhes;
     indexCorrente = 0;

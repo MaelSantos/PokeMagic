@@ -1,20 +1,20 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:poke_magic/model/evolution.dart';
 import 'package:poke_magic/model/evolutions.dart';
+import 'package:poke_magic/model/moves.dart';
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/model/pokemon.dart';
-import 'package:poke_magic/util/format.dart';
 import 'package:poke_magic/view/componentes/poke_card.dart';
 import 'package:poke_magic/view/poke_view.dart';
-// import 'package:pokeapi/model/pokemon/pokemon.dart';
 
 class PokeEvolucao extends StatelessWidget {
   final Pokemon pokemon;
   final Evolutions evolutions;
+  final Moves movimentos;
+
   Evolution evolution;
 
-  PokeEvolucao(this.pokemon, this.evolutions) {
+  PokeEvolucao(this.pokemon, this.evolutions, this.movimentos) {
     try {
       evolution = evolutions.evolution.firstWhere(escolherEvolucao);
     } catch (e) {
@@ -83,7 +83,8 @@ class PokeEvolucao extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => PokeView(poke, evolutions)));
+                  builder: (context) =>
+                      PokeView(poke, evolutions, movimentos)));
         }));
   }
 

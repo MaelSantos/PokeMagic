@@ -6,7 +6,7 @@ class Pokemon {
   List<Comum> forms;
   int height;
   int id;
-  List<Moves> moves;
+  List<Move> moves;
   String name;
   List<Stats> stats;
   List<Types> types;
@@ -43,9 +43,9 @@ class Pokemon {
     height = json['height'];
     id = json['id'];
     if (json['moves'] != null) {
-      moves = new List<Moves>();
+      moves = new List<Move>();
       json['moves'].forEach((v) {
-        moves.add(new Moves.fromJson(v));
+        moves.add(new Move.fromJson(v));
       });
     }
     name = json['name'];
@@ -117,19 +117,59 @@ class Abilities {
   }
 }
 
-class Moves {
+class Move {
   Comum move;
+  // List<VersionGroupDetails> versionGroupDetails;
+  VersionGroupDetails versionGroupDetails;
+  // String versionGroupDetails;
 
-  Moves({this.move});
+  Move({this.move});
 
-  Moves.fromJson(Map<String, dynamic> json) {
+  Move.fromJson(Map<String, dynamic> json) {
     move = json['move'] != null ? new Comum.fromJson(json['move']) : null;
+
+    // print(json['version_group_details']);
+    // if(json['version_group_details'] != null){
+    //   versionGroupDetails = json['version_group_details'].toString();
+      // versionGroupDetails = List();
+      // json['version_group_details'].forEach((v){
+      //   versionGroupDetails.add(VersionGroupDetails.fromJson(v));
+      // });
+    // }
+    versionGroupDetails = json['version_group_details'] != null
+        ? new VersionGroupDetails.fromJson(json['version_group_details'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.move != null) {
       data['move'] = this.move.toJson();
+      // data['version_group_details'] = this.versionGroupDetails.toJson();
+    }
+    return data;
+  }
+}
+
+class VersionGroupDetails {
+  int levelLearnedAt;
+  Comum moveLearnMethod;
+
+  VersionGroupDetails(
+      {this.levelLearnedAt, this.moveLearnMethod});
+
+  VersionGroupDetails.fromJson(Map<String, dynamic> json) {
+    levelLearnedAt = json['level_learned_at'];
+    moveLearnMethod = json['move_learn_method'] != null
+        ? new Comum.fromJson(json['move_learn_method'])
+        : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['level_learned_at'] = this.levelLearnedAt;
+    if (this.moveLearnMethod != null) {
+      data['move_learn_method'] = this.moveLearnMethod.toJson();
     }
     return data;
   }

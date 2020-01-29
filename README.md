@@ -10,5 +10,7 @@ Aplicação desenvolvida utilizando o framework [Flutter](https://flutter.dev/) 
 ![Principal](screenshots/principal.jpg) 
 ![Detalhes](screenshots/detalhes.jpg)
 ![Evolucao](screenshots/evolucao.jpg)
+![Evolucao](screenshots/movimentos.jpg)
+
 
 

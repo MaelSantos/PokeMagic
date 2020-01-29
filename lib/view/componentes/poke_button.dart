@@ -1,18 +1,61 @@
 import 'package:flutter/material.dart';
 
-class PokeButton extends StatelessWidget {
+class PokeButton extends StatefulWidget {
   final double altura;
   final bool isEscondido;
   final String conteudo;
-  final Color cor;
   void Function(bool) onSelecionado;
+  Color cor;
+  bool selecionado;
+  bool selecionavel;
+
+  PokeButtonState _pokeButtonState;
 
   PokeButton(this.conteudo,
       {this.isEscondido = false,
       this.altura = 35,
       this.cor = Colors.cyan,
-      this.onSelecionado}) {
+      this.onSelecionado,
+      this.selecionado = false,
+      this.selecionavel = false}) {
+    _pokeButtonState = PokeButtonState(conteudo,
+        isEscondido: isEscondido,
+        altura: altura,
+        cor: cor,
+        onSelecionado: onSelecionado,
+        selecionavel: selecionavel,
+        selecionado: selecionado);
+  }
+
+  @override
+  PokeButtonState createState() => _pokeButtonState;
+
+  void selecionar(bool b) {
+    _pokeButtonState.selecionar(b);
+  }
+}
+
+class PokeButtonState extends State<PokeButton> {
+  final double altura;
+  final bool isEscondido;
+  final String conteudo;
+  void Function(bool) onSelecionado;
+  Color cor;
+  Color corAnterior;
+  bool selecionado;
+  bool selecionavel;
+
+  PokeButtonState(
+    this.conteudo, {
+    this.isEscondido = false,
+    this.altura = 35,
+    this.cor = Colors.cyan,
+    this.onSelecionado,
+    this.selecionado = false,
+    this.selecionavel = false,
+  }) {
     onSelecionado ??= selecionar;
+    corAnterior = cor;
   }
 
   @override
@@ -21,7 +64,9 @@ class PokeButton extends StatelessWidget {
       labelPadding: EdgeInsets.zero,
       padding: EdgeInsets.zero,
       backgroundColor: Colors.transparent,
+      selected: (selecionado && selecionavel),
       onSelected: onSelecionado,
+      showCheckmark: false,
       label: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -57,5 +102,14 @@ class PokeButton extends StatelessWidget {
     );
   }
 
-  void selecionar(bool b) {}
+  void selecionar(bool b) {
+    if (selecionavel) {
+      selecionado = b;
+      if (b)
+        cor = Colors.cyan[900];
+      else
+        cor = corAnterior;
+    }
+    setState(() {});
+  }
 }

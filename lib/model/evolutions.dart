@@ -5,10 +5,12 @@ class Evolutions {
 
   //(427-9) 210,222,225,226,227,230,231,238,251 dando erro
 
-  Evolutions({this.evolution});
+  static final Evolutions _instance = Evolutions.internal();
+  factory Evolutions() => _instance;
+  Evolutions.internal();
 
-  Evolutions.fromJson(Map<String, dynamic> json) {
-    evolution = List();
+  static Evolutions fromJson(Map<String, dynamic> json) {
+    _instance.evolution = List();
     for (int i = 1; i <= 428; i++)
       if (i != 210 &&
           i != 222 &&
@@ -19,7 +21,8 @@ class Evolutions {
           i != 231 &&
           i != 238 &&
           i != 251) if (json['$i'] != null)
-        evolution.add(Evolution.fromJson(json['$i']));
+        _instance.evolution.add(Evolution.fromJson(json['$i']));
+    return _instance;
   }
 
   Map<String, dynamic> toJson() {

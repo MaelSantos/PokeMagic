@@ -2,6 +2,7 @@ import 'dart:convert';
 import "package:flutter/services.dart" show rootBundle;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:poke_magic/model/evolutions.dart';
+import 'package:poke_magic/model/moves.dart';
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/model/pokemon.dart';
 import 'package:poke_magic/util/format.dart';
@@ -18,6 +19,7 @@ class PokePricipal extends StatefulWidget {
 class _PokeViewState extends State<PokePricipal> {
   Evolutions evolutions;
   Pokedex pokedex;
+  Moves moves;
   List<Pokemon> get pokemons => _filtroPoke();
   int pokemonCont = 807; //total de pokemons
   bool isFiltro;
@@ -46,6 +48,7 @@ class _PokeViewState extends State<PokePricipal> {
     pokedex = Pokedex.fromJson(await carregarJson("assets/data/pokedex.json"));
     evolutions =
         Evolutions.fromJson(await carregarJson("assets/data/evolution.json"));
+    moves = Moves.fromJson(await carregarJson("assets/data/moves.json"));
     setState(() {});
   }
 
@@ -110,7 +113,7 @@ class _PokeViewState extends State<PokePricipal> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    PokeView(pokemons[index], evolutions)));
+                                    PokeView(pokemons[index], evolutions, moves)));
                     },
                   );
                 }),

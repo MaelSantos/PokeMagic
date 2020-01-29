@@ -28,6 +28,7 @@ flutter:
   assets:
     - assets/data/pokedex.json
     - assets/data/evolution.json
+    - assets/data/moves.json
 
 # flutter_icons:
 #  android: "launcher_icon"
