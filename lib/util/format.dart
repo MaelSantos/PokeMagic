@@ -25,6 +25,22 @@ Map<String, Color> colors = {
   "fairy": Colors.pink[300],
 };
 
+Map<String, Color> colorsMove = {
+  "cute": Colors.pink,
+  "cool": Colors.grey[600],
+  "beauty": Colors.purple,
+  "tough": Colors.yellow[900],
+  "smart": Colors.green,
+
+  "physical": Colors.purple[200],
+  "special": Colors.blue[900],
+  "status": Colors.grey[700],
+};
+
 Color formatColorExist(String cor) {
   return colors[cor];
+}
+
+Color formatColorMove(String cor) {
+  return colorsMove[cor];
 }

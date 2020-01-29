@@ -16,7 +16,8 @@ class PokeView extends StatefulWidget {
   PokeView(this.pokemon, this.evolutions, this.movimentos);
 
   @override
-  _PokeViewState createState() => _PokeViewState(pokemon, evolutions, movimentos);
+  _PokeViewState createState() =>
+      _PokeViewState(pokemon, evolutions, movimentos);
 }
 
 class _PokeViewState extends State<PokeView> {
@@ -34,10 +35,11 @@ class _PokeViewState extends State<PokeView> {
 
   _PokeViewState(this.pokemon, this.evolutions, this.movimentos) {
     pokeDetalhes = PokeDetalhes(pokemon);
-    pokeMove = PokeMove(pokemon, movimentos);
-    pokeEvolucao = PokeEvolucao(pokemon, evolutions, movimentos);
-    pokeMore = PokeMore();
+    // pokeMove = PokeMove(pokemon, movimentos);
+    // pokeEvolucao = PokeEvolucao(pokemon, evolutions, movimentos);
+    // pokeMore = PokeMore();
     corrente = pokeDetalhes;
+    // corrente = PokeDetalhes(pokemon);
     indexCorrente = 0;
     titulo = pokemon.name.replaceRange(0, 1, pokemon.name[0].toUpperCase());
   }
@@ -81,6 +83,27 @@ class _PokeViewState extends State<PokeView> {
     );
   }
 
+  // void mudar(int i) {
+  //   setState(() {
+  //     indexCorrente = i;
+  //     switch (i) {
+  //       case 0:
+  //         corrente = pokeDetalhes;
+  //         break;
+  //       case 1:
+  //         corrente = pokeMove;
+  //         break;
+  //       case 2:
+  //         corrente = pokeEvolucao;
+  //         break;
+  //       case 3:
+  //         corrente = pokeMore;
+  //         break;
+  //       default:
+  //     }
+  //   });
+  // }
+
   void mudar(int i) {
     setState(() {
       indexCorrente = i;
@@ -89,12 +112,16 @@ class _PokeViewState extends State<PokeView> {
           corrente = pokeDetalhes;
           break;
         case 1:
+          if (pokeMove == null) pokeMove = PokeMove(pokemon, movimentos);
           corrente = pokeMove;
           break;
         case 2:
+          if (pokeEvolucao == null)
+            pokeEvolucao = PokeEvolucao(pokemon, evolutions, movimentos);
           corrente = pokeEvolucao;
           break;
         case 3:
+          if (pokeMore == null) pokeMore = PokeMore();
           corrente = pokeMore;
           break;
         default:

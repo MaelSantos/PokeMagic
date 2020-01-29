@@ -16,7 +16,7 @@ class PokeMagic extends StatelessWidget {
                 textTheme: TextTheme(
                     title: TextStyle(fontSize: 18, fontFamily: "FredokaOne"))),
             textTheme: TextTheme(
-                // button: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
+                button: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
                 // headline: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
                 // display1: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
                 // overline: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),

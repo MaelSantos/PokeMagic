@@ -7,10 +7,18 @@ Aplicação desenvolvida utilizando o framework [Flutter](https://flutter.dev/) 
 
 ## Screenshots
 
-![Principal](screenshots/principal.jpg) 
-![Detalhes](screenshots/detalhes.jpg)
-![Evolucao](screenshots/evolucao.jpg)
+<img src="screenshots/principal.jpg" width=250>
+<img src="screenshots/detalhes.jpg" width=250>
+<img src="screenshots/movimentos.jpg" width=250>
+<img src="screenshots/detalhes_move.jpg" width=250>
+<img src="screenshots/evolucao.jpg" width=250>
+
+<!-- ![Principal](screenshots/principal.jpg)  -->
+<!-- ![Detalhes](screenshots/detalhes.jpg)
 ![Evolucao](screenshots/movimentos.jpg)
+![Detalhes Move](screenshots/detalhes_move.jpg)
+![Evolucao](screenshots/evolucao.jpg) -->
+
 
 
 

@@ -139,7 +139,7 @@ class PokeEvolucao extends StatelessWidget {
 
       switch (gatilho) {
         case "level-up":
-          motivo = list[0].minLevel.toString();
+          if (list[0].minLevel != null) motivo = list[0].minLevel.toString();
 
           if (list[0].gender != null)
             motivo = (list[0].gender == 1 ? "female ♀" : "male ♂") + "\n";
