@@ -24,13 +24,17 @@ class PokeEvolucao extends StatelessWidget {
       ret = true;
     else if (e.chain.evolvesTo.isNotEmpty) {
       for (EvolvesTo a in e.chain.evolvesTo) {
-        a.species.name == pokemon.name ? ret = true : ret = false;
-        if (ret) break;
+        if (ret)
+          break;
+        else
+          a.species.name == pokemon.name ? ret = true : ret = false;
 
         if (a.evolvesToTo.isNotEmpty)
           for (EvolvesToTo b in a.evolvesToTo) {
-            b.species.name == pokemon.name ? ret = true : ret = false;
-            if (ret) break;
+            if (ret)
+              break;
+            else
+              b.species.name == pokemon.name ? ret = true : ret = false;
           }
       }
     }
@@ -120,12 +124,13 @@ class PokeEvolucao extends StatelessWidget {
     if (list.length > 1)
       for (dynamic e in list) {
         gatilho = e.trigger.name;
-        motivo = e.minLevel.toString();
+        if (list[0].minLevel != null) motivo = list[0].minLevel.toString();
         if (e.location != null)
           motivo.isEmpty
               ? motivo += "location: " + e.location.name
               : motivo += " or " + e.location.name;
-        if (e.minBeauty != null) motivo = "beauty: " + e.minBeauty.toString();
+        if (e.minBeauty != null && e.minBeauty != 0)
+          motivo = "beauty: " + e.minBeauty.toString();
       }
     else {
       gatilho = list[0].trigger.name;
@@ -135,14 +140,14 @@ class PokeEvolucao extends StatelessWidget {
           if (list[0].minLevel != null) motivo = list[0].minLevel.toString();
 
           if (list[0].gender != null)
-            motivo = (list[0].gender == 1 ? "female ♀" : "male ♂") + "\n";
+            motivo += "\n" + (list[0].gender == 1 ? "female ♀" : "male ♂");
 
           if (list[0].minHappiness != null) gatilho = "happiness";
 
           if (list[0].timeOfDay != null && list[0].timeOfDay.isNotEmpty) {
-            motivo != "null"
-                ? motivo = list[0].timeOfDay
-                : motivo += list[0].timeOfDay;
+            motivo != "null" && motivo.isNotEmpty
+                ? motivo += "\n" + list[0].timeOfDay
+                : motivo = list[0].timeOfDay;
           }
 
           if (list[0].location != null)
@@ -159,7 +164,7 @@ class PokeEvolucao extends StatelessWidget {
           if (list[0].knownMove != null)
             motivo = "move " + list[0].knownMove.name;
 
-          if (list[0].minBeauty != null)
+          if (list[0].minBeauty != null && list[0].minBeauty != 00)
             motivo = "beauty: " + list[0].minBeauty.toString();
 
           if (list[0].relativePhysicalStats != null) {

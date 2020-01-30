@@ -57,19 +57,7 @@ class AbilityDetalhes extends StatelessWidget {
                 Column(
                   children: [
                     Text("Pokémon's with this ability"),
-                    Column(
-                      children: ability.pokemon
-                          .map((p) => PokeCard(
-                              Pokedex().toPokemon(p.pokemon.name),
-                              axis: Axis.vertical,onSelecionar: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    PokeView(Pokedex().toPokemon(p.pokemon.name))));
-                    }))
-                          .toList(),
-                    )
+                    Column(children: pokeCard(context))
                   ],
                 )
               ],
@@ -91,5 +79,25 @@ class AbilityDetalhes extends StatelessWidget {
         child: child == null
             ? Text(conteudo, style: TextStyle(color: cor))
             : child);
+  }
+
+  List<Widget> pokeCard(BuildContext context) {
+    List<Widget> pokecards = List();
+    List<String> nomes = List();
+    for (AbilityPokemon p in ability.pokemon) {
+      Pokemon pokemon = Pokedex().toPokemon(p.pokemon.name);
+
+      if (!nomes.contains(pokemon.name))
+        nomes.add(pokemon.name);
+      else if (nomes.contains(pokemon.name)) pokemon = null;
+      if (pokemon != null) {
+        pokecards.add(PokeCard(pokemon, axis: Axis.vertical, onSelecionar: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => PokeView(pokemon)));
+        }));
+      }
+    }
+
+    return pokecards;
   }
 }

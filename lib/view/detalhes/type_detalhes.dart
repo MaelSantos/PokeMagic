@@ -36,7 +36,10 @@ class TypeDetalhes extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text("Name: " + type.name),
-                          Text("Damage Class: ${type.moveDamageClass.name}"),
+                          type.moveDamageClass != null
+                              ? Text(
+                                  "Damage Class: ${type.moveDamageClass.name}")
+                              : Container(),
                           Text("Introduced in : ${type.generation.name}")
                         ],
                       )),

@@ -11,7 +11,7 @@ class MoveDetalhes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.cyan,
+        backgroundColor: Colors.cyan,
         appBar: AppBar(
             elevation: 0,
             centerTitle: true,
@@ -59,7 +59,8 @@ class MoveDetalhes extends StatelessWidget {
                     )),
                 gerarContainer(
                     "Descrition: ${move.flavorTextEntries.flavorText}"),
-                gerarContainer("Effect: ${move.effectEntries.first.effect}"),
+                gerarContainer(
+                    "Effect: ${move.effectEntries.first.effect.replaceAll('\$effect_chance', move.effectChance.toString())}"),
               ],
             ),
           ),
