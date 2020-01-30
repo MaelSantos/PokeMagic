@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:poke_magic/model/evolutions.dart';
 import 'package:poke_magic/model/moves.dart';
-import 'package:poke_magic/model/pokemon.dart';
-import 'package:poke_magic/view/poke_detalhes.dart';
+import 'package:poke_magic/model/pokedex.dart';
+import 'package:poke_magic/view/detalhes/poke_detalhes.dart';
 import 'package:poke_magic/view/poke_evolucao.dart';
 import 'package:poke_magic/view/poke_more.dart';
 import 'package:poke_magic/view/poke_movimentos.dart';
-// import 'package:pokeapi/model/pokemon/pokemon.dart';
 
 class PokeView extends StatefulWidget {
   final Pokemon pokemon;
-  final Evolutions evolutions;
-  final Moves movimentos;
 
-  PokeView(this.pokemon, this.evolutions, this.movimentos);
+  PokeView(this.pokemon);
 
   @override
-  _PokeViewState createState() =>
-      _PokeViewState(pokemon, evolutions, movimentos);
+  _PokeViewState createState() => _PokeViewState(pokemon);
 }
 
 class _PokeViewState extends State<PokeView> {
@@ -28,18 +24,14 @@ class _PokeViewState extends State<PokeView> {
   PokeMore pokeMore;
 
   final Pokemon pokemon;
-  final Evolutions evolutions;
-  final Moves movimentos;
+  Evolutions get evolutions => Evolutions();
+  Moves get movimentos => Moves();
   String titulo;
   int indexCorrente;
 
-  _PokeViewState(this.pokemon, this.evolutions, this.movimentos) {
+  _PokeViewState(this.pokemon) {
     pokeDetalhes = PokeDetalhes(pokemon);
-    // pokeMove = PokeMove(pokemon, movimentos);
-    // pokeEvolucao = PokeEvolucao(pokemon, evolutions, movimentos);
-    // pokeMore = PokeMore();
     corrente = pokeDetalhes;
-    // corrente = PokeDetalhes(pokemon);
     indexCorrente = 0;
     titulo = pokemon.name.replaceRange(0, 1, pokemon.name[0].toUpperCase());
   }
@@ -83,27 +75,6 @@ class _PokeViewState extends State<PokeView> {
     );
   }
 
-  // void mudar(int i) {
-  //   setState(() {
-  //     indexCorrente = i;
-  //     switch (i) {
-  //       case 0:
-  //         corrente = pokeDetalhes;
-  //         break;
-  //       case 1:
-  //         corrente = pokeMove;
-  //         break;
-  //       case 2:
-  //         corrente = pokeEvolucao;
-  //         break;
-  //       case 3:
-  //         corrente = pokeMore;
-  //         break;
-  //       default:
-  //     }
-  //   });
-  // }
-
   void mudar(int i) {
     setState(() {
       indexCorrente = i;
@@ -112,16 +83,15 @@ class _PokeViewState extends State<PokeView> {
           corrente = pokeDetalhes;
           break;
         case 1:
-          if (pokeMove == null) pokeMove = PokeMove(pokemon, movimentos);
+          if (pokeMove == null) pokeMove = PokeMove(pokemon);
           corrente = pokeMove;
           break;
         case 2:
-          if (pokeEvolucao == null)
-            pokeEvolucao = PokeEvolucao(pokemon, evolutions, movimentos);
+          if (pokeEvolucao == null) pokeEvolucao = PokeEvolucao(pokemon);
           corrente = pokeEvolucao;
           break;
         case 3:
-          if (pokeMore == null) pokeMore = PokeMore();
+          if (pokeMore == null) pokeMore = PokeMore(pokemon);
           corrente = pokeMore;
           break;
         default:

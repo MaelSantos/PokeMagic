@@ -24,10 +24,11 @@ class Moves {
     }
     return data;
   }
+
+  Move toMove(String nome) => moves.firstWhere((m) => m.name == nome);
 }
 
 class Move {
-
   int nivel = 0;
   String tipo;
 

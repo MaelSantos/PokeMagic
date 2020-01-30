@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:poke_magic/model/pokemon.dart';
+import 'package:poke_magic/model/abilitys.dart';
+import 'package:poke_magic/model/pokedex.dart';
+import 'package:poke_magic/model/types.dart';
 import 'package:poke_magic/util/format.dart';
-// import 'package:pokeapi/model/pokemon/pokemon.dart';
-
 import 'package:poke_magic/view/componentes/bar_custom.dart';
 import 'package:poke_magic/view/componentes/poke_button.dart';
+import 'package:poke_magic/view/detalhes/ability_detalhes.dart';
+import 'package:poke_magic/view/detalhes/type_detalhes.dart';
 
 class PokeDetalhes extends StatelessWidget {
   final Pokemon pokemon;
@@ -57,7 +59,14 @@ class PokeDetalhes extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: pokemon.types.reversed
                       .map((t) => PokeButton(t.type.name,
-                          cor: formatColorExist(t.type.name)))
+                              cor: formatColorExist(t.type.name),
+                              onSelecionado: (b) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => TypeDetalhes(
+                                        Types().toType(t.type.name))));
+                          }))
                       .toList(),
                 ),
                 Text("Abilities",
@@ -71,7 +80,15 @@ class PokeDetalhes extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: pokemon.abilities.reversed
                             .map((t) => PokeButton(t.ability.name,
-                                isEscondido: t.isHidden))
+                                    isEscondido: t.isHidden,
+                                    onSelecionado: (b) {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => AbilityDetalhes(
+                                              Abilitys()
+                                                  .toAbility(t.ability.name))));
+                                }))
                             .toList(),
                       )),
                 ),

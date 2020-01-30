@@ -1,11 +1,10 @@
 import 'dart:convert';
 import "package:flutter/services.dart" show rootBundle;
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:poke_magic/model/evolutions.dart';
 import 'package:poke_magic/model/moves.dart';
 import 'package:poke_magic/model/pokedex.dart';
-import 'package:poke_magic/model/pokemon.dart';
-import 'package:poke_magic/util/format.dart';
+import 'package:poke_magic/model/types.dart';
+import 'package:poke_magic/model/abilitys.dart';
 import 'package:flutter/material.dart';
 import 'package:poke_magic/view/componentes/field_custom.dart';
 import 'package:poke_magic/view/componentes/poke_card.dart';
@@ -20,6 +19,9 @@ class _PokeViewState extends State<PokePricipal> {
   Evolutions evolutions;
   Pokedex pokedex;
   Moves moves;
+  Abilitys abilitys;
+  Types types;
+
   List<Pokemon> get pokemons => _filtroPoke();
   int pokemonCont = 807; //total de pokemons
   bool isFiltro;
@@ -47,9 +49,12 @@ class _PokeViewState extends State<PokePricipal> {
   carregarPokedex() async {
     pokedex = Pokedex.fromJson(await carregarJson("assets/data/pokedex.json"));
     evolutions =
-        Evolutions.fromJson(await carregarJson("assets/data/evolution.json"));
+        Evolutions.fromJson(await carregarJson("assets/data/evolutions.json"));
     moves = Moves.fromJson(await carregarJson("assets/data/moves.json"));
     setState(() {});
+    types = Types.fromJson(await carregarJson("assets/data/types.json"));
+    abilitys =
+        Abilitys.fromJson(await carregarJson("assets/data/abilitys.json"));
   }
 
   Future<Map<String, dynamic>> carregarJson(String url) async {
@@ -65,7 +70,7 @@ class _PokeViewState extends State<PokePricipal> {
       retorno = pokedex.pokemons.where((p) {
         bool ret = true;
 
-        for (Types t in p.types) {
+        for (PokemonTypes t in p.types) {
           ret = t.type.name == filtro ? true : false;
           if (pesquisa.text.isNotEmpty)
             ret = t.type.name == filtro && p.name.contains(pesquisa.text)
@@ -113,7 +118,7 @@ class _PokeViewState extends State<PokePricipal> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    PokeView(pokemons[index], evolutions, moves)));
+                                    PokeView(pokemons[index])));
                     },
                   );
                 }),

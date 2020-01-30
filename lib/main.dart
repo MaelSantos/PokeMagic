@@ -17,18 +17,12 @@ class PokeMagic extends StatelessWidget {
                     title: TextStyle(fontSize: 18, fontFamily: "FredokaOne"))),
             textTheme: TextTheme(
                 button: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
-                // headline: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
-                // display1: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
-                // overline: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
-                // display2: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
-                // display3: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
-                // display4: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
-                // caption: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
-                // title: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
-                // subtitle: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
                 subhead: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
                 body1: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
-                body2: TextStyle(fontSize: 14, fontFamily: "FredokaOne",color: Colors.white))),
+                body2: TextStyle(
+                    fontSize: 14,
+                    fontFamily: "FredokaOne",
+                    color: Colors.white))),
         home: Scaffold(
           appBar: AppBar(
             title: Text("PokéMagic"),
@@ -49,7 +43,16 @@ class PokeMagic extends StatelessWidget {
                   title:
                       Text("Pokémons", style: TextStyle(color: Colors.black)),
                   trailing: Text("807"),
-                  // selected: true,
+                  selected: true,
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                Divider(thickness: 1),
+                ListTile(
+                  title: Text("Moves"),
+                  trailing: Text("-"),
+                  enabled: false,
                   onTap: () {
                     Navigator.pop(context);
                   },
@@ -57,6 +60,15 @@ class PokeMagic extends StatelessWidget {
                 Divider(thickness: 1),
                 ListTile(
                   title: Text("Abilities"),
+                  trailing: Text("-"),
+                  enabled: false,
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                Divider(thickness: 1),
+                ListTile(
+                  title: Text("Types"),
                   trailing: Text("-"),
                   enabled: false,
                   onTap: () {

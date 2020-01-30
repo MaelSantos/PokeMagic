@@ -1,6 +1,6 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
-import 'package:poke_magic/model/pokemon.dart';
+import 'package:poke_magic/model/pokedex.dart';
 
 class BarCustom extends StatelessWidget {
   List<charts.Series> seriesList;

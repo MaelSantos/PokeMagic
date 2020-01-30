@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:poke_magic/model/moves.dart';
-import 'package:poke_magic/model/pokemon.dart' as poke;
+import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/util/format.dart';
 import 'package:poke_magic/view/componentes/poke_button.dart';
-import 'package:poke_magic/view/move_detalhes.dart';
+import 'package:poke_magic/view/detalhes/move_detalhes.dart';
 
 class PokeMove extends StatefulWidget {
-  final poke.Pokemon pokemon;
-  final Moves movimentos;
+  final Pokemon pokemon;
 
-  PokeMove(this.pokemon, this.movimentos);
+  PokeMove(this.pokemon);
 
   @override
-  State<StatefulWidget> createState() => PokeMoveState(pokemon, movimentos);
+  State<StatefulWidget> createState() => PokeMoveState(pokemon);
 }
 
 class PokeMoveState extends State<PokeMove> {
-  final poke.Pokemon pokemon;
-  final Moves movimentos;
+  final Pokemon pokemon;
+  Moves get movimentos => Moves();
 
   List<Move> all;
 
   String filtro;
   PokeButton btnLevel, btnEgg, btnMachine, btnTutor;
 
-  PokeMoveState(this.pokemon, this.movimentos) {
+  PokeMoveState(this.pokemon) {
     filtro = "level-up";
 
     btnLevel = PokeButton("level-up", selecionado: false, selecionavel: true,
@@ -46,7 +45,7 @@ class PokeMoveState extends State<PokeMove> {
     });
 
     all = movimentos.moves.where((a) {
-      for (poke.Move b in pokemon.moves) {
+      for (PokemonMove b in pokemon.moves) {
         if (a.name == b.move.name) {
           a.nivel = b.versionGroupDetails.levelLearnedAt;
           a.tipo = b.versionGroupDetails.moveLearnMethod.name;
