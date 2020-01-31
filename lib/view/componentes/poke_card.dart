@@ -40,11 +40,13 @@ class PokeCard extends StatelessWidget {
 
   Widget imagem() {
     return Container(
+      height: 130,
+      width: 130,
         child: CachedNetworkImage(
       imageUrl: formatID(pokemon.number),
       placeholder: (context, url) => CircularProgressIndicator(),
       errorWidget: (context, url, error) => Icon(Icons.error),
-      fit: BoxFit.cover,
+      fit: BoxFit.contain,
     ));
   }
 

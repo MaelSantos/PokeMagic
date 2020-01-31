@@ -26,7 +26,7 @@ class Pokedex {
 
   Pokemon toPokemon(String poke) {
     try {
-      return pokemons.firstWhere((p) => poke.contains(p.name));
+      return pokemons.firstWhere((p) => p.name == poke);
     } catch (e) {
       return null;
     }

@@ -42,6 +42,7 @@ class PokeDetalhes extends StatelessWidget {
                               CircularProgressIndicator(),
                           errorWidget: (context, url, error) =>
                               Icon(Icons.error),
+                          // fit: BoxFit.contain,
                           fit: BoxFit.cover,
                         ),
                       ),

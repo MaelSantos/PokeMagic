@@ -45,7 +45,7 @@ class TypeDetalhes extends StatelessWidget {
                       )),
                   gerarContainer("",
                       child: Column(children: [
-                        Text("Half Damage To"),
+                        Text("Half Damage To - 1/2X"),
                         SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
@@ -56,7 +56,7 @@ class TypeDetalhes extends StatelessWidget {
                       ])),
                   gerarContainer("",
                       child: Column(children: [
-                        Text("Half Damage From"),
+                        Text("Half Damage From - 1/2X"),
                         SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
@@ -68,7 +68,7 @@ class TypeDetalhes extends StatelessWidget {
                       ])),
                   gerarContainer("",
                       child: Column(children: [
-                        Text("Double Damage To"),
+                        Text("Double Damage To - 2X"),
                         SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
@@ -80,7 +80,7 @@ class TypeDetalhes extends StatelessWidget {
                       ])),
                   gerarContainer("",
                       child: Column(children: [
-                        Text("Double Damage From"),
+                        Text("Double Damage From - 2X"),
                         SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
@@ -92,7 +92,7 @@ class TypeDetalhes extends StatelessWidget {
                       ])),
                   gerarContainer("",
                       child: Column(children: [
-                        Text("No Damage To"),
+                        Text("No Damage To - 0X"),
                         SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
@@ -104,7 +104,7 @@ class TypeDetalhes extends StatelessWidget {
                       ])),
                   gerarContainer("",
                       child: Column(children: [
-                        Text("No Damage From"),
+                        Text("No Damage From - 0X"),
                         SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: SingleChildScrollView(

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 String formatID(String i) {
-  return "https://www.serebii.net/pokemongo/pokemon/${i.replaceFirst("#", "")}.png";
+  // return "https://www.serebii.net/pokemongo/pokemon/${i.replaceFirst("#", "")}.png";
+  // return "https://www.serebii.net/pokemongo/pokemon/shiny/${i.replaceFirst("#", "")}.png"; //shiny
+  // "https://www.serebii.net/itemdex/sprites/pgl/sunstone.png" //item
+  return "https://assets.pokemon.com/assets/cms2/img/pokedex/full/${i.replaceFirst("#", "")}.png";
 }
 
 Map<String, Color> colors = {

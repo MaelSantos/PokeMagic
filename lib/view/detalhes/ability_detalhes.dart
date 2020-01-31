@@ -85,11 +85,19 @@ class AbilityDetalhes extends StatelessWidget {
     List<Widget> pokecards = List();
     List<String> nomes = List();
     for (AbilityPokemon p in ability.pokemon) {
-      Pokemon pokemon = Pokedex().toPokemon(p.pokemon.name);
+      Pokemon pokemon;
 
-      if (!nomes.contains(pokemon.name))
+      try {
+        pokemon = Pokedex()
+            .pokemons
+            .firstWhere((a) => a.name.contains(p.pokemon.name));
+      } catch (e) {
+        pokemon = null;
+      }
+
+      if (pokemon != null && !nomes.contains(pokemon.name))
         nomes.add(pokemon.name);
-      else if (nomes.contains(pokemon.name)) pokemon = null;
+      else if (pokemon != null && nomes.contains(pokemon.name)) pokemon = null;
       if (pokemon != null) {
         pokecards.add(PokeCard(pokemon, axis: Axis.vertical, onSelecionar: () {
           Navigator.push(context,
