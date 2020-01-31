@@ -14,6 +14,7 @@ Aplicação desenvolvida utilizando o framework [Flutter](https://flutter.dev/) 
 <img src="screenshots/movimentos.jpg" width=250>
 <img src="screenshots/detalhes_move.jpg" width=250>
 <img src="screenshots/evolucao.jpg" width=250>
+<img src="screenshots/more.jpg" width=250>
 
 <!-- ![Principal](screenshots/principal.jpg)  -->
 <!-- ![Detalhes](screenshots/detalhes.jpg)

@@ -46,75 +46,80 @@ class TypeDetalhes extends StatelessWidget {
                   gerarContainer("",
                       child: Column(children: [
                         Text("Half Damage To - 1/2X"),
-                        SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                                children: type.damageRelations.halfDamageTo
-                                    .map((d) => PokeButton("${d.name}",
-                                        cor: formatColorExist(d.name)))
-                                    .toList()))
+                        Wrap(
+                            spacing: 5,
+                            alignment: WrapAlignment.center,
+                            children: type.damageRelations.halfDamageTo
+                                .map((d) => FittedBox(
+                                    fit: BoxFit.contain,
+                                    child: PokeButton("${d.name}",
+                                        cor: formatColorExist(d.name))))
+                                .toList())
                       ])),
                   gerarContainer("",
                       child: Column(children: [
                         Text("Half Damage From - 1/2X"),
-                        SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: type.damageRelations.halfDamageFrom
-                                    .map((d) => PokeButton("${d.name}",
-                                        cor: formatColorExist(d.name)))
-                                    .toList()))
+                        Wrap(
+                            spacing: 5,
+                            alignment: WrapAlignment.center,
+                            children: type.damageRelations.halfDamageFrom
+                                .map((d) => FittedBox(
+                                    fit: BoxFit.contain,
+                                    child: PokeButton("${d.name}",
+                                        cor: formatColorExist(d.name))))
+                                .toList())
                       ])),
                   gerarContainer("",
                       child: Column(children: [
                         Text("Double Damage To - 2X"),
-                        SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: type.damageRelations.doubleDamageTo
-                                    .map((d) => PokeButton("${d.name}",
-                                        cor: formatColorExist(d.name)))
-                                    .toList()))
+                        Wrap(
+                            spacing: 5,
+                            alignment: WrapAlignment.center,
+                            children: type.damageRelations.doubleDamageTo
+                                .map((d) => FittedBox(
+                                    fit: BoxFit.contain,
+                                    child: PokeButton("${d.name}",
+                                        cor: formatColorExist(d.name))))
+                                .toList())
                       ])),
                   gerarContainer("",
                       child: Column(children: [
                         Text("Double Damage From - 2X"),
-                        SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: type.damageRelations.doubleDamageFrom
-                                    .map((d) => PokeButton("${d.name}",
-                                        cor: formatColorExist(d.name)))
-                                    .toList()))
+                        Wrap(
+                            spacing: 5,
+                            alignment: WrapAlignment.center,
+                            children: type.damageRelations.doubleDamageFrom
+                                .map((d) => FittedBox(
+                                    fit: BoxFit.contain,
+                                    child: PokeButton("${d.name}",
+                                        cor: formatColorExist(d.name))))
+                                .toList())
                       ])),
                   gerarContainer("",
                       child: Column(children: [
                         Text("No Damage To - 0X"),
-                        SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: type.damageRelations.noDamageTo
-                                    .map((d) => PokeButton("${d.name}",
-                                        cor: formatColorExist(d.name)))
-                                    .toList()))
+                        Wrap(
+                            spacing: 5,
+                            alignment: WrapAlignment.center,
+                            children: type.damageRelations.noDamageTo
+                                .map((d) => FittedBox(
+                                    fit: BoxFit.contain,
+                                    child: PokeButton("${d.name}",
+                                        cor: formatColorExist(d.name))))
+                                .toList())
                       ])),
                   gerarContainer("",
                       child: Column(children: [
                         Text("No Damage From - 0X"),
-                        SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: type.damageRelations.noDamageFrom
-                                        .map((d) => PokeButton("${d.name}",
-                                            cor: formatColorExist(d.name)))
-                                        .toList())))
+                        Wrap(
+                            spacing: 5,
+                            alignment: WrapAlignment.center,
+                            children: type.damageRelations.noDamageFrom
+                                .map((d) => FittedBox(
+                                    fit: BoxFit.contain,
+                                    child: PokeButton("${d.name}",
+                                        cor: formatColorExist(d.name))))
+                                .toList())
                       ])),
                 ]))));
   }

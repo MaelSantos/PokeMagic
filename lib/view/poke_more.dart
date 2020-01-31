@@ -37,49 +37,44 @@ class PokeMore extends StatelessWidget {
                 child: Column(
                   children: [
                     Text("Weakness"),
-                    SizedBox(
-                        height: 150,
-                        child: GridView.count(
-                            controller:
-                                ScrollController(keepScrollOffset: true),
-                            crossAxisCount: type.types.length > 3 ? 3 : 2,
-                            childAspectRatio: type.types.length > 3 ? 3 : 2,
-                            children: type.types
-                                .where((t) => t.damage > 1)
-                                .map((t) => PokeButton(
+                    Wrap(
+                        spacing: 5,
+                        alignment: WrapAlignment.center,
+                        children: type.types
+                            .where((t) => t.damage > 1)
+                            .map((t) => FittedBox(
+                                fit: BoxFit.contain,
+                                child: PokeButton(
                                     t.name + " X${t.damage.toInt()}",
-                                    cor: formatColorExist(t.name)))
-                                .toList())),
+                                    cor: formatColorExist(t.name))))
+                            .toList()),
                     Divider(thickness: 2),
                     Text("Resistant or Imunne"),
-                    SizedBox(
-                        height: 150,
-                        child: GridView.count(
-                            controller:
-                                ScrollController(keepScrollOffset: true),
-                            shrinkWrap: true,
-                            crossAxisCount: 3,
-                            childAspectRatio: 3,
-                            children: type.types
-                                .where((t) => t.damage < 1)
-                                .map((t) => PokeButton(
+                    Wrap(
+                        spacing: 5,
+                        alignment: WrapAlignment.center,
+                        children: type.types
+                            .where((t) => t.damage < 1)
+                            .map((t) => FittedBox(
+                                fit: BoxFit.contain,
+                                child: PokeButton(
                                     t.name +
                                         " X${t.damage == 0.5 ? '1/2' : '1/4'}",
-                                    cor: formatColorExist(t.name)))
-                                .toList())),
+                                    cor: formatColorExist(t.name))))
+                            .toList()),
                     Divider(thickness: 2),
                     Text("Normal Damage"),
-                    SizedBox(
-                        height: 150,
-                        child: GridView.count(
-                            crossAxisCount: 3,
-                            childAspectRatio: 3,
-                            children: type.types
-                                .where((t) => t.damage == 1)
-                                .map((t) => PokeButton(
+                    Wrap(
+                        spacing: 5,
+                        alignment: WrapAlignment.center,
+                        children: type.types
+                            .where((t) => t.damage == 1)
+                            .map((t) => FittedBox(
+                                fit: BoxFit.contain,
+                                child: PokeButton(
                                     t.name + " X${t.damage.toInt()}",
-                                    cor: formatColorExist(t.name)))
-                                .toList())),
+                                    cor: formatColorExist(t.name))))
+                            .toList()),
                   ],
                 )),
             Text("Sprites"),
@@ -106,12 +101,14 @@ class PokeMore extends StatelessWidget {
   }
 
   Widget imagemSprite(String url) {
-    return Center(
+    return Container(
+        height: 120,
         child: CachedNetworkImage(
-      imageUrl: url,
-      placeholder: (context, url) => CircularProgressIndicator(),
-      errorWidget: (context, url, error) => Center(child: Text("No Sprite")),
-      fit: BoxFit.contain,
-    ));
+          imageUrl: url,
+          placeholder: (context, url) => CircularProgressIndicator(),
+          errorWidget: (context, url, error) =>
+              Center(child: Text("No Sprite")),
+          fit: BoxFit.contain,
+        ));
   }
 }

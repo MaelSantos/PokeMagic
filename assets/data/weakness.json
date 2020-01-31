@@ -271,7 +271,7 @@
             },
             {
                 "name": "fire",
-                "damage": 0.5
+                "damage": 1
             },
             {
                 "name": "water",
