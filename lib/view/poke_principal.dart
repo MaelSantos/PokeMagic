@@ -6,6 +6,7 @@ import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/model/types.dart';
 import 'package:poke_magic/model/abilitys.dart';
 import 'package:flutter/material.dart';
+import 'package:poke_magic/model/weaknesses.dart';
 import 'package:poke_magic/view/componentes/field_custom.dart';
 import 'package:poke_magic/view/componentes/poke_card.dart';
 import 'package:poke_magic/view/poke_view.dart';
@@ -20,6 +21,7 @@ class _PokeViewState extends State<PokePricipal> {
   Pokedex pokedex;
   Moves moves;
   Abilitys abilitys;
+  Weaknesses weaknesses;
   Types types;
 
   List<Pokemon> get pokemons => _filtroPoke();
@@ -55,6 +57,8 @@ class _PokeViewState extends State<PokePricipal> {
     types = Types.fromJson(await carregarJson("assets/data/types.json"));
     abilitys =
         Abilitys.fromJson(await carregarJson("assets/data/abilitys.json"));
+    weaknesses =
+        Weaknesses.fromJson(await carregarJson("assets/data/weakness.json"));
   }
 
   Future<Map<String, dynamic>> carregarJson(String url) async {

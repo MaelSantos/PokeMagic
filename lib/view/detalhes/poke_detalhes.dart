@@ -51,8 +51,10 @@ class PokeDetalhes extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(titulo, style: TextStyle(fontSize: 23)),
-                    Text("Height: ${pokemon.height}"),
-                    Text("Weight: ${pokemon.weight}"),
+                    Text(
+                        "Height: ${(pokemon.height * 0.1).toStringAsPrecision(pokemon.height.toString().length)} m"),
+                    Text(
+                        "Weight: ${(pokemon.weight * 0.1).toStringAsPrecision(pokemon.weight.toString().length)} kg"),
                     Text("Types", style: TextStyle(fontSize: 16)),
                   ],
                 ),

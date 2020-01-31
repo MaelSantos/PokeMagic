@@ -1,10 +1,33 @@
 import 'package:flutter/material.dart';
 
 String formatID(String i) {
-  // return "https://www.serebii.net/pokemongo/pokemon/${i.replaceFirst("#", "")}.png";
-  // return "https://www.serebii.net/pokemongo/pokemon/shiny/${i.replaceFirst("#", "")}.png"; //shiny
   // "https://www.serebii.net/itemdex/sprites/pgl/sunstone.png" //item
   return "https://assets.pokemon.com/assets/cms2/img/pokedex/full/${i.replaceFirst("#", "")}.png";
+}
+
+String formatNormal(String i) {
+  return "https://www.serebii.net/pokemongo/pokemon/${i.replaceFirst("#", "")}.png";
+  // "https://www.serebii.net/itemdex/sprites/pgl/sunstone.png" //item
+}
+
+String formatShiny(String i) {
+  // return "https://www.serebii.net/pokemongo/pokemon/${i.replaceFirst("#", "")}.png";
+  return "https://www.serebii.net/pokemongo/pokemon/shiny/${i.replaceFirst("#", "")}.png"; //shiny
+  // "https://www.serebii.net/itemdex/sprites/pgl/sunstone.png" //item
+}
+
+Widget gerarContainer(String conteudo,
+    {double tamanho = 60, Color cor = Colors.black, Widget child}) {
+  return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(),
+      ),
+      alignment: Alignment.center,
+      margin: EdgeInsets.all(5),
+      padding: EdgeInsets.all(10),
+      child:
+          child == null ? Text(conteudo, style: TextStyle(color: cor)) : child);
 }
 
 Map<String, Color> colors = {
@@ -34,7 +57,6 @@ Map<String, Color> colorsMove = {
   "beauty": Colors.purple,
   "tough": Colors.yellow[900],
   "smart": Colors.green,
-
   "physical": Colors.purple[200],
   "special": Colors.blue[900],
   "status": Colors.grey[700],

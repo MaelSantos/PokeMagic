@@ -11721,6 +11721,18 @@
         },
         "id": 250
     },
+    "251": {
+        "baby_trigger_item": null,
+        "chain": {
+            "evolves_to": [],
+            "is_baby": false,
+            "species": {
+                "name": "phione",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/489/"
+            }
+        },
+        "id": 251
+    },
     "252": {
         "baby_trigger_item": null,
         "chain": {
