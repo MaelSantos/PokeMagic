@@ -102,81 +102,102 @@ class PokeMoveState extends State<PokeMove> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.all(8),
-        alignment: Alignment.topCenter,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: Colors.white,
-        ),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Column(
-            children: [
-              Text("Moves", style: TextStyle(fontSize: 23)),
-              Row(
+      margin: EdgeInsets.all(8),
+      alignment: Alignment.topCenter,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        color: Colors.white,
+      ),
+      child: Column(
+        children: [
+          Text("Moves", style: TextStyle(fontSize: 23)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [btnLevel, btnEgg, btnMachine, btnTutor],
+          ),
+          Container(
+            padding: EdgeInsets.all(5),
+            margin: EdgeInsets.all(5),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15), border: Border.all()),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                gerarLinha("Nivel", cor: Colors.black, tamanho: 40),
+                gerarLinha("Move", cor: Colors.black, tamanho: 70),
+                gerarLinha("Power", cor: Colors.black),
+                gerarLinha("Acc", cor: Colors.black),
+                gerarLinha("PP", cor: Colors.black, tamanho: 30),
+              ],
+            ),
+          ),
+          Expanded(
+              child: SingleChildScrollView(
+            child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [btnLevel, btnEgg, btnMachine, btnTutor],
-              ),
-              Container(
-                padding: EdgeInsets.all(5),
-                margin: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all()),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    gerarLinha("Nivel", cor: Colors.black, tamanho: 35),
-                    gerarLinha("Move", cor: Colors.black, tamanho: 100),
-                    gerarLinha("Type", cor: Colors.black),
-                    gerarLinha("Acc", cor: Colors.black),
-                    gerarLinha("PP", cor: Colors.black, tamanho: 30),
-                  ],
-                ),
-              ),
-              Expanded(
-                  child: SingleChildScrollView(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: all
-                        .where((m) => m.tipo == filtro)
-                        .map((t) => FlatButton(
-                              padding: EdgeInsets.zero,
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => MoveDetalhes(t)));
-                              },
-                              child: Container(
-                                padding: EdgeInsets.all(20),
-                                margin: EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                    color: Colors.cyan,
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: all
+                    .where((m) => m.tipo == filtro)
+                    .map((t) => InkWell(
+                        borderRadius: BorderRadius.circular(10),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MoveDetalhes(t)));
+                        },
+                        child: Card(
+                            elevation: 3,
+                            child: Container(
+                                height: 100,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    gerarLinha(
-                                        t.nivel != 0 ? t.nivel.toString() : "-",
-                                        tamanho: 35),
-                                    gerarLinha(t.name, tamanho: 100),
-                                    gerarLinha(t.type.name),
-                                    gerarLinha(t.accuracy != null
-                                        ? t.accuracy.toString()
-                                        : "-"),
-                                    gerarLinha(t.pp.toString(), tamanho: 20),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(t.nivel != 0
+                                              ? t.nivel.toString()
+                                              : "-"),
+                                          Text(t.name.toUpperCase()),
+                                          // Text(t.name),
+                                          Text(t.power != null
+                                              ? t.power.toString()
+                                              : "-"),
+                                          Text(t.accuracy != null
+                                              ? t.accuracy.toString()
+                                              : "-"),
+                                          Text(t.pp != null
+                                              ? t.pp.toString()
+                                              : "-"),
+                                        ]),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text("Type: "),
+                                        containerColor(
+                                          t.type.name,
+                                          formatColorExist(t.type.name),
+                                        ),
+                                        containerColor(
+                                          t.damageClass.name,
+                                          formatColorMove(t.damageClass.name),
+                                        )
+                                      ],
+                                    ),
                                   ],
-                                ),
-                              ),
-                            ))
-                        .toList()),
-              )),
-            ],
-          ),
-        ));
+                                )))))
+                    .toList()),
+          )),
+        ],
+      ),
+    );
   }
 
   Widget gerarLinha(String conteudo,

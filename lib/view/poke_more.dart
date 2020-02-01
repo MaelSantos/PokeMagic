@@ -32,7 +32,7 @@ class PokeMore extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-            Text(type.name),
+            Text(type.name.toUpperCase()),
             gerarContainer("",
                 child: Column(
                   children: [

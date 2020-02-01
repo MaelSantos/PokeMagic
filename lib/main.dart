@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:poke_magic/view/poke_principal.dart';
+import 'package:poke_magic/poke_menu.dart';
 
 void main() async {
   runApp(PokeMagic());
@@ -19,72 +19,7 @@ class PokeMagic extends StatelessWidget {
                 button: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
                 subhead: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
                 body1: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
-                body2: TextStyle(
-                    fontSize: 14,
-                    fontFamily: "FredokaOne",
-                    color: Colors.white))),
-        home: Scaffold(
-          appBar: AppBar(
-            title: Text("PokéMagic"),
-            backgroundColor: Colors.cyan,
-          ),
-          drawer: Drawer(
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: <Widget>[
-                DrawerHeader(
-                  child: Text("PokéMagic", style: TextStyle(fontSize: 23)),
-                  duration: Duration(seconds: 1),
-                  decoration: BoxDecoration(
-                    color: Colors.cyan,
-                  ),
-                ),
-                ListTile(
-                  title:
-                      Text("Pokémons", style: TextStyle(color: Colors.black)),
-                  trailing: Text("807"),
-                  selected: true,
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                Divider(thickness: 1),
-                ListTile(
-                  title: Text("Moves"),
-                  trailing: Text("-"),
-                  enabled: false,
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                Divider(thickness: 1),
-                ListTile(
-                  title: Text("Abilities"),
-                  trailing: Text("-"),
-                  enabled: false,
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                Divider(thickness: 1),
-                ListTile(
-                  title: Text("Types"),
-                  trailing: Text("-"),
-                  enabled: false,
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ],
-            ),
-          ),
-          // floatingActionButton:
-          //     FloatingActionButton(onPressed: () {
-          //       setState(() {
-          //         carregarDados();
-          //       });
-          //     }, child: Icon(Icons.refresh)),
-          body: PokePricipal(),
-        ));
+                body2: TextStyle(fontSize: 14, fontFamily: "FredokaOne"))),
+        home: PokeMenu());
   }
 }

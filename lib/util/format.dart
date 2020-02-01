@@ -30,6 +30,18 @@ Widget gerarContainer(String conteudo,
           child == null ? Text(conteudo, style: TextStyle(color: cor)) : child);
 }
 
+Widget containerColor(String conteudo, Color cor) {
+  return Container(
+      padding: EdgeInsets.all(4),
+      margin: EdgeInsets.all(4),
+      decoration:
+          BoxDecoration(color: cor, borderRadius: BorderRadius.circular(15)),
+      child: Text(
+        conteudo,
+        style: TextStyle(color: Colors.white),
+      ));
+}
+
 Map<String, Color> colors = {
   "normal": Colors.brown[200],
   "fighting": Colors.red[800],
