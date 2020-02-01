@@ -20,6 +20,7 @@ Widget gerarContainer(String conteudo,
     {double tamanho = 60, Color cor = Colors.black, Widget child}) {
   return Container(
       decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: BorderRadius.circular(15),
         border: Border.all(),
       ),
