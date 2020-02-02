@@ -15,39 +15,45 @@ class PokeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(15),
         onTap: onSelecionar,
         child: Hero(
             tag: formatID(pokemon.number),
             child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
                 elevation: 3,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      imagem(),
-                      axis == Axis.vertical
-                          ? Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: conteudo())
-                          : Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: conteudo())
-                    ]))));
+                child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: Colors.black12)),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          imagem(),
+                          axis == Axis.vertical
+                              ? Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: conteudo())
+                              : Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: conteudo())
+                        ])))));
   }
 
   Widget imagem() {
     return Container(
-      height: 130,
-      width: 130,
+        height: 130,
+        width: 130,
         child: CachedNetworkImage(
-      imageUrl: formatID(pokemon.number),
-      placeholder: (context, url) => CircularProgressIndicator(),
-      errorWidget: (context, url, error) => Icon(Icons.error),
-      fit: BoxFit.contain,
-    ));
+          imageUrl: formatID(pokemon.number),
+          placeholder: (context, url) => CircularProgressIndicator(),
+          errorWidget: (context, url, error) => Icon(Icons.error),
+          fit: BoxFit.contain,
+        ));
   }
 
   List<Widget> conteudo() {

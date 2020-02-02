@@ -59,100 +59,109 @@ class _PokeViewState extends State<MovePricipal> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-            margin: EdgeInsets.all(5),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [_down(), pesquisa]),
-                gerarContainer("",
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text("Move"),
-                        Text("Power"),
-                        Text("Acc"),
-                        Text("PP")
-                      ],
-                    ))
-              ],
-            )),
-        moves == null
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : Expanded(
-                child: ListView(
-                    children: List.generate(
-                isFiltro ? contFiltro : moveCont,
-                (index) {
-                  return InkWell(
-                      borderRadius: BorderRadius.circular(15),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    MoveDetalhes(moves[index])));
-                      },
-                      child: Card(
-                          margin:
-                              EdgeInsets.only(right: 10, left: 10, bottom: 10),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          elevation: 3,
-                          child: Container(
-                              height: 100,
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Text(moves[index].name.toUpperCase()),
-                                        Text(moves[index].power != null
-                                            ? moves[index].power.toString()
-                                            : "-"),
-                                        Text(moves[index].accuracy != null
-                                            ? moves[index].accuracy.toString()
-                                            : "-"),
-                                        Text(moves[index].pp != null
-                                            ? moves[index].pp.toString()
-                                            : "-"),
-                                      ]),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+    return Container(
+        margin: EdgeInsets.all(8),
+        child: Column(
+          children: [
+            Container(
+                margin: EdgeInsets.all(5),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [_down(), pesquisa]),
+                    gerarContainer("",
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text("Move"),
+                            Text("Power"),
+                            Text("Acc"),
+                            Text("PP")
+                          ],
+                        ))
+                  ],
+                )),
+            moves == null
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Expanded(
+                    child: ListView(
+                        children: List.generate(
+                    isFiltro ? contFiltro : moveCont,
+                    (index) {
+                      return InkWell(
+                          borderRadius: BorderRadius.circular(15),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        MoveDetalhes(moves[index])));
+                          },
+                          child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15)),
+                              elevation: 3,
+                              child: Container(
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.black45),
+                                      borderRadius: BorderRadius.circular(15)),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      containerColor(
-                                        moves[index].type.name,
-                                        formatColorExist(
-                                            moves[index].type.name),
+                                      Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(moves[index]
+                                                .name
+                                                .toUpperCase()),
+                                            Text(moves[index].power != null
+                                                ? moves[index].power.toString()
+                                                : "-"),
+                                            Text(moves[index].accuracy != null
+                                                ? moves[index]
+                                                    .accuracy
+                                                    .toString()
+                                                : "-"),
+                                            Text(moves[index].pp != null
+                                                ? moves[index].pp.toString()
+                                                : "-"),
+                                          ]),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          containerColor(
+                                            moves[index].type.name,
+                                            formatColorExist(
+                                                moves[index].type.name),
+                                          ),
+                                          containerColor(
+                                            moves[index].damageClass.name,
+                                            formatColorMove(
+                                                moves[index].damageClass.name),
+                                          )
+                                        ],
                                       ),
-                                      containerColor(
-                                        moves[index].damageClass.name,
-                                        formatColorMove(
-                                            moves[index].damageClass.name),
-                                      )
                                     ],
-                                  ),
-                                ],
-                              ))));
-                },
-              )))
-      ],
-    );
+                                  ))));
+                    },
+                  )))
+          ],
+        ));
   }
 
   DropdownButton _down() => DropdownButton<String>(

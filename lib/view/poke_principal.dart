@@ -93,11 +93,12 @@ class _PokeViewState extends State<PokePricipal> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-            margin: EdgeInsets.all(5),
-            child: Row(
+    return Container(
+        margin: EdgeInsets.all(4),
+        child: Column(
+          children: [
+            Container(
+                child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -105,30 +106,30 @@ class _PokeViewState extends State<PokePricipal> {
                 pesquisa,
               ],
             )),
-        pokemons == null
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : Expanded(
-                child: GridView.count(
-                crossAxisCount: 2,
-                children:
-                    List.generate(isFiltro ? contFiltro : pokemonCont, (index) {
-                  return PokeCard(
-                    pokemons[index],
-                    onSelecionar: () {
-                      if (pokemons.length > index)
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    PokeView(pokemons[index])));
-                    },
-                  );
-                }),
-              ))
-      ],
-    );
+            pokemons == null
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Expanded(
+                    child: GridView.count(
+                    crossAxisCount: 2,
+                    children: List.generate(isFiltro ? contFiltro : pokemonCont,
+                        (index) {
+                      return PokeCard(
+                        pokemons[index],
+                        onSelecionar: () {
+                          if (pokemons.length > index)
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        PokeView(pokemons[index])));
+                        },
+                      );
+                    }),
+                  ))
+          ],
+        ));
   }
 
   DropdownButton _down() => DropdownButton<String>(

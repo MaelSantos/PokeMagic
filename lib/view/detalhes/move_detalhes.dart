@@ -15,7 +15,7 @@ class MoveDetalhes extends StatelessWidget {
         appBar: AppBar(
             elevation: 0,
             centerTitle: true,
-            title: Text(move.name),
+            title: Text(move.name.toUpperCase()),
             backgroundColor: Colors.cyan),
         body: Container(
           margin: EdgeInsets.all(8),

@@ -26,7 +26,7 @@ class PokeMoveState extends State<PokeMove> {
   PokeMoveState(this.pokemon) {
     filtro = "level-up";
 
-    btnLevel = PokeButton("level-up", selecionado: false, selecionavel: true,
+    btnLevel = PokeButton("level-up", selecionado: true, selecionavel: true,
         onSelecionado: (b) {
       filtro = "level-up";
       selecionar(b);
@@ -103,33 +103,32 @@ class PokeMoveState extends State<PokeMove> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(8),
-      alignment: Alignment.topCenter,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: Colors.white,
-      ),
+          color: Colors.white, borderRadius: BorderRadius.circular(15)),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Moves", style: TextStyle(fontSize: 23)),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [btnLevel, btnEgg, btnMachine, btnTutor],
-          ),
-          Container(
-            padding: EdgeInsets.all(5),
-            margin: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15), border: Border.all()),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                gerarLinha("Nivel", cor: Colors.black, tamanho: 40),
-                gerarLinha("Move", cor: Colors.black, tamanho: 70),
-                gerarLinha("Power", cor: Colors.black),
-                gerarLinha("Acc", cor: Colors.black),
-                gerarLinha("PP", cor: Colors.black, tamanho: 30),
-              ],
-            ),
+          Column(
+            children: [
+              Text("Moves", style: TextStyle(fontSize: 23)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [btnLevel, btnEgg, btnMachine, btnTutor],
+              ),
+              gerarContainer(
+                "",
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    gerarLinha("Nivel", cor: Colors.black, tamanho: 40),
+                    gerarLinha("Move", cor: Colors.black, tamanho: 70),
+                    gerarLinha("Power", cor: Colors.black),
+                    gerarLinha("Acc", cor: Colors.black),
+                    gerarLinha("PP", cor: Colors.black, tamanho: 30),
+                  ],
+                ),
+              ),
+            ],
           ),
           Expanded(
               child: SingleChildScrollView(
@@ -139,7 +138,7 @@ class PokeMoveState extends State<PokeMove> {
                 children: all
                     .where((m) => m.tipo == filtro)
                     .map((t) => InkWell(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(15),
                         onTap: () {
                           Navigator.push(
                               context,
@@ -147,9 +146,14 @@ class PokeMoveState extends State<PokeMove> {
                                   builder: (context) => MoveDetalhes(t)));
                         },
                         child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
                             elevation: 3,
                             child: Container(
                                 height: 100,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black45),
+                                    borderRadius: BorderRadius.circular(15)),
                                 child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,

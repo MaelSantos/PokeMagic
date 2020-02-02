@@ -49,60 +49,65 @@ class _PokeAbilitiesState extends State<AbilitiesPricipal> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-            margin: EdgeInsets.all(5),
-            child: Row(
+    return Container(
+        margin: EdgeInsets.all(8),
+        child: Column(
+          children: [
+            Container(
+                child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 pesquisa,
               ],
             )),
-        abilitys == null
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : Expanded(
-                child: ListView(
-                    children: List.generate(
-                isFiltro ? contFiltro : abilityCont,
-                (index) {
-                  return InkWell(
-                      borderRadius: BorderRadius.circular(15),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    AbilityDetalhes(abilitys[index])));
-                      },
-                      child: Card(
-                          margin:
-                              EdgeInsets.only(right: 10, left: 10, bottom: 10),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          elevation: 3,
-                          child: Container(
-                              height: 100,
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(abilitys[index].name.toUpperCase()),
-                                  Text(
-                                      abilitys[index].effectEntries.shortEffect,
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.grey[600]),
-                                      textAlign: TextAlign.center)
-                                ],
-                              ))));
-                },
-              )))
-      ],
-    );
+            abilitys == null
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Expanded(
+                    child: ListView(
+                        children: List.generate(
+                    isFiltro ? contFiltro : abilityCont,
+                    (index) {
+                      return InkWell(
+                          borderRadius: BorderRadius.circular(15),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        AbilityDetalhes(abilitys[index])));
+                          },
+                          child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15)),
+                              elevation: 3,
+                              child: Container(
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.black45),
+                                      borderRadius: BorderRadius.circular(15)),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(abilitys[index].name.toUpperCase()),
+                                      Text(
+                                          abilitys[index]
+                                              .effectEntries
+                                              .shortEffect,
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.grey[600]),
+                                          textAlign: TextAlign.center)
+                                    ],
+                                  ))));
+                    },
+                  )))
+          ],
+        ));
   }
 }

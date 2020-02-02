@@ -7,15 +7,17 @@ Aplicação desenvolvida utilizando o framework [Flutter](https://flutter.dev/) 
 
 ## Screenshots
 
-<img src="screenshots/principal.jpg" width=250>
-<img src="screenshots/detalhes.jpg" width=250>
-<img src="screenshots/detalhes_tipo.jpg" width=250>
-<img src="screenshots/detalhes_habilidade.jpg" width=250>
-<img src="screenshots/movimentos.jpg" width=250>
-<img src="screenshots/detalhes_move.jpg" width=250>
-<img src="screenshots/evolucao.jpg" width=250>
-<img src="screenshots/more.jpg" width=250>
-<img src="screenshots/moves.jpg" width=250>
+<img src="screenshots/principal.jpg" width=200>
+<img src="screenshots/detalhes.jpg" width=200>
+<img src="screenshots/movimentos.jpg" width=200>
+<img src="screenshots/evolucao.jpg" width=200>
+<img src="screenshots/more.jpg" width=200>
+<img src="screenshots/moves.jpg" width=200>
+<img src="screenshots/detalhes_move.jpg" width=200>
+<img src="screenshots/tipos.jpg" width=200>
+<img src="screenshots/detalhes_tipo.jpg" width=200>
+<img src="screenshots/habilidades.jpg" width=200>
+<img src="screenshots/detalhes_habilidade.jpg" width=200>
 
 
 

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poke_magic/model/abilitys.dart';
 import 'package:poke_magic/model/pokedex.dart';
-import 'package:poke_magic/util/format.dart';
-import 'package:poke_magic/view/componentes/poke_button.dart';
 import 'package:poke_magic/view/componentes/poke_card.dart';
 import 'package:poke_magic/view/poke_view.dart';
 
@@ -18,7 +16,7 @@ class AbilityDetalhes extends StatelessWidget {
         appBar: AppBar(
             elevation: 0,
             centerTitle: true,
-            title: Text(ability.name),
+            title: Text(ability.name.toUpperCase()),
             backgroundColor: Colors.cyan),
         body: Container(
           margin: EdgeInsets.all(8),
@@ -38,7 +36,9 @@ class AbilityDetalhes extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Name: " + ability.name),
+                        Text("Name: " +
+                            (ability.name.replaceRange(
+                                0, 1, ability.name[0].toUpperCase()))),
                         Text(
                             "In Series: ${ability.isMainSeries ? 'yes' : 'no'}"),
                         Text("Introduced in : ${ability.generation.name}"),
@@ -47,10 +47,6 @@ class AbilityDetalhes extends StatelessWidget {
                 gerarContainer(
                     "Descrition: ${ability.flavorTextEntries.flavorText}"),
                 gerarContainer("Effect: ${ability.effectEntries.shortEffect}"),
-                // ability.effectChanges != null
-                //     ? gerarContainer(
-                //         "Effect: ${ability.effectEntries.shortEffect}")
-                //     : Container(),
                 gerarContainer(
                     "Details Effect: ${ability.effectEntries.effect}"),
                 Divider(thickness: 2),

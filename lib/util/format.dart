@@ -22,7 +22,7 @@ Widget gerarContainer(String conteudo,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
-        border: Border.all(),
+        border: Border.all(color: Colors.black45),
       ),
       alignment: Alignment.center,
       margin: EdgeInsets.all(5),
@@ -33,8 +33,8 @@ Widget gerarContainer(String conteudo,
 
 Widget containerColor(String conteudo, Color cor) {
   return Container(
-      padding: EdgeInsets.all(4),
-      margin: EdgeInsets.all(4),
+      padding: EdgeInsets.all(5),
+      margin: EdgeInsets.all(5),
       decoration:
           BoxDecoration(color: cor, borderRadius: BorderRadius.circular(15)),
       child: Text(

@@ -44,8 +44,12 @@ class _PokeMenuState extends State<PokeMenu> {
                   style: TextStyle(fontSize: 23, color: Colors.white)),
               duration: Duration(seconds: 1),
               decoration: BoxDecoration(
-                color: Colors.cyan,
-              ),
+                  color: Colors.cyan,
+                  image: DecorationImage(
+                    image: AssetImage("assets/icon.png"),
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.center,
+                  )),
             ),
             ListTile(
               title: Text("Pokémons"),

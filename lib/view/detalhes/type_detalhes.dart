@@ -15,7 +15,7 @@ class TypeDetalhes extends StatelessWidget {
         appBar: AppBar(
             elevation: 0,
             centerTitle: true,
-            title: Text(type.name),
+            title: Text(type.name.toUpperCase()),
             backgroundColor: Colors.cyan),
         body: Container(
             margin: EdgeInsets.all(8),
@@ -35,7 +35,9 @@ class TypeDetalhes extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Name: " + type.name),
+                          Text("Name: " +
+                              (type.name.replaceRange(
+                                  0, 1, type.name[0].toUpperCase()))),
                           type.moveDamageClass != null
                               ? Text(
                                   "Damage Class: ${type.moveDamageClass.name}")
