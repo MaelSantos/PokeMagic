@@ -11,15 +11,17 @@ class PokeEvolucao extends StatelessWidget {
   Evolution evolution;
 
   PokeEvolucao(this.pokemon) {
+    print(pokemon.name);
     try {
       evolution = evolutions.evolution.firstWhere(escolherEvolucao);
     } catch (e) {
-      if (evolution == null) evolution = evolutions.evolution[0];
+      if (evolution == null) evolution = evolutions.evolution[250];
     }
   }
 
   bool escolherEvolucao(Evolution e) {
     bool ret = false;
+
     if (e.chain.species.name == pokemon.name)
       ret = true;
     else if (e.chain.evolvesTo.isNotEmpty) {
@@ -144,12 +146,6 @@ class PokeEvolucao extends StatelessWidget {
 
           if (list[0].minHappiness != null) gatilho = "happiness";
 
-          if (list[0].timeOfDay != null && list[0].timeOfDay.isNotEmpty) {
-            motivo != "null" && motivo.isNotEmpty
-                ? motivo += "\n" + list[0].timeOfDay
-                : motivo = list[0].timeOfDay;
-          }
-
           if (list[0].location != null)
             motivo = "location: " + list[0].location.name;
 
@@ -159,7 +155,8 @@ class PokeEvolucao extends StatelessWidget {
           if (list[0].knownMoveType != null && list[0].timeOfDay != null)
             motivo += "\n" + list[0].timeOfDay;
 
-          if (list[0].heldItem != null) motivo = list[0].heldItem.name;
+          if (list[0].heldItem != null)
+            motivo = "holding: " + list[0].heldItem.name;
 
           if (list[0].knownMove != null)
             motivo = "move " + list[0].knownMove.name;
@@ -179,6 +176,12 @@ class PokeEvolucao extends StatelessWidget {
           if (list[0].partySpecies != null)
             motivo = list[0].partySpecies.name + " in the team";
 
+          if (list[0].timeOfDay != null && list[0].timeOfDay.isNotEmpty) {
+            motivo != "null" && motivo.isNotEmpty
+                ? motivo += "\n" + list[0].timeOfDay
+                : motivo = list[0].timeOfDay;
+          }
+
           break;
         case "use-item":
           motivo = list[0].item.name;
@@ -187,7 +190,7 @@ class PokeEvolucao extends StatelessWidget {
           break;
         case "trade":
           if (list[0].heldItem != null)
-            motivo = "item: " + list[0].heldItem.name;
+            motivo = "holding item: " + list[0].heldItem.name;
           break;
         default:
       }

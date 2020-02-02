@@ -45,7 +45,7 @@ class MoveDetalhes extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Name: " + move.name),
+                        Text("Name: " + move.name.toUpperCase()),
                         Text("PP: ${move.pp}"),
                         Text("Power: ${move.power != null ? move.power : '-'}"),
                         Text(

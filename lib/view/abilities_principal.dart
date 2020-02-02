@@ -54,13 +54,14 @@ class _PokeAbilitiesState extends State<AbilitiesPricipal> {
         child: Column(
           children: [
             Container(
+                margin: EdgeInsets.only(bottom: 5),
                 child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                pesquisa,
-              ],
-            )),
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    pesquisa,
+                  ],
+                )),
             abilitys == null
                 ? Center(
                     child: CircularProgressIndicator(),

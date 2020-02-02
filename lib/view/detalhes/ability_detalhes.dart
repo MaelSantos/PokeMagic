@@ -36,9 +36,7 @@ class AbilityDetalhes extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Name: " +
-                            (ability.name.replaceRange(
-                                0, 1, ability.name[0].toUpperCase()))),
+                        Text("Name: " + ability.name.toUpperCase()),
                         Text(
                             "In Series: ${ability.isMainSeries ? 'yes' : 'no'}"),
                         Text("Introduced in : ${ability.generation.name}"),

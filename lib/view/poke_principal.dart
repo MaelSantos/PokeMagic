@@ -98,14 +98,15 @@ class _PokeViewState extends State<PokePricipal> {
         child: Column(
           children: [
             Container(
+                margin: EdgeInsets.only(bottom: 5),
                 child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                _down(),
-                pesquisa,
-              ],
-            )),
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    _down(),
+                    pesquisa,
+                  ],
+                )),
             pokemons == null
                 ? Center(
                     child: CircularProgressIndicator(),

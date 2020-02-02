@@ -59,7 +59,7 @@ class PokeMore extends StatelessWidget {
                                 fit: BoxFit.contain,
                                 child: PokeButton(
                                     t.name +
-                                        " X${t.damage == 0.5 ? '1/2' : '1/4'}",
+                                        " X${t.damage == 0.5 ? '1/2' : (t.damage == 0 ? '0' : '1/4')}",
                                     cor: formatColorExist(t.name))))
                             .toList()),
                     Divider(thickness: 2),

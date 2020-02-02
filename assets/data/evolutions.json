@@ -11727,7 +11727,7 @@
             "evolves_to": [],
             "is_baby": false,
             "species": {
-                "name": "phione",
+                "name": "phione", 
                 "url": "https://pokeapi.co/api/v2/pokemon-species/489/"
             }
         },

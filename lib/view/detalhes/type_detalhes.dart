@@ -35,9 +35,7 @@ class TypeDetalhes extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Name: " +
-                              (type.name.replaceRange(
-                                  0, 1, type.name[0].toUpperCase()))),
+                          Text("Name: " + type.name.toUpperCase()),
                           type.moveDamageClass != null
                               ? Text(
                                   "Damage Class: ${type.moveDamageClass.name}")

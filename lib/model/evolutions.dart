@@ -19,8 +19,7 @@ class Evolutions {
           i != 227 &&
           i != 230 &&
           i != 231 &&
-          i != 238 &&
-          i != 251) if (json['$i'] != null)
+          i != 238) if (json['$i'] != null)
         _instance.evolution.add(Evolution.fromJson(json['$i']));
     return _instance;
   }
