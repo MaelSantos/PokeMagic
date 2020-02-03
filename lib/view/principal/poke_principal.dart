@@ -1,12 +1,5 @@
-import 'dart:convert';
-import "package:flutter/services.dart" show rootBundle;
-import 'package:poke_magic/model/evolutions.dart';
-import 'package:poke_magic/model/moves.dart';
 import 'package:poke_magic/model/pokedex.dart';
-import 'package:poke_magic/model/types.dart';
-import 'package:poke_magic/model/abilitys.dart';
 import 'package:flutter/material.dart';
-import 'package:poke_magic/model/weaknesses.dart';
 import 'package:poke_magic/view/componentes/field_custom.dart';
 import 'package:poke_magic/view/componentes/poke_card.dart';
 import 'package:poke_magic/view/poke_view.dart';
@@ -17,12 +10,7 @@ class PokePricipal extends StatefulWidget {
 }
 
 class _PokeViewState extends State<PokePricipal> {
-  Evolutions evolutions;
-  Pokedex pokedex;
-  Moves moves;
-  Abilitys abilitys;
-  Weaknesses weaknesses;
-  Types types;
+  Pokedex pokedex = Pokedex();
 
   List<Pokemon> get pokemons => _filtroPoke();
   int pokemonCont = 807; //total de pokemons
@@ -45,26 +33,6 @@ class _PokeViewState extends State<PokePricipal> {
       });
     });
     super.initState();
-    carregarPokedex();
-  }
-
-  carregarPokedex() async {
-    pokedex = Pokedex.fromJson(await carregarJson("assets/data/pokedex.json"));
-    evolutions =
-        Evolutions.fromJson(await carregarJson("assets/data/evolutions.json"));
-    moves = Moves.fromJson(await carregarJson("assets/data/moves.json"));
-    setState(() {});
-    types = Types.fromJson(await carregarJson("assets/data/types.json"));
-    abilitys =
-        Abilitys.fromJson(await carregarJson("assets/data/abilitys.json"));
-    weaknesses =
-        Weaknesses.fromJson(await carregarJson("assets/data/weakness.json"));
-  }
-
-  Future<Map<String, dynamic>> carregarJson(String url) async {
-    String raw = await rootBundle.loadString(url);
-    Map<String, dynamic> data = await json.decode(raw);
-    return data;
   }
 
   List<Pokemon> _filtroPoke() {

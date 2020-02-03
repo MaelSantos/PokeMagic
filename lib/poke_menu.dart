@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:poke_magic/view/abilities_principal.dart';
-import 'package:poke_magic/view/move_principal.dart';
-import 'package:poke_magic/view/poke_principal.dart';
-import 'package:poke_magic/view/type_principal.dart';
+import 'package:poke_magic/view/principal/abilities_principal.dart';
+import 'package:poke_magic/view/principal/move_principal.dart';
+import 'package:poke_magic/view/principal/poke_principal.dart';
+import 'package:poke_magic/view/principal/type_principal.dart';
 
 class PokeMenu extends StatefulWidget {
   @override

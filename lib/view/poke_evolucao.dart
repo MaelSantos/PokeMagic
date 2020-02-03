@@ -189,6 +189,7 @@ class PokeEvolucao extends StatelessWidget {
             motivo += "\n" + (list[0].gender == 1 ? "female ♀" : "male ♂");
           break;
         case "trade":
+          // gatilho = "negotiation";
           if (list[0].heldItem != null)
             motivo = "holding item: " + list[0].heldItem.name;
           break;
