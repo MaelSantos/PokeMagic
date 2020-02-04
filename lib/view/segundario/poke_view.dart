@@ -3,9 +3,9 @@ import 'package:poke_magic/model/evolutions.dart';
 import 'package:poke_magic/model/moves.dart';
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/view/detalhes/poke_detalhes.dart';
-import 'package:poke_magic/view/poke_evolucao.dart';
-import 'package:poke_magic/view/poke_more.dart';
-import 'package:poke_magic/view/poke_movimentos.dart';
+import 'package:poke_magic/view/segundario/poke_evolucao.dart';
+import 'package:poke_magic/view/segundario/poke_more.dart';
+import 'package:poke_magic/view/segundario/poke_movimentos.dart';
 
 class PokeView extends StatefulWidget {
   final Pokemon pokemon;

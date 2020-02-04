@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:poke_magic/model/evolutions.dart';
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/view/componentes/poke_card.dart';
-import 'package:poke_magic/view/poke_view.dart';
+import 'package:poke_magic/view/segundario/poke_view.dart';
 
 class PokeEvolucao extends StatelessWidget {
   final Pokemon pokemon;

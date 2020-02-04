@@ -1,4 +1,4 @@
-package com.example.poke_magic
+package com.br.poke_magic
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:poke_magic/model/abilitys.dart';
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/view/componentes/poke_card.dart';
-import 'package:poke_magic/view/poke_view.dart';
+import 'package:poke_magic/view/segundario/poke_view.dart';
 
 class AbilityDetalhes extends StatelessWidget {
   final Ability ability;
