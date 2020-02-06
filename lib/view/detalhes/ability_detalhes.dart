@@ -3,6 +3,7 @@ import 'package:poke_magic/model/abilitys.dart';
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/view/componentes/poke_card.dart';
 import 'package:poke_magic/view/segundario/poke_view.dart';
+import 'package:poke_magic/util/propaganda.dart';
 
 class AbilityDetalhes extends StatelessWidget {
   final Ability ability;
@@ -94,6 +95,7 @@ class AbilityDetalhes extends StatelessWidget {
       else if (pokemon != null && nomes.contains(pokemon.name)) pokemon = null;
       if (pokemon != null) {
         pokecards.add(PokeCard(pokemon, axis: Axis.vertical, onSelecionar: () {
+          Propaganda.popUp();
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => PokeView(pokemon)));
         }));

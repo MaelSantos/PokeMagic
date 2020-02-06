@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'package:poke_magic/util/propaganda.dart';
 import 'package:poke_magic/model/moves.dart';
 import 'package:flutter/material.dart';
 import 'package:poke_magic/util/format.dart';
@@ -98,6 +98,7 @@ class _PokeViewState extends State<MovePricipal> {
                       return InkWell(
                           borderRadius: BorderRadius.circular(15),
                           onTap: () {
+                            Propaganda.popUp();
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(

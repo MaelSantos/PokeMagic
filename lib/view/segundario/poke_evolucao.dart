@@ -3,6 +3,7 @@ import 'package:poke_magic/model/evolutions.dart';
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/view/componentes/poke_card.dart';
 import 'package:poke_magic/view/segundario/poke_view.dart';
+import 'package:poke_magic/util/propaganda.dart';
 
 class PokeEvolucao extends StatelessWidget {
   final Pokemon pokemon;
@@ -11,7 +12,6 @@ class PokeEvolucao extends StatelessWidget {
   Evolution evolution;
 
   PokeEvolucao(this.pokemon) {
-    print(pokemon.name);
     try {
       evolution = evolutions.evolution.firstWhere(escolherEvolucao);
     } catch (e) {
@@ -82,6 +82,7 @@ class PokeEvolucao extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.25,
         // height: 165,
         child: PokeCard(poke, size: 10, onSelecionar: () {
+          Propaganda.popUp();
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => PokeView(poke)));
         }));

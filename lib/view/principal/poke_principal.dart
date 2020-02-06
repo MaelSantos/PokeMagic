@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:poke_magic/view/componentes/field_custom.dart';
 import 'package:poke_magic/view/componentes/poke_card.dart';
 import 'package:poke_magic/view/segundario/poke_view.dart';
+import 'package:poke_magic/util/propaganda.dart';
 
 class PokePricipal extends StatefulWidget {
   @override
@@ -87,12 +88,14 @@ class _PokeViewState extends State<PokePricipal> {
                       return PokeCard(
                         pokemons[index],
                         onSelecionar: () {
-                          if (pokemons.length > index)
+                          if (pokemons.length > index) {
+                            Propaganda.popUp();
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
                                         PokeView(pokemons[index])));
+                          }
                         },
                       );
                     }),

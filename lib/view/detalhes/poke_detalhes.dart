@@ -8,6 +8,7 @@ import 'package:poke_magic/view/componentes/bar_custom.dart';
 import 'package:poke_magic/view/componentes/poke_button.dart';
 import 'package:poke_magic/view/detalhes/ability_detalhes.dart';
 import 'package:poke_magic/view/detalhes/type_detalhes.dart';
+import 'package:poke_magic/util/propaganda.dart';
 
 class PokeDetalhes extends StatelessWidget {
   final Pokemon pokemon;
@@ -64,6 +65,7 @@ class PokeDetalhes extends StatelessWidget {
                       .map((t) => PokeButton(t.type.name,
                               cor: formatColorExist(t.type.name),
                               onSelecionado: (b) {
+                            Propaganda.popUp();
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -85,6 +87,7 @@ class PokeDetalhes extends StatelessWidget {
                             .map((t) => PokeButton(t.ability.name,
                                     isEscondido: t.isHidden,
                                     onSelecionado: (b) {
+                                  Propaganda.popUp();
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(

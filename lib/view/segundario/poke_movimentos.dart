@@ -4,6 +4,7 @@ import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/util/format.dart';
 import 'package:poke_magic/view/componentes/poke_button.dart';
 import 'package:poke_magic/view/detalhes/move_detalhes.dart';
+import 'package:poke_magic/util/propaganda.dart';
 
 class PokeMove extends StatefulWidget {
   final Pokemon pokemon;
@@ -140,6 +141,7 @@ class PokeMoveState extends State<PokeMove> {
                     .map((t) => InkWell(
                         borderRadius: BorderRadius.circular(15),
                         onTap: () {
+                          Propaganda.popUp();
                           Navigator.push(
                               context,
                               MaterialPageRoute(

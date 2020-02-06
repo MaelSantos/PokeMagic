@@ -3,6 +3,7 @@ import 'package:poke_magic/model/types.dart';
 import 'package:poke_magic/util/format.dart';
 import 'package:poke_magic/view/componentes/field_custom.dart';
 import 'package:poke_magic/view/detalhes/type_detalhes.dart';
+import 'package:poke_magic/util/propaganda.dart';
 
 class TypePricipal extends StatefulWidget {
   @override
@@ -75,6 +76,7 @@ class _TypePricipalState extends State<TypePricipal> {
                       return InkWell(
                           borderRadius: BorderRadius.circular(15),
                           onTap: () {
+                            Propaganda.popUp();
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(

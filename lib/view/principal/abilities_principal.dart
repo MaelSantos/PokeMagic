@@ -1,8 +1,8 @@
 import 'package:poke_magic/model/abilitys.dart';
 import 'package:flutter/material.dart';
-import 'package:poke_magic/util/format.dart';
 import 'package:poke_magic/view/componentes/field_custom.dart';
 import 'package:poke_magic/view/detalhes/ability_detalhes.dart';
+import 'package:poke_magic/util/propaganda.dart';
 
 class AbilitiesPricipal extends StatefulWidget {
   @override
@@ -74,6 +74,7 @@ class _PokeAbilitiesState extends State<AbilitiesPricipal> {
                       return InkWell(
                           borderRadius: BorderRadius.circular(15),
                           onTap: () {
+                            Propaganda.popUp();
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(

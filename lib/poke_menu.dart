@@ -1,4 +1,6 @@
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
+import 'package:poke_magic/util/propaganda.dart';
 import 'package:poke_magic/view/principal/abilities_principal.dart';
 import 'package:poke_magic/view/principal/move_principal.dart';
 import 'package:poke_magic/view/principal/poke_principal.dart';
@@ -23,9 +25,20 @@ class _PokeMenuState extends State<PokeMenu> {
     titulo = "PokéMagic";
     index = 1;
     super.initState();
-    movePricipal = MovePricipal();
-    abilitiesPricipal = AbilitiesPricipal();
-    typePricipal = TypePricipal();
+    // movePricipal = MovePricipal();
+    // abilitiesPricipal = AbilitiesPricipal();
+    // typePricipal = TypePricipal();
+
+    FirebaseAdMob.instance
+        .initialize(appId: "ca-app-pub-4785348218475505~7730065377");
+
+    // Future.delayed(Duration(minutes: 5), Propaganda.displayInterstitial());
+  }
+
+  @override
+  void dispose() {
+    Propaganda.dispose();
+    super.dispose();
   }
 
   @override
@@ -106,15 +119,18 @@ class _PokeMenuState extends State<PokeMenu> {
   }
 
   Widget tela() {
+    Propaganda.popUp();
     switch (index) {
       case 1:
         return pokePricipal;
       case 2:
-        // if (movePricipal == null) movePricipal = MovePricipal();
+        if (movePricipal == null) movePricipal = MovePricipal();
         return movePricipal;
       case 3:
+        if (abilitiesPricipal == null) abilitiesPricipal = AbilitiesPricipal();
         return abilitiesPricipal;
       case 4:
+        if (typePricipal == null) typePricipal = TypePricipal();
         return typePricipal;
       default:
         return pokePricipal;

@@ -6,6 +6,7 @@ import 'package:poke_magic/view/detalhes/poke_detalhes.dart';
 import 'package:poke_magic/view/segundario/poke_evolucao.dart';
 import 'package:poke_magic/view/segundario/poke_more.dart';
 import 'package:poke_magic/view/segundario/poke_movimentos.dart';
+import 'package:poke_magic/util/propaganda.dart';
 
 class PokeView extends StatefulWidget {
   final Pokemon pokemon;
@@ -77,6 +78,7 @@ class _PokeViewState extends State<PokeView> {
 
   void mudar(int i) {
     setState(() {
+      Propaganda.popUp();
       indexCorrente = i;
       switch (i) {
         case 0:

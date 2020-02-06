@@ -2,6 +2,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import 'package:poke_magic/model/pokedex.dart';
 
+// ignore: must_be_immutable
 class BarCustom extends StatelessWidget {
   List<charts.Series> seriesList;
   final bool animate;
