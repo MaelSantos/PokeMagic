@@ -27,13 +27,14 @@ class PokeCard extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         border: Border.all(color: Colors.black12)),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          imagem(),
-                          SingleChildScrollView(
-                              child: axis == Axis.vertical
+                    child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              imagem(),
+                              axis == Axis.vertical
                                   ? Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
@@ -45,8 +46,8 @@ class PokeCard extends StatelessWidget {
                                           CrossAxisAlignment.center,
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      children: conteudo())),
-                        ])))));
+                                      children: conteudo()),
+                            ]))))));
   }
 
   Widget imagem() {
