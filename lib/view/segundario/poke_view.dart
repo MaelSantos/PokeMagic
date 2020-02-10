@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:poke_magic/beans/favorito.dart';
 import 'package:poke_magic/model/evolutions.dart';
 import 'package:poke_magic/model/moves.dart';
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/view/detalhes/poke_detalhes.dart';
+import 'package:poke_magic/view/principal/favorites_principal.dart';
 import 'package:poke_magic/view/segundario/poke_evolucao.dart';
 import 'package:poke_magic/view/segundario/poke_more.dart';
 import 'package:poke_magic/view/segundario/poke_movimentos.dart';
@@ -10,11 +12,13 @@ import 'package:poke_magic/util/propaganda.dart';
 
 class PokeView extends StatefulWidget {
   final Pokemon pokemon;
+  FavoritesPrincipalState favoritesPrincipal;
 
-  PokeView(this.pokemon);
+  PokeView(this.pokemon, {this.favoritesPrincipal});
 
   @override
-  _PokeViewState createState() => _PokeViewState(pokemon);
+  _PokeViewState createState() =>
+      _PokeViewState(pokemon, favoritesPrincipal: favoritesPrincipal);
 }
 
 class _PokeViewState extends State<PokeView> {
@@ -29,12 +33,32 @@ class _PokeViewState extends State<PokeView> {
   Moves get movimentos => Moves();
   String titulo;
   int indexCorrente;
+  IconData icondata;
+  Favorito favorito;
+  bool isFavorite;
+  FavoritesPrincipalState favoritesPrincipal;
 
-  _PokeViewState(this.pokemon) {
+  _PokeViewState(this.pokemon, {this.favoritesPrincipal}) {
     pokeDetalhes = PokeDetalhes(pokemon);
     corrente = pokeDetalhes;
     indexCorrente = 0;
     titulo = pokemon.name.replaceRange(0, 1, pokemon.name[0].toUpperCase());
+    icondata = Icons.star_border;
+    isFavorite = false;
+    carregarFavorito();
+  }
+
+  carregarFavorito() async {
+    favorito = await Favorito.getPorNome(pokemon.name);
+    setState(() {
+      if (favorito == null) {
+        isFavorite = false;
+        icondata = Icons.star_border;
+      } else {
+        isFavorite = true;
+        icondata = Icons.star;
+      }
+    });
   }
 
   @override
@@ -42,10 +66,38 @@ class _PokeViewState extends State<PokeView> {
     return Scaffold(
       backgroundColor: Colors.cyan,
       appBar: AppBar(
-          elevation: 0,
-          centerTitle: true,
-          title: Text(titulo),
-          backgroundColor: Colors.cyan),
+        elevation: 0,
+        centerTitle: true,
+        title: Text(titulo),
+        backgroundColor: Colors.cyan,
+        actions: [
+          Container(
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(15)),
+              child: FlatButton.icon(
+                  onPressed: () {
+                    setState(() {
+                      isFavorite = !isFavorite;
+                      if (isFavorite) {
+                        favorito = Favorito();
+                        favorito.nome = pokemon.name;
+                        favorito.save();
+                        icondata = Icons.star;
+                        if (favoritesPrincipal != null)
+                          favoritesPrincipal.add(favorito);
+                      } else {
+                        favorito.remove();
+                        icondata = Icons.star_border;
+                        if (favoritesPrincipal != null)
+                          favoritesPrincipal.remove(favorito);
+                        favorito = null;
+                      }
+                    });
+                  },
+                  icon: Icon(icondata, color: Colors.white),
+                  label: Text(""))),
+        ],
+      ),
       body: corrente,
       bottomNavigationBar: BottomNavigationBar(
         onTap: mudar,

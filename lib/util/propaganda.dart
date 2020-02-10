@@ -76,7 +76,7 @@ class Propaganda {
   }
 
   static void popUp() {
-    print(cont);
+    // print(cont);
     if (cont == 12) {
       displayInterstitial();
       cont = 0;

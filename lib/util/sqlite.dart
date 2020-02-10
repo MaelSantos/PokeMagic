@@ -1,4 +1,5 @@
 import 'package:path/path.dart';
+import 'package:poke_magic/util/tabela_favoritos.dart';
 import 'package:sqflite/sqflite.dart';
 
 class SqlUtil {
@@ -27,11 +28,7 @@ class SqlUtil {
   }
 
   void create(Database db, int newVersion) async {
-    // await db.execute(TabelaUsuario.createTable);
-    // await db.rawDelete("DELETE FROM Pokemon");
-    await db.execute("CREATE TABLE Pokemon ("
-      "id INTEGER PRIMARY KEY, "
-      "json TEXT );");
+    await db.execute(TabelaFavorito.createTable);
   }
 
   void update(Database db, int oldVersion, int newVersion) async {
