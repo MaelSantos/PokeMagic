@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:poke_magic/model/abilitys.dart';
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/view/componentes/poke_card.dart';
+import 'package:poke_magic/view/principal/favorites_principal.dart';
 import 'package:poke_magic/view/segundario/poke_view.dart';
 import 'package:poke_magic/util/propaganda.dart';
 
 class AbilityDetalhes extends StatelessWidget {
   final Ability ability;
-
-  const AbilityDetalhes(this.ability);
+  final FavoritesPrincipalState favoritesPrincipal;
+  const AbilityDetalhes(this.ability, {this.favoritesPrincipal});
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +86,7 @@ class AbilityDetalhes extends StatelessWidget {
       try {
         pokemon = Pokedex()
             .pokemons
-            .firstWhere((a) => a.name.contains(p.pokemon.name));
+            .firstWhere((a) => p.pokemon.name.contains(a.name));
       } catch (e) {
         pokemon = null;
       }
@@ -96,8 +97,11 @@ class AbilityDetalhes extends StatelessWidget {
       if (pokemon != null) {
         pokecards.add(PokeCard(pokemon, axis: Axis.vertical, onSelecionar: () {
           Propaganda.popUp();
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => PokeView(pokemon)));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => PokeView(pokemon,
+                      favoritesPrincipal: favoritesPrincipal)));
         }));
       }
     }

@@ -7,10 +7,14 @@ class PokeCard extends StatelessWidget {
   final Pokemon pokemon;
   final Function onSelecionar;
   final Axis axis;
+  final bool fitbox;
   double size;
 
   PokeCard(this.pokemon,
-      {this.onSelecionar, this.size = 14, this.axis = Axis.horizontal});
+      {this.onSelecionar,
+      this.size = 14,
+      this.axis = Axis.horizontal,
+      this.fitbox = false});
 
   @override
   Widget build(BuildContext context) {
@@ -27,21 +31,27 @@ class PokeCard extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         border: Border.all(color: Colors.black12)),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          imagem(),
-                          axis == Axis.vertical
-                              ? Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: conteudo())
-                              : Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: conteudo()),
-                        ])))));
+                    child: fitbox
+                        ? FittedBox(fit: BoxFit.contain, child: principal())
+                        : principal()))));
+  }
+
+  Widget principal() {
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          imagem(),
+          axis == Axis.vertical
+              ? Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: conteudo())
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: conteudo()),
+        ]);
   }
 
   Widget imagem() {

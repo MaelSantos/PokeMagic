@@ -12,7 +12,7 @@ import 'package:poke_magic/util/propaganda.dart';
 
 class PokeView extends StatefulWidget {
   final Pokemon pokemon;
-  FavoritesPrincipalState favoritesPrincipal;
+  final FavoritesPrincipalState favoritesPrincipal;
 
   PokeView(this.pokemon, {this.favoritesPrincipal});
 
@@ -36,10 +36,10 @@ class _PokeViewState extends State<PokeView> {
   IconData icondata;
   Favorito favorito;
   bool isFavorite;
-  FavoritesPrincipalState favoritesPrincipal;
+  FavoritesPrincipalState favoritesPrincipal; 
 
   _PokeViewState(this.pokemon, {this.favoritesPrincipal}) {
-    pokeDetalhes = PokeDetalhes(pokemon);
+    pokeDetalhes = PokeDetalhes(pokemon, favoritesPrincipal: favoritesPrincipal);
     corrente = pokeDetalhes;
     indexCorrente = 0;
     titulo = pokemon.name.replaceRange(0, 1, pokemon.name[0].toUpperCase());
@@ -141,7 +141,7 @@ class _PokeViewState extends State<PokeView> {
           corrente = pokeMove;
           break;
         case 2:
-          if (pokeEvolucao == null) pokeEvolucao = PokeEvolucao(pokemon);
+          if (pokeEvolucao == null) pokeEvolucao = PokeEvolucao(pokemon, favoritesPrincipal: favoritesPrincipal);
           corrente = pokeEvolucao;
           break;
         case 3:

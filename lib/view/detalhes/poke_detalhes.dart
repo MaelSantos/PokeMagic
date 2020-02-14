@@ -9,11 +9,13 @@ import 'package:poke_magic/view/componentes/poke_button.dart';
 import 'package:poke_magic/view/detalhes/ability_detalhes.dart';
 import 'package:poke_magic/view/detalhes/type_detalhes.dart';
 import 'package:poke_magic/util/propaganda.dart';
+import 'package:poke_magic/view/principal/favorites_principal.dart';
 
 class PokeDetalhes extends StatelessWidget {
   final Pokemon pokemon;
   String titulo;
-  PokeDetalhes(this.pokemon) {
+  FavoritesPrincipalState favoritesPrincipal;
+  PokeDetalhes(this.pokemon, {this.favoritesPrincipal}) {
     titulo = pokemon.name.replaceRange(0, 1, pokemon.name[0].toUpperCase());
   }
 
@@ -93,7 +95,9 @@ class PokeDetalhes extends StatelessWidget {
                                       MaterialPageRoute(
                                           builder: (context) => AbilityDetalhes(
                                               Abilitys()
-                                                  .toAbility(t.ability.name))));
+                                                  .toAbility(t.ability.name),
+                                              favoritesPrincipal:
+                                                  favoritesPrincipal)));
                                 }))
                             .toList(),
                       )),

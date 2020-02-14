@@ -87,6 +87,7 @@ class _PokeViewState extends State<PokePricipal> {
                         (index) {
                       return PokeCard(
                         pokemons[index],
+                        fitbox: true,
                         onSelecionar: () {
                           if (pokemons.length > index) {
                             Propaganda.popUp();

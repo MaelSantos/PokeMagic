@@ -65,7 +65,7 @@ class FavoritesPrincipalState extends State<FavoritesPrincipal> {
                 : GridView.count(
                     crossAxisCount: 2,
                     children: pokemons
-                        .map((p) => PokeCard(p, onSelecionar: () {
+                        .map((p) => PokeCard(p, fitbox: true, onSelecionar: () {
                               Propaganda.popUp();
                               Navigator.push(
                                   context,
