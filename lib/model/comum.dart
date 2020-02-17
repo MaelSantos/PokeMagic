@@ -1,6 +1,5 @@
 class Comum {
   
-  int id = 1;//gambiarra
   String name;
   String url;
 

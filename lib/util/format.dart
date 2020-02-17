@@ -16,6 +16,10 @@ String formatShiny(String i) {
   // "https://www.serebii.net/itemdex/sprites/pgl/sunstone.png" //item
 }
 
+String formatItem(String i) {
+  return "https://www.serebii.net/itemdex/sprites/pgl/${i.toLowerCase()}.png";
+}
+
 Widget gerarContainer(String conteudo,
     {double tamanho = 60, Color cor = Colors.black, Widget child}) {
   return Container(

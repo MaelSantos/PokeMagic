@@ -295,7 +295,7 @@
             },
             {
                 "name": "dragon",
-                "damage": 0.5
+                "damage": 1
             },
             {
                 "name": "dark",

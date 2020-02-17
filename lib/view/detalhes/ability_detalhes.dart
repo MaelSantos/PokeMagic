@@ -84,9 +84,13 @@ class AbilityDetalhes extends StatelessWidget {
       Pokemon pokemon;
 
       try {
-        pokemon = Pokedex()
-            .pokemons
-            .firstWhere((a) => p.pokemon.name.contains(a.name));
+        pokemon = Pokedex().pokemons.firstWhere((a) => p.pokemon.name == a.name
+            // bool r = false;
+            // r = a.name == p.pokemon.name;
+            // if (r) return r;
+            // r = p.pokemon.name.contains(a.name);
+            // return r;
+            );
       } catch (e) {
         pokemon = null;
       }
@@ -105,7 +109,6 @@ class AbilityDetalhes extends StatelessWidget {
         }));
       }
     }
-
     return pokecards;
   }
 }

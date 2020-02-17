@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:poke_magic/util/propaganda.dart';
 import 'package:poke_magic/view/principal/abilities_principal.dart';
 import 'package:poke_magic/view/principal/favorites_principal.dart';
+import 'package:poke_magic/view/principal/itens_principal.dart';
 import 'package:poke_magic/view/principal/move_principal.dart';
 import 'package:poke_magic/view/principal/poke_principal.dart';
 import 'package:poke_magic/view/principal/type_principal.dart';
@@ -16,6 +17,7 @@ class _PokeMenuState extends State<PokeMenu> {
   PokePricipal pokePricipal;
   MovePricipal movePricipal;
   AbilitiesPricipal abilitiesPricipal;
+  ItensPricipal itensPricipal;
   TypePricipal typePricipal;
   FavoritesPrincipal favoritesPrincipal;
   int index;
@@ -27,9 +29,6 @@ class _PokeMenuState extends State<PokeMenu> {
     titulo = "PokéMagic";
     index = 1;
     super.initState();
-    // movePricipal = MovePricipal();
-    // abilitiesPricipal = AbilitiesPricipal();
-    // typePricipal = TypePricipal();
 
     FirebaseAdMob.instance
         .initialize(appId: "ca-app-pub-4785348218475505~7730065377");
@@ -106,12 +105,25 @@ class _PokeMenuState extends State<PokeMenu> {
             ),
             Divider(thickness: 1),
             ListTile(
-              title: Text("Types"),
+              title: Text("Items"),
               // trailing: Icon(Icons.star),
               selected: index == 4,
               onTap: () {
                 setState(() {
                   index = 4;
+                  titulo = "Items";
+                  Navigator.pop(context);
+                });
+              },
+            ),
+            Divider(thickness: 1),
+            ListTile(
+              title: Text("Types"),
+              // trailing: Icon(Icons.star),
+              selected: index == 5,
+              onTap: () {
+                setState(() {
+                  index = 5;
                   titulo = "Types";
                   Navigator.pop(context);
                 });
@@ -121,10 +133,10 @@ class _PokeMenuState extends State<PokeMenu> {
             ListTile(
               title: Text("Favorites"),
               // trailing: Icon(Icons.star),
-              selected: index == 5,
+              selected: index == 6,
               onTap: () {
                 setState(() {
-                  index = 5;
+                  index = 6;
                   titulo = "Favorites";
                   Navigator.pop(context);
                 });
@@ -149,9 +161,12 @@ class _PokeMenuState extends State<PokeMenu> {
         if (abilitiesPricipal == null) abilitiesPricipal = AbilitiesPricipal();
         return abilitiesPricipal;
       case 4:
+        if (itensPricipal == null) itensPricipal = ItensPricipal();
+        return itensPricipal;
+      case 5:
         if (typePricipal == null) typePricipal = TypePricipal();
         return typePricipal;
-      case 5:
+      case 6:
         if (favoritesPrincipal == null)
           favoritesPrincipal = FavoritesPrincipal();
         return FavoritesPrincipal();

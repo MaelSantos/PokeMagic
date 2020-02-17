@@ -32,6 +32,8 @@ flutter:
     - assets/data/abilitys.json
     - assets/data/types.json
     - assets/data/weakness.json
+    - assets/data/forms.json
+    - assets/data/itens.json
     - assets/icon.png
 
 flutter_icons:

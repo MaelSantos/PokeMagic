@@ -4,8 +4,9 @@ import 'dart:async';
 import "package:flutter/services.dart" show rootBundle;
 import 'package:poke_magic/model/abilitys.dart';
 import 'package:poke_magic/model/evolutions.dart';
+import 'package:poke_magic/model/forms.dart';
+import 'package:poke_magic/model/itens.dart';
 import 'package:poke_magic/model/moves.dart';
-import 'package:flutter/services.dart';
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/model/types.dart';
 import 'package:poke_magic/model/weaknesses.dart';
@@ -22,6 +23,8 @@ class EntradaState extends State<Entrada> {
   Abilitys abilitys;
   Types types;
   Weaknesses weaknesses;
+  Forms forms;
+  Itens itens;
 
   void navigationToNextPage() {
     Navigator.pushReplacementNamed(context, '/Menu');
@@ -37,8 +40,10 @@ class EntradaState extends State<Entrada> {
     moves = Moves.fromJson(await carregarJson("assets/data/moves.json"));
     evolutions = Evolutions.fromJson(await carregarJson("assets/data/evolutions.json"));
     abilitys = Abilitys.fromJson(await carregarJson("assets/data/abilitys.json"));
+    itens = Itens.fromJson(await carregarJson("assets/data/itens.json"));
     types = Types.fromJson(await carregarJson("assets/data/types.json"));
     weaknesses = Weaknesses.fromJson(await carregarJson("assets/data/weakness.json"));
+    forms = Forms.fromJson(await carregarJson("assets/data/forms.json"));
   }
 
   Future<Map<String, dynamic>> carregarJson(String url) async {

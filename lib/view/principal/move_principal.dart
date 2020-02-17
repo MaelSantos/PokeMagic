@@ -7,10 +7,10 @@ import 'package:poke_magic/view/detalhes/move_detalhes.dart';
 
 class MovePricipal extends StatefulWidget {
   @override
-  _PokeViewState createState() => _PokeViewState();
+  _MovePricipalState createState() => _MovePricipalState();
 }
 
-class _PokeViewState extends State<MovePricipal> {
+class _MovePricipalState extends State<MovePricipal> {
   Moves get move => Moves();
 
   List<Move> get moves => _filtroPoke(); //move.moves;//;

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:poke_magic/model/forms.dart' as forma;
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/model/weaknesses.dart';
 import 'package:poke_magic/util/format.dart';
@@ -8,6 +9,8 @@ import 'package:poke_magic/view/componentes/poke_button.dart';
 class PokeMore extends StatelessWidget {
   final Pokemon pokemon;
   Weaknesses get weaknesses => Weaknesses();
+  forma.Forms forms = forma.Forms();
+  List<forma.Form> formas;
   Weakness type;
 
   PokeMore(this.pokemon) {
@@ -16,6 +19,11 @@ class PokeMore extends StatelessWidget {
           pokemon.types[1].type.name, pokemon.types[0].type.name);
     else
       type = weaknesses.toWeakness(pokemon.types[0].type.name);
+
+    formas = forms.forms
+        .where((f) => f.pokemon.name.contains(pokemon.name))
+        .toList();
+    print(forms.forms);
   }
 
   @override
@@ -96,6 +104,23 @@ class PokeMore extends StatelessWidget {
                     )
                   ],
                 )),
+            Text("Forms"),
+            gerarContainer("",
+                child: Wrap(
+                  spacing: 30,
+                  children: formas.isNotEmpty
+                      ? formas
+                          .map((f) => Column(
+                                children: [
+                                  Text("${f.formName[0].toUpperCase()}${f.formName.substring(1)}"),
+                                  imagemSprite(f.sprites.frontDefault != null
+                                      ? f.sprites.frontDefault
+                                      : ""),
+                                ],
+                              ))
+                          .toList()
+                      : [Text("No Forms")],
+                ))
           ])),
     );
   }

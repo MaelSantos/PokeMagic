@@ -55,15 +55,7 @@ class _TypePricipalState extends State<TypePricipal> {
         margin: EdgeInsets.all(8),
         child: Column(
           children: [
-            Container(
-                margin: EdgeInsets.all(5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    pesquisa,
-                  ],
-                )),
+            Container(margin: EdgeInsets.all(5), child: pesquisa),
             types == null
                 ? Center(
                     child: CircularProgressIndicator(),
