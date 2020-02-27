@@ -84,13 +84,8 @@ class AbilityDetalhes extends StatelessWidget {
       Pokemon pokemon;
 
       try {
-        pokemon = Pokedex().pokemons.firstWhere((a) => p.pokemon.name == a.name
-            // bool r = false;
-            // r = a.name == p.pokemon.name;
-            // if (r) return r;
-            // r = p.pokemon.name.contains(a.name);
-            // return r;
-            );
+        pokemon = Pokedex().pokemons.firstWhere((a) =>
+            (p.pokemon.name == a.name) || (p.pokemon.name == a.forms[0].name));
       } catch (e) {
         pokemon = null;
       }

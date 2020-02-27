@@ -112,11 +112,12 @@ class PokeMore extends StatelessWidget {
                       ? formas
                           .map((f) => Column(
                                 children: [
-                                  Text("${f.formName[0].toUpperCase()}${f.formName.substring(1)}"),
+                                  Text(
+                                      "${f.formName[0].toUpperCase()}${f.formName.substring(1)}"),
                                   imagemSprite(f.sprites.frontDefault != null
                                       ? f.sprites.frontDefault
-                                      : ""),
-                                ],
+                                      : "")
+                                ]
                               ))
                           .toList()
                       : [Text("No Forms")],
