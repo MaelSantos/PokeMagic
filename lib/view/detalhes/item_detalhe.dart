@@ -16,8 +16,7 @@ class ItemDetalhes extends StatelessWidget {
         appBar: AppBar(
             elevation: 0,
             centerTitle: true,
-            title: Text(item.name.toUpperCase()),
-            backgroundColor: Colors.cyan),
+            title: Text(item.name.toUpperCase())),
         body: Container(
           margin: EdgeInsets.all(8),
           padding: EdgeInsets.all(8),

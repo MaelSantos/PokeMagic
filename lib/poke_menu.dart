@@ -2,6 +2,7 @@ import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:poke_magic/util/propaganda.dart';
 import 'package:poke_magic/view/principal/abilities_principal.dart';
+import 'package:poke_magic/view/principal/about.dart';
 import 'package:poke_magic/view/principal/favorites_principal.dart';
 import 'package:poke_magic/view/principal/itens_principal.dart';
 import 'package:poke_magic/view/principal/move_principal.dart';
@@ -20,6 +21,8 @@ class _PokeMenuState extends State<PokeMenu> {
   ItensPricipal itensPricipal;
   TypePricipal typePricipal;
   FavoritesPrincipal favoritesPrincipal;
+  About about;
+
   int index;
   String titulo;
 
@@ -32,8 +35,6 @@ class _PokeMenuState extends State<PokeMenu> {
 
     FirebaseAdMob.instance
         .initialize(appId: "ca-app-pub-4785348218475505~7730065377");
-
-    // Future.delayed(Duration(minutes: 5), Propaganda.displayInterstitial());
   }
 
   @override
@@ -45,10 +46,7 @@ class _PokeMenuState extends State<PokeMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(titulo),
-        backgroundColor: Colors.cyan,
-      ),
+      appBar: AppBar(title: Text(titulo)),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -66,82 +64,13 @@ class _PokeMenuState extends State<PokeMenu> {
                 // )
               ),
             ),
-            ListTile(
-              title: Text("Pokémons"),
-              // trailing: Icon(Icons.view_list),
-              selected: index == 1,
-              onTap: () {
-                setState(() {
-                  index = 1;
-                  titulo = "PokéMagic";
-                  Navigator.pop(context);
-                });
-              },
-            ),
-            Divider(thickness: 1),
-            ListTile(
-                title: Text("Moves"),
-                // trailing: Icon(Icons.flash_on),
-                selected: index == 2,
-                onTap: () {
-                  setState(() {
-                    index = 2;
-                    titulo = "Moves";
-                    Navigator.pop(context);
-                  });
-                }),
-            Divider(thickness: 1),
-            ListTile(
-              title: Text("Abilities"),
-              // trailing: Icon(Icons.vpn_key),
-              selected: index == 3,
-              onTap: () {
-                setState(() {
-                  index = 3;
-                  titulo = "Abilities";
-                  Navigator.pop(context);
-                });
-              },
-            ),
-            Divider(thickness: 1),
-            ListTile(
-              title: Text("Items"),
-              // trailing: Icon(Icons.star),
-              selected: index == 4,
-              onTap: () {
-                setState(() {
-                  index = 4;
-                  titulo = "Items";
-                  Navigator.pop(context);
-                });
-              },
-            ),
-            Divider(thickness: 1),
-            ListTile(
-              title: Text("Types"),
-              // trailing: Icon(Icons.star),
-              selected: index == 5,
-              onTap: () {
-                setState(() {
-                  index = 5;
-                  titulo = "Types";
-                  Navigator.pop(context);
-                });
-              },
-            ),
-            Divider(thickness: 1),
-            ListTile(
-              title: Text("Favorites"),
-              // trailing: Icon(Icons.star),
-              selected: index == 6,
-              onTap: () {
-                setState(() {
-                  index = 6;
-                  titulo = "Favorites";
-                  Navigator.pop(context);
-                });
-              },
-            ),
+            tile("Pokémons", 1),
+            tile("Moves", 2),
+            tile("Abilities", 3),
+            tile("Items", 4),
+            tile("Types", 5),
+            tile("Favorites", 6),
+            tile("About", 7),
           ],
         ),
       ),
@@ -167,11 +96,30 @@ class _PokeMenuState extends State<PokeMenu> {
         if (typePricipal == null) typePricipal = TypePricipal();
         return typePricipal;
       case 6:
-        if (favoritesPrincipal == null)
-          favoritesPrincipal = FavoritesPrincipal();
         return FavoritesPrincipal();
+      case 7:
+        if (about == null) about = About();
+        return about;
+
       default:
         return pokePricipal;
     }
+  }
+
+  Widget tile(String nome, int i) {
+    return Column(children: [
+      ListTile(
+        title: Text(nome),
+        selected: index == i,
+        onTap: () {
+          setState(() {
+            index = i;
+            titulo = nome;
+            Navigator.pop(context);
+          });
+        },
+      ),
+      Divider(thickness: 1),
+    ]);
   }
 }

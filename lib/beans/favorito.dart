@@ -1,102 +1,64 @@
+import 'package:poke_magic/beans/entidade.dart';
 import 'package:poke_magic/util/sqlite.dart';
 import 'package:poke_magic/util/tabela_favoritos.dart';
-import 'package:sqflite/sqlite_api.dart';
 
-class Favorito {
-  int id;
+class Favorito extends Entidade {
   String nome;
   bool ativo = true;
 
-  Favorito();
+  Favorito() : super(tabela: TabelaFavorito.NOME_TABELA);
 
   @override
   String toString() {
     return 'Favorito{id: $id, nome: $nome, ativo: $ativo}';
   }
 
-  Favorito.fromMapWeb(Map map) {
-    id = map["id"];
-    nome = map["nome"];
-    ativo = map["ativo"];
-  }
-
-  Favorito.fromMapSqLite(Map map) {
+  Favorito.fromMap(Map map) {
     id = map[TabelaFavorito.COL_ID];
     nome = map[TabelaFavorito.COL_NOME];
     ativo = map[TabelaFavorito.COL_ATIVO] == 1 ? ativo = true : ativo = false;
+    tabela = TabelaFavorito.NOME_TABELA;
   }
 
   Map toMap() {
     Map<String, dynamic> map = {
       TabelaFavorito.COL_ID: id,
       TabelaFavorito.COL_NOME: nome,
-      TabelaFavorito.COL_ATIVO: ativo,
+      TabelaFavorito.COL_ATIVO: ativo ? 1 : 0,
     };
     return map;
   }
 
-  Future<int> save() async {
-    Database dataBase = await SqlUtil().db;
-    int valor = await dataBase.insert(TabelaFavorito.NOME_TABELA, toMap());
-    print("VALOR $valor");
-    return valor;
-  }
-
-  Future<Favorito> update() async {
-    Database dataBase = await SqlUtil().db;
-    List listMapUsuario =
-        await dataBase.rawQuery(TabelaFavorito.update(ativo, id));
-    if (listMapUsuario.length > 0) {
-      Favorito favorito = Favorito.fromMapSqLite(listMapUsuario.first);
-      return favorito;
-    }
-    return null;
-  }
-
-  Future remove() async {
-    Database dataBase = await SqlUtil().db;
-    await dataBase.rawDelete(TabelaFavorito.removeNome(nome));
-  }
-
   static Future<List<Favorito>> getAll() async {
-    Database dataBase = await SqlUtil().db;
-    List listMap = await dataBase.rawQuery(TabelaFavorito.getAll());
-    List<Favorito> favoritos = List();
+    List listMap = await SqlUtil().getAll(TabelaFavorito.NOME_TABELA);
+    List<Favorito> rotinas = List();
     for (Map m in listMap) {
-      favoritos.add(Favorito.fromMapSqLite(m));
+      rotinas.add(Favorito.fromMap(m));
     }
-    return favoritos;
+    return rotinas;
   }
 
-  static Future<Favorito> getAtivo() async {
-    Database dataBase = await SqlUtil().db;
-    List listMapUsuario =
-        await dataBase.rawQuery(TabelaFavorito.getAllPorAtivo(true));
-    if (listMapUsuario.length > 0) {
-      Favorito favorito = Favorito.fromMapSqLite(listMapUsuario.first);
-      return favorito;
+  static Future<Favorito> getId(int id) async {
+    List listMapRotina = await SqlUtil().getId(TabelaFavorito.NOME_TABELA, id);
+    print(listMapRotina);
+    if (listMapRotina.length > 0) {
+      Favorito rotina = Favorito.fromMap(listMapRotina.first);
+      return rotina;
     }
     return null;
+  }
+
+  static Future<int> removeAll() async {
+    return await SqlUtil().removeAll(TabelaFavorito.NOME_TABELA);
   }
 
   static Future<Favorito> getPorNome(String nome) async {
-    Database dataBase = await SqlUtil().db;
-    List listMapUsuario =
-        await dataBase.rawQuery(TabelaFavorito.getPorNome(nome));
+    List listMapUsuario = await SqlUtil()
+        .getSearch(TabelaFavorito.NOME_TABELA, TabelaFavorito.COL_NOME, nome);
     if (listMapUsuario.length > 0) {
-      Favorito favorito = Favorito.fromMapSqLite(listMapUsuario.first);
+      Favorito favorito = Favorito.fromMap(listMapUsuario.first);
       return favorito;
     }
     return null;
-  }
-
-  static Future removeId(int id) async {
-    Database dataBase = await SqlUtil().db;
-    await dataBase.rawDelete(TabelaFavorito.removeId(id));
-  }
-
-  static Future removeAll() async {
-    Database dataBase = await SqlUtil().db;
-    await dataBase.rawDelete(TabelaFavorito.removeAll());
   }
 }
