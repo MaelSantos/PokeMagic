@@ -23,7 +23,6 @@ class PokeMore extends StatelessWidget {
     formas = forms.forms
         .where((f) => f.pokemon.name.contains(pokemon.name))
         .toList();
-    print(forms.forms);
   }
 
   @override
@@ -93,13 +92,13 @@ class PokeMore extends StatelessWidget {
                     Column(
                       children: [
                         Text("Normal"),
-                        imagemSprite(formatNormal(pokemon.number))
+                        imagemSprite(formatNormal(pokemon.number), context)
                       ],
                     ),
                     Column(
                       children: [
                         Text("Shiny"),
-                        imagemSprite(formatShiny(pokemon.number))
+                        imagemSprite(formatShiny(pokemon.number), context)
                       ],
                     )
                   ],
@@ -110,15 +109,15 @@ class PokeMore extends StatelessWidget {
                   spacing: 30,
                   children: formas.isNotEmpty
                       ? formas
-                          .map((f) => Column(
-                                children: [
-                                  Text(
-                                      "${f.formName[0].toUpperCase()}${f.formName.substring(1)}"),
-                                  imagemSprite(f.sprites.frontDefault != null
-                                      ? f.sprites.frontDefault
-                                      : "")
-                                ]
-                              ))
+                          .map((f) => Column(children: [
+                                Text(
+                                    "${f.formName[0].toUpperCase()}${f.formName.substring(1)}"),
+                                imagemSprite(
+                                    f.sprites.frontDefault != null
+                                        ? f.sprites.frontDefault
+                                        : "",
+                                    context)
+                              ]))
                           .toList()
                       : [Text("No Forms")],
                 ))
@@ -126,9 +125,10 @@ class PokeMore extends StatelessWidget {
     );
   }
 
-  Widget imagemSprite(String url) {
+  Widget imagemSprite(String url, BuildContext context) {
     return Container(
         height: 120,
+        width: MediaQuery.of(context).size.width / 3,
         child: CachedNetworkImage(
           imageUrl: url,
           placeholder: (context, url) => CircularProgressIndicator(),

@@ -1,12 +1,6 @@
-//                   ca-app-pub-4785348218475505~7730065377
-// ID do aplicativo: ca-app-pub-4785348218475505~7730065377
-
-// ca-app-pub-4785348218475505/4449010509
-
 import 'package:firebase_admob/firebase_admob.dart';
 
 class Propaganda {
-  static BannerAd myBanner;
   static InterstitialAd myInterstitial;
   static int cont = 0;
 
@@ -18,46 +12,18 @@ class Propaganda {
       'freefire',
       'digimon',
       'evolution',
-      'evolução'
+      'evolução',
+      'mario',
+      'sonic'
     ],
-    contentUrl: 'https://flutter.io',
-    childDirected: true, //publico infantil
-    testDevices: <String>[],
+    // childDirected: true, //publico infantil
   );
-
-  static void startBanner() {
-    myBanner = BannerAd(
-      adUnitId: BannerAd.testAdUnitId,
-      size: AdSize.fullBanner,
-      targetingInfo: targetingInfo,
-      listener: (MobileAdEvent event) {
-        if (event == MobileAdEvent.opened) {
-          // MobileAdEvent.opened
-          // MobileAdEvent.clicked
-          // MobileAdEvent.closed
-          // MobileAdEvent.failedToLoad
-          // MobileAdEvent.impression
-          // MobileAdEvent.leftApplication
-        }
-        print("BannerAd event is $event");
-      },
-    );
-  }
-
-  static void displayBanner() {
-    startBanner();
-    myBanner
-      ..load()
-      ..show(
-        anchorOffset: 0.0,
-        anchorType: AnchorType.bottom,
-      );
-  }
 
   static InterstitialAd buildInterstitial() {
     return InterstitialAd(
-        adUnitId: InterstitialAd.testAdUnitId,
-        targetingInfo: MobileAdTargetingInfo(testDevices: <String>[]),
+        adUnitId: "ca-app-pub-4785348218475505/4449010509",
+        // adUnitId: InterstitialAd.testAdUnitId,
+        targetingInfo: targetingInfo,
         listener: (MobileAdEvent event) {
           if (event == MobileAdEvent.loaded) {
             myInterstitial?.show();
@@ -85,7 +51,6 @@ class Propaganda {
   }
 
   static void dispose() {
-    myBanner?.dispose();
     myInterstitial?.dispose();
   }
 }

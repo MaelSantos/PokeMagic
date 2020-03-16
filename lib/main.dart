@@ -15,12 +15,13 @@ class PokeMagic extends StatelessWidget {
             appBarTheme: AppBarTheme(
                 color: Colors.cyan,
                 textTheme: TextTheme(
-                    title: TextStyle(fontSize: 18, fontFamily: "FredokaOne"))),
+                  title: TextStyle(fontSize: 18, fontFamily: "FredokaOne"),
+                )),
             textTheme: TextTheme(
                 button: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
-                subhead: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
-                body1: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
-                body2: TextStyle(fontSize: 14, fontFamily: "FredokaOne"))),
+                subtitle1: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
+                bodyText1: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
+                bodyText2: TextStyle(fontSize: 14, fontFamily: "FredokaOne"))),
         home: Entrada(),
         routes: {
           "/Menu": (BuildContext context) => PokeMenu(),
