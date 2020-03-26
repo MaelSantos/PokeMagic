@@ -40,87 +40,85 @@ class PokeMore extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
             Text(type.name.toUpperCase()),
-            gerarContainer("",
+            gerarContainer(
                 child: Column(
-                  children: [
-                    Text("Weakness"),
-                    Wrap(
-                        spacing: 5,
-                        alignment: WrapAlignment.center,
-                        children: type.types
-                            .where((t) => t.damage > 1)
-                            .map((t) => FittedBox(
-                                fit: BoxFit.contain,
-                                child: PokeButton(
-                                    t.name + " X${t.damage.toInt()}",
-                                    cor: formatColorExist(t.name))))
-                            .toList()),
-                    Divider(thickness: 2),
-                    Text("Resistant or Imunne"),
-                    Wrap(
-                        spacing: 5,
-                        alignment: WrapAlignment.center,
-                        children: type.types
-                            .where((t) => t.damage < 1)
-                            .map((t) => FittedBox(
-                                fit: BoxFit.contain,
-                                child: PokeButton(
-                                    t.name +
-                                        " X${t.damage == 0.5 ? '1/2' : (t.damage == 0 ? '0' : '1/4')}",
-                                    cor: formatColorExist(t.name))))
-                            .toList()),
-                    Divider(thickness: 2),
-                    Text("Normal Damage"),
-                    Wrap(
-                        spacing: 5,
-                        alignment: WrapAlignment.center,
-                        children: type.types
-                            .where((t) => t.damage == 1)
-                            .map((t) => FittedBox(
-                                fit: BoxFit.contain,
-                                child: PokeButton(
-                                    t.name + " X${t.damage.toInt()}",
-                                    cor: formatColorExist(t.name))))
-                            .toList()),
-                  ],
-                )),
+              children: [
+                Text("Weakness"),
+                Wrap(
+                    spacing: 5,
+                    alignment: WrapAlignment.center,
+                    children: type.types
+                        .where((t) => t.damage > 1)
+                        .map((t) => FittedBox(
+                            fit: BoxFit.contain,
+                            child: PokeButton(t.name + " X${t.damage.toInt()}",
+                                cor: formatColorExist(t.name))))
+                        .toList()),
+                Divider(thickness: 2),
+                Text("Resistant or Imunne"),
+                Wrap(
+                    spacing: 5,
+                    alignment: WrapAlignment.center,
+                    children: type.types
+                        .where((t) => t.damage < 1)
+                        .map((t) => FittedBox(
+                            fit: BoxFit.contain,
+                            child: PokeButton(
+                                t.name +
+                                    " X${t.damage == 0.5 ? '1/2' : (t.damage == 0 ? '0' : '1/4')}",
+                                cor: formatColorExist(t.name))))
+                        .toList()),
+                Divider(thickness: 2),
+                Text("Normal Damage"),
+                Wrap(
+                    spacing: 5,
+                    alignment: WrapAlignment.center,
+                    children: type.types
+                        .where((t) => t.damage == 1)
+                        .map((t) => FittedBox(
+                            fit: BoxFit.contain,
+                            child: PokeButton(t.name + " X${t.damage.toInt()}",
+                                cor: formatColorExist(t.name))))
+                        .toList()),
+              ],
+            )),
             Text("Sprites"),
-            gerarContainer("",
+            gerarContainer(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
                   children: [
-                    Column(
-                      children: [
-                        Text("Normal"),
-                        imagemSprite(formatNormal(pokemon.number), context)
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text("Shiny"),
-                        imagemSprite(formatShiny(pokemon.number), context)
-                      ],
-                    )
+                    Text("Normal"),
+                    imagemSprite(formatNormal(pokemon.number), context)
                   ],
-                )),
+                ),
+                Column(
+                  children: [
+                    Text("Shiny"),
+                    imagemSprite(formatShiny(pokemon.number), context)
+                  ],
+                )
+              ],
+            )),
             Text("Forms"),
-            gerarContainer("",
+            gerarContainer(
                 child: Wrap(
-                  spacing: 30,
-                  children: formas.isNotEmpty
-                      ? formas
-                          .map((f) => Column(children: [
-                                Text(
-                                    "${f.formName[0].toUpperCase()}${f.formName.substring(1)}"),
-                                imagemSprite(
-                                    f.sprites.frontDefault != null
-                                        ? f.sprites.frontDefault
-                                        : "",
-                                    context)
-                              ]))
-                          .toList()
-                      : [Text("No Forms")],
-                ))
+              spacing: 30,
+              children: formas.isNotEmpty
+                  ? formas
+                      .map((f) => Column(children: [
+                            Text(
+                                "${f.formName[0].toUpperCase()}${f.formName.substring(1)}"),
+                            imagemSprite(
+                                f.sprites.frontDefault != null
+                                    ? f.sprites.frontDefault
+                                    : "",
+                                context)
+                          ]))
+                      .toList()
+                  : [Text("No Forms")],
+            ))
           ])),
     );
   }

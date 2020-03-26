@@ -73,17 +73,17 @@ class _MovePricipalState extends State<MovePricipal> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [_down(), pesquisa]),
-                    gerarContainer("",
+                    gerarContainer(
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text("Move"),
-                            Text("Power"),
-                            Text("Acc"),
-                            Text("PP")
-                          ],
-                        ))
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text("Move"),
+                        Text("Power"),
+                        Text("Acc"),
+                        Text("PP")
+                      ],
+                    ))
                   ],
                 )),
             moves == null

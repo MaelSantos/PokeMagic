@@ -117,7 +117,6 @@ class PokeMoveState extends State<PokeMove> {
                 children: [btnLevel, btnEgg, btnMachine, btnTutor],
               ),
               gerarContainer(
-                "",
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

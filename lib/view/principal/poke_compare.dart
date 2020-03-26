@@ -28,14 +28,14 @@ class _PokeCompareState extends State<PokeCompare> {
             margin: EdgeInsets.all(4),
             child: Column(
               children: [
-                gerarContainer("",
+                gerarContainer(
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          gerarSearch(pokemon1, 1, context),
-                          gerarSearch(pokemon2, 2, context),
-                        ])),
+                      gerarSearch(pokemon1, 1, context),
+                      gerarSearch(pokemon2, 2, context),
+                    ])),
                 pokemon1 == null || pokemon2 == null
                     ? Center(child: Text("Select Pokémons"))
                     : compare()
@@ -45,51 +45,51 @@ class _PokeCompareState extends State<PokeCompare> {
 
   Widget compare() {
     return Column(children: [
-      gerarContainer("",
+      gerarContainer(
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          gerarFixa(pokemon1, type1),
+          VerticalDivider(thickness: 2, color: Colors.black),
+          gerarFixa(pokemon2, type2),
+        ],
+      )),
+      gerarContainer(
+          child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              gerarFixa(pokemon1, type1),
-              VerticalDivider(thickness: 2, color: Colors.black),
-              gerarFixa(pokemon2, type2),
+              Text(
+                  "${pokemon1.name.replaceRange(0, 1, pokemon1.name[0].toUpperCase())}:"),
+              PokeButton("", cor: Colors.cyan),
+              Text(
+                  "${pokemon2.name.replaceRange(0, 1, pokemon2.name[0].toUpperCase())}:"),
+              PokeButton("", cor: Colors.teal),
             ],
-          )),
-      gerarContainer("",
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                      "${pokemon1.name.replaceRange(0, 1, pokemon1.name[0].toUpperCase())}:"),
-                  PokeButton("", cor: Colors.cyan),
-                  Text(
-                      "${pokemon2.name.replaceRange(0, 1, pokemon2.name[0].toUpperCase())}:"),
-                  PokeButton("", cor: Colors.teal),
-                ],
-              ),
-              VerticalDivider(thickness: 2),
-              Container(
-                height: MediaQuery.of(context).size.width * 0.75,
-                child: BarCustom([
-                  BarCustom.createSampleData(pokemon1.stats.reversed.toList(),
-                      cor: charts.MaterialPalette.cyan.shadeDefault),
-                  BarCustom.createSampleData(pokemon2.stats.reversed.toList(),
-                      cor: charts.MaterialPalette.teal.shadeDefault),
-                ]),
-              ),
-              Container(
-                  height: MediaQuery.of(context).size.width * 0.20,
-                  child: BarCustom([
-                    BarCustom.createTotalData(pokemon1.stats.reversed.toList(),
-                        cor: charts.MaterialPalette.cyan.shadeDefault),
-                    BarCustom.createTotalData(pokemon2.stats.reversed.toList(),
-                        cor: charts.MaterialPalette.teal.shadeDefault),
-                  ])),
-            ],
-          ))
+          ),
+          VerticalDivider(thickness: 2),
+          Container(
+            height: MediaQuery.of(context).size.width * 0.75,
+            child: BarCustom([
+              BarCustom.createSampleData(pokemon1.stats.reversed.toList(),
+                  cor: charts.MaterialPalette.cyan.shadeDefault),
+              BarCustom.createSampleData(pokemon2.stats.reversed.toList(),
+                  cor: charts.MaterialPalette.teal.shadeDefault),
+            ]),
+          ),
+          Container(
+              height: MediaQuery.of(context).size.width * 0.20,
+              child: BarCustom([
+                BarCustom.createTotalData(pokemon1.stats.reversed.toList(),
+                    cor: charts.MaterialPalette.cyan.shadeDefault),
+                BarCustom.createTotalData(pokemon2.stats.reversed.toList(),
+                    cor: charts.MaterialPalette.teal.shadeDefault),
+              ])),
+        ],
+      ))
     ]);
   }
 
