@@ -1,10 +1,11 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
+import 'package:poke_magic/model/comum.dart';
 import 'package:poke_magic/model/pokedex.dart';
 
 // ignore: must_be_immutable
 class BarCustom extends StatelessWidget {
-  List<charts.Series> seriesList;
+  List<charts.Series<Stats, String>> seriesList;
   final bool animate;
 
   BarCustom(this.seriesList, {this.animate = true});
@@ -26,20 +27,45 @@ class BarCustom extends StatelessWidget {
     );
   }
 
-  static List<charts.Series<Stats, String>> createSampleData(List<Stats> list) {
-    return [
-      charts.Series<Stats, String>(
-        id: "Stats",
-        colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
-        domainFn: (Stats s, _) => s.stat.name,
-        measureFn: (Stats s, _) => s.baseStat,
-        data: list,
-        labelAccessorFn: (Stats sales, _) => "${sales.baseStat}",
-        insideLabelStyleAccessorFn: (Stats sales, _) => charts.TextStyleSpec(
-            color: charts.MaterialPalette.white, fontFamily: "FredokaOne"),
-        outsideLabelStyleAccessorFn: (Stats sales, _) => charts.TextStyleSpec(
-            color: charts.MaterialPalette.white, fontFamily: "FredokaOne"),
-      )
-    ];
+  static charts.Series<Stats, String> createSampleData(List<Stats> list,
+      {charts.Color cor}) {
+    if (cor == null) cor = charts.MaterialPalette.red.shadeDefault;
+    return charts.Series<Stats, String>(
+      id: "Stats",
+      colorFn: (_, __) => cor,
+      domainFn: (Stats s, _) => s.stat.name,
+      measureFn: (Stats s, _) => s.baseStat,
+      data: list,
+      labelAccessorFn: (Stats sales, _) => "${sales.baseStat}",
+      insideLabelStyleAccessorFn: (Stats sales, _) => charts.TextStyleSpec(
+          color: charts.MaterialPalette.white, fontFamily: "FredokaOne"),
+      outsideLabelStyleAccessorFn: (Stats sales, _) => charts.TextStyleSpec(
+          color: charts.MaterialPalette.white, fontFamily: "FredokaOne"),
+    );
+  }
+
+  static charts.Series<Stats, String> createTotalData(List<Stats> list,
+      {charts.Color cor}) {
+    int soma = 0;
+    list.forEach((e) {
+      soma += e.baseStat;
+    });
+    list.clear();
+    list.add(Stats(stat: Comum(name: "total"), baseStat: soma));
+
+    if (cor == null) cor = charts.MaterialPalette.red.shadeDefault;
+
+    return charts.Series<Stats, String>(
+      id: "Stats",
+      colorFn: (_, __) => cor,
+      domainFn: (Stats s, _) => s.stat.name,
+      measureFn: (Stats s, _) => s.baseStat,
+      data: list,
+      labelAccessorFn: (Stats sales, _) => "${sales.baseStat}",
+      insideLabelStyleAccessorFn: (Stats sales, _) => charts.TextStyleSpec(
+          color: charts.MaterialPalette.white, fontFamily: "FredokaOne"),
+      outsideLabelStyleAccessorFn: (Stats sales, _) => charts.TextStyleSpec(
+          color: charts.MaterialPalette.white, fontFamily: "FredokaOne"),
+    );
   }
 }

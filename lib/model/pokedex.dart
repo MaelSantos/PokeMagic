@@ -59,6 +59,11 @@ class Pokemon {
       this.weight,
       this.number});
 
+  @override
+  String toString(){
+    return name;
+  }
+
   Pokemon.fromJson(Map<String, dynamic> json) {
     if (json['abilities'] != null) {
       abilities = new List<PokemonAbilities>();

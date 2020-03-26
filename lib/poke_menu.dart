@@ -6,6 +6,7 @@ import 'package:poke_magic/view/principal/about.dart';
 import 'package:poke_magic/view/principal/favorites_principal.dart';
 import 'package:poke_magic/view/principal/itens_principal.dart';
 import 'package:poke_magic/view/principal/move_principal.dart';
+import 'package:poke_magic/view/principal/poke_compare.dart';
 import 'package:poke_magic/view/principal/poke_principal.dart';
 import 'package:poke_magic/view/principal/type_principal.dart';
 
@@ -21,6 +22,7 @@ class _PokeMenuState extends State<PokeMenu> {
   ItensPricipal itensPricipal;
   TypePricipal typePricipal;
   FavoritesPrincipal favoritesPrincipal;
+  PokeCompare compare;
   About about;
 
   int index;
@@ -56,20 +58,23 @@ class _PokeMenuState extends State<PokeMenu> {
                   style: TextStyle(fontSize: 23, color: Colors.white)),
               duration: Duration(seconds: 1),
               decoration: BoxDecoration(
-                  color: Colors.cyan,
-                  // image: DecorationImage(
-                  //     image: AssetImage("assets/icon.png"),
-                  //     fit: BoxFit.contain,
-                  //     alignment: Alignment.centerRight)
-                      ),
+                color: Colors.cyan,
+                // image: DecorationImage(
+                //     image: AssetImage("assets/icon.png"),
+                //     fit: BoxFit.contain,
+                //     alignment: Alignment.centerRight)
+              ),
             ),
-            tile("Pokémons", 1),
-            tile("Moves", 2),
-            tile("Abilities", 3),
-            tile("Items", 4),
-            tile("Types", 5),
+            tile("Pokémons", 1, iconData: Icons.home),
+            tile("Moves", 2, iconData: Icons.flash_on),
+            tile("Abilities", 3, iconData: Icons.local_florist),
+            tile("Items", 4, iconData: Icons.local_offer),
+            tile("Types", 5, iconData: Icons.category),
+            Divider(thickness: 1),
             tile("Favorites", 6),
-            tile("About", 7),
+            tile("Compare", 7, iconData: Icons.equalizer),
+            Divider(thickness: 1),
+            tile("About", 8, iconData: Icons.info),
           ],
         ),
       ),
@@ -97,6 +102,9 @@ class _PokeMenuState extends State<PokeMenu> {
       case 6:
         return FavoritesPrincipal();
       case 7:
+        if (compare == null) compare = PokeCompare();
+        return compare;
+      case 8:
         if (about == null) about = About();
         return about;
 
@@ -105,20 +113,18 @@ class _PokeMenuState extends State<PokeMenu> {
     }
   }
 
-  Widget tile(String nome, int i) {
-    return Column(children: [
-      ListTile(
-        title: Text(nome),
-        selected: index == i,
-        onTap: () {
-          setState(() {
-            index = i;
-            titulo = nome;
-            Navigator.pop(context);
-          });
-        },
-      ),
-      Divider(thickness: 1),
-    ]);
+  Widget tile(String nome, int i, {IconData iconData = Icons.star}) {
+    return ListTile(
+      trailing: Icon(iconData),
+      title: Text(nome),
+      selected: index == i,
+      onTap: () {
+        setState(() {
+          index = i;
+          titulo = nome;
+          Navigator.pop(context);
+        });
+      },
+    );
   }
 }

@@ -8,13 +8,15 @@ class PokeCard extends StatelessWidget {
   final Function onSelecionar;
   final Axis axis;
   final bool fitbox;
+  final bool sombras;
   double size;
 
   PokeCard(this.pokemon,
       {this.onSelecionar,
       this.size = 14,
       this.axis = Axis.horizontal,
-      this.fitbox = false});
+      this.fitbox = false,
+      this.sombras = false});
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +28,12 @@ class PokeCard extends StatelessWidget {
             child: Card(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),
-                elevation: 3,
+                elevation: sombras ? 0 : 3,
                 child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        border: Border.all(color: Colors.black12)),
+                        border:
+                            sombras ? null : Border.all(color: Colors.black12)),
                     child: fitbox
                         ? FittedBox(fit: BoxFit.contain, child: principal())
                         : principal()))));

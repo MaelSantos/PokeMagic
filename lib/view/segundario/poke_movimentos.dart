@@ -95,9 +95,7 @@ class PokeMoveState extends State<PokeMove> {
       default:
     }
 
-    setState(() {
-      print(filtro);
-    });
+    setState(() {});
   }
 
   @override
@@ -105,7 +103,9 @@ class PokeMoveState extends State<PokeMove> {
     return Container(
       margin: EdgeInsets.all(8),
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(15)),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -132,75 +132,84 @@ class PokeMoveState extends State<PokeMove> {
             ],
           ),
           Expanded(
-              child: SingleChildScrollView(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: all
-                    .where((m) => m.tipo == filtro)
-                    .map((t) => InkWell(
-                        borderRadius: BorderRadius.circular(15),
-                        onTap: () {
-                          Propaganda.popUp();
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => MoveDetalhes(t)));
-                        },
-                        child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15)),
-                            elevation: 3,
-                            child: Container(
-                                height: 100,
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.black45),
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Text(t.nivel != 0
-                                              ? t.nivel.toString()
-                                              : "-"),
-                                          Text(t.name.toUpperCase()),
-                                          // Text(t.name),
-                                          Text(t.power != null
-                                              ? t.power.toString()
-                                              : "-"),
-                                          Text(t.accuracy != null
-                                              ? t.accuracy.toString()
-                                              : "-"),
-                                          Text(t.pp != null
-                                              ? t.pp.toString()
-                                              : "-"),
-                                        ]),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text("Type: "),
-                                        containerColor(
-                                          t.type.name,
-                                          formatColorExist(t.type.name),
-                                        ),
-                                        containerColor(
-                                          t.damageClass.name,
-                                          formatColorMove(t.damageClass.name),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                )))))
-                    .toList()),
-          )),
+              child: Container(
+                  margin: EdgeInsets.only(bottom: 4),
+                  child: SingleChildScrollView(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: all
+                            .where((m) => m.tipo == filtro)
+                            .map((t) => InkWell(
+                                borderRadius: BorderRadius.circular(15),
+                                onTap: () {
+                                  Propaganda.popUp();
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              MoveDetalhes(t)));
+                                },
+                                child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    elevation: 3,
+                                    child: Container(
+                                        height: 100,
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.black45),
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Text(t.nivel != 0
+                                                      ? t.nivel.toString()
+                                                      : "-"),
+                                                  Text(t.name.toUpperCase()),
+                                                  // Text(t.name),
+                                                  Text(t.power != null
+                                                      ? t.power.toString()
+                                                      : "-"),
+                                                  Text(t.accuracy != null
+                                                      ? t.accuracy.toString()
+                                                      : "-"),
+                                                  Text(t.pp != null
+                                                      ? t.pp.toString()
+                                                      : "-"),
+                                                ]),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text("Type: "),
+                                                containerColor(
+                                                  t.type.name,
+                                                  formatColorExist(t.type.name),
+                                                ),
+                                                containerColor(
+                                                  t.damageClass.name,
+                                                  formatColorMove(
+                                                      t.damageClass.name),
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        )))))
+                            .toList()),
+                  ))),
         ],
       ),
     );

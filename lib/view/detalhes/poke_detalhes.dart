@@ -105,12 +105,18 @@ class PokeDetalhes extends StatelessWidget {
                 Text("Statistics",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 16)),
-                SingleChildScrollView(
-                    child: Container(
+                Container(
                   height: 190,
-                  child: BarCustom(BarCustom.createSampleData(
-                      pokemon.stats.reversed.toList())),
-                )),
+                  child: BarCustom([
+                    BarCustom.createSampleData(pokemon.stats.reversed.toList()),
+                  ]),
+                ),
+                Container(
+                  height: 60,
+                  child: BarCustom([
+                    BarCustom.createTotalData(pokemon.stats.reversed.toList()),
+                  ]),
+                )
               ],
             ),
           )),

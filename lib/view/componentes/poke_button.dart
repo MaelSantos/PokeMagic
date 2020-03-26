@@ -59,6 +59,12 @@ class PokeButtonState extends State<PokeButton> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    if (selecionado && selecionavel) selecionar(true);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return FittedBox(
         fit: BoxFit.contain,
