@@ -14,7 +14,7 @@ class _PokeViewState extends State<PokePricipal> {
   Pokedex pokedex = Pokedex();
 
   List<Pokemon> get pokemons => _filtroPoke();
-  int pokemonCont = 807; //total de pokemons
+  int get pokemonCont => pokedex.pokemons.length;
   bool isFiltro;
   String filtro;
   int get contFiltro => pokemons.length;
@@ -45,7 +45,7 @@ class _PokeViewState extends State<PokePricipal> {
 
         for (PokemonTypes t in p.types) {
           ret = t.type.name == filtro ? true : false;
-          if (pesquisa.text.isNotEmpty)
+          if (pesquisa.text.trim().isNotEmpty)
             ret = t.type.name == filtro && p.name.contains(pesquisa.text)
                 ? true
                 : false;
@@ -129,7 +129,7 @@ class _PokeViewState extends State<PokePricipal> {
         ],
         onChanged: (p) {
           setState(() {
-            if (p == "all")
+            if (p == "all" && pesquisa.text.trim().isEmpty)
               isFiltro = false;
             else
               isFiltro = true;

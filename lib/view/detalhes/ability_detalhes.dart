@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poke_magic/model/abilitys.dart';
 import 'package:poke_magic/model/pokedex.dart';
+import 'package:poke_magic/util/format.dart';
 import 'package:poke_magic/view/componentes/poke_card.dart';
 import 'package:poke_magic/view/principal/favorites_principal.dart';
 import 'package:poke_magic/view/segundario/poke_view.dart';
@@ -22,7 +23,7 @@ class AbilityDetalhes extends StatelessWidget {
         body: Container(
           margin: EdgeInsets.all(8),
           padding: EdgeInsets.all(8),
-          alignment: Alignment.center,
+          alignment: Alignment.topCenter,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             color: Colors.white,
@@ -32,22 +33,25 @@ class AbilityDetalhes extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                gerarContainer("",
+                gerarContainer(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Name: " + ability.name.toUpperCase()),
-                        Text(
-                            "In Series: ${ability.isMainSeries ? 'yes' : 'no'}"),
-                        Text("Introduced in : ${ability.generation.name}"),
-                      ],
-                    )),
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Name: " + ability.name.toUpperCase()),
+                    Text("In Series: ${ability.isMainSeries ? 'yes' : 'no'}"),
+                    Text("Introduced in : ${ability.generation.name}"),
+                  ],
+                )),
                 gerarContainer(
-                    "Descrition: ${ability.flavorTextEntries.flavorText}"),
-                gerarContainer("Effect: ${ability.effectEntries.shortEffect}"),
+                    child: Text(
+                        "Descrition: ${ability.flavorTextEntries.flavorText}")),
                 gerarContainer(
-                    "Details Effect: ${ability.effectEntries.effect}"),
+                    child:
+                        Text("Effect: ${ability.effectEntries.shortEffect}")),
+                gerarContainer(
+                    child: Text(
+                        "Details Effect: ${ability.effectEntries.effect}")),
                 Divider(thickness: 2),
                 Column(
                   children: [
@@ -61,21 +65,6 @@ class AbilityDetalhes extends StatelessWidget {
         ));
   }
 
-  Widget gerarContainer(String conteudo,
-      {double tamanho = 60, Color cor = Colors.black, Widget child}) {
-    return Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(),
-        ),
-        alignment: Alignment.center,
-        margin: EdgeInsets.all(5),
-        padding: EdgeInsets.all(10),
-        child: child == null
-            ? Text(conteudo, style: TextStyle(color: cor))
-            : child);
-  }
-
   List<Widget> pokeCard(BuildContext context) {
     List<Widget> pokecards = List();
     List<String> nomes = List();
@@ -84,7 +73,7 @@ class AbilityDetalhes extends StatelessWidget {
 
       try {
         pokemon = Pokedex().pokemons.firstWhere((a) =>
-            (p.pokemon.name == a.name) || (p.pokemon.name == a.forms[0].name));
+            (p.pokemon.name == a.name || (p.pokemon.name == a.forms[0].name)));
       } catch (e) {
         pokemon = null;
       }

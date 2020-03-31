@@ -7,6 +7,7 @@ import 'package:poke_magic/model/abilitys.dart';
 import 'package:poke_magic/model/evolutions.dart';
 import 'package:poke_magic/model/forms.dart';
 import 'package:poke_magic/model/itens.dart';
+import 'package:poke_magic/model/locations.dart';
 import 'package:poke_magic/model/moves.dart';
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/model/types.dart';
@@ -26,6 +27,7 @@ class EntradaState extends State<Entrada> {
   Weaknesses weaknesses;
   Forms forms;
   Itens itens;
+  Locations locations;
 
   void navigationToNextPage() async {
     Configuracao configuracao = await Configuracao.getId(1);
@@ -49,15 +51,13 @@ class EntradaState extends State<Entrada> {
   carregarPokedex() async {
     pokedex = Pokedex.fromJson(await carregarJson("assets/data/pokedex.json"));
     moves = Moves.fromJson(await carregarJson("assets/data/moves.json"));
-    evolutions =
-        Evolutions.fromJson(await carregarJson("assets/data/evolutions.json"));
-    abilitys =
-        Abilitys.fromJson(await carregarJson("assets/data/abilitys.json"));
+    evolutions = Evolutions.fromJson(await carregarJson("assets/data/evolutions.json"));
+    abilitys = Abilitys.fromJson(await carregarJson("assets/data/abilitys.json"));
     itens = Itens.fromJson(await carregarJson("assets/data/itens.json"));
     types = Types.fromJson(await carregarJson("assets/data/types.json"));
-    weaknesses =
-        Weaknesses.fromJson(await carregarJson("assets/data/weakness.json"));
+    weaknesses = Weaknesses.fromJson(await carregarJson("assets/data/weakness.json"));
     forms = Forms.fromJson(await carregarJson("assets/data/forms.json"));
+    locations = Locations.fromJson(await carregarJson("assets/data/locations.json"));
   }
 
   Future<Map<String, dynamic>> carregarJson(String url) async {

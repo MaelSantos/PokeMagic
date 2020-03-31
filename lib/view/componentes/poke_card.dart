@@ -9,6 +9,7 @@ class PokeCard extends StatelessWidget {
   final Axis axis;
   final bool fitbox;
   final bool sombras;
+  String number;
   double size;
 
   PokeCard(this.pokemon,
@@ -16,7 +17,12 @@ class PokeCard extends StatelessWidget {
       this.size = 14,
       this.axis = Axis.horizontal,
       this.fitbox = false,
-      this.sombras = false});
+      this.sombras = false}) {
+    if (pokemon.number.contains("_f"))
+      number = pokemon.number.substring(0, pokemon.number.length - 3);
+    else
+      number = pokemon.number;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +50,14 @@ class PokeCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          imagem(),
+          pokemon.number != "#351_f2" &&
+                  pokemon.number != "#351_f3" &&
+                  pokemon.number != "#351_f4" &&
+                  pokemon.number != "#555_f2" &&
+                  pokemon.number != "#670_f2" &&
+                  pokemon.number != "#745_f3"
+              ? imagemNet()
+              : imagemAsset(),
           axis == Axis.vertical
               ? Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,14 +66,14 @@ class PokeCard extends StatelessWidget {
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: conteudo()),
+                  children: conteudo())
         ]);
   }
 
-  Widget imagem() {
+  Widget imagemNet() {
     return Container(
-        height: 130,
         width: 130,
+        height: 130,
         child: CachedNetworkImage(
           imageUrl: formatID(pokemon.number),
           placeholder: (context, url) => CircularProgressIndicator(),
@@ -69,10 +82,21 @@ class PokeCard extends StatelessWidget {
         ));
   }
 
+  Widget imagemAsset() {
+    Widget ret;
+
+    ret = Container(
+        width: 130,
+        height: 130,
+        child: Image.asset("assets/temp/${pokemon.number}.png"));
+
+    return ret;
+  }
+
   List<Widget> conteudo() {
     return [
       Text(
-          "${pokemon.number} - ${pokemon.name.replaceRange(0, 1, pokemon.name[0].toUpperCase())}",
+          "$number - ${pokemon.name.replaceRange(0, 1, pokemon.name[0].toUpperCase())}",
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: size)),
       SingleChildScrollView(

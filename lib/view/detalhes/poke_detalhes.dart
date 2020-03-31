@@ -35,21 +35,15 @@ class PokeDetalhes extends StatelessWidget {
                 Align(
                     alignment: Alignment.topCenter,
                     child: Hero(
-                      tag: formatID(pokemon.number),
-                      child: Container(
-                        width: 200,
-                        height: 175,
-                        child: CachedNetworkImage(
-                          imageUrl: formatID(pokemon.number),
-                          placeholder: (context, url) =>
-                              CircularProgressIndicator(),
-                          errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
-                          // fit: BoxFit.contain,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    )),
+                        tag: formatID(pokemon.number),
+                        child: pokemon.number != "#351_f2" &&
+                                pokemon.number != "#351_f3" &&
+                                pokemon.number != "#351_f4" &&
+                                pokemon.number != "#555_f2" &&
+                                pokemon.number != "#670_f2" &&
+                                pokemon.number != "#745_f3"
+                            ? imagemNet()
+                            : imagemAsset())),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -116,10 +110,33 @@ class PokeDetalhes extends StatelessWidget {
                   child: BarCustom([
                     BarCustom.createTotalData(pokemon.stats.reversed.toList()),
                   ]),
-                )
+                ),
               ],
             ),
           )),
     );
+  }
+
+  Widget imagemNet() {
+    return Container(
+      width: 200,
+      height: 175,
+      child: CachedNetworkImage(
+        imageUrl: formatID(pokemon.number),
+        placeholder: (context, url) => CircularProgressIndicator(),
+        errorWidget: (context, url, error) => Icon(Icons.error),
+        // fit: BoxFit.contain,
+        fit: BoxFit.cover,
+      ),
+    );
+  }
+
+  Widget imagemAsset() {
+    Widget ret;
+    ret = Container(
+        width: 200,
+        height: 175,
+        child: Image.asset("assets/temp/${pokemon.number}.png"));
+    return ret;
   }
 }

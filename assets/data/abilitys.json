@@ -20355,7 +20355,15 @@
             {
                 "is_hidden": false,
                 "pokemon": {
-                    "name": "zygarde",
+                    "name": "zygarde-10",
+                    "url": "https://pokeapi.co/api/v2/pokemon/10118/"
+                },
+                "slot": 1
+            },
+            {
+                "is_hidden": false,
+                "pokemon": {
+                    "name": "zygarde-50",
                     "url": "https://pokeapi.co/api/v2/pokemon/718/"
                 },
                 "slot": 1

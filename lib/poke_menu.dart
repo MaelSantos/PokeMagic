@@ -5,6 +5,7 @@ import 'package:poke_magic/view/principal/abilities_principal.dart';
 import 'package:poke_magic/view/principal/about.dart';
 import 'package:poke_magic/view/principal/favorites_principal.dart';
 import 'package:poke_magic/view/principal/itens_principal.dart';
+import 'package:poke_magic/view/principal/locations_principal.dart';
 import 'package:poke_magic/view/principal/move_principal.dart';
 import 'package:poke_magic/view/principal/poke_compare.dart';
 import 'package:poke_magic/view/principal/poke_principal.dart';
@@ -24,6 +25,7 @@ class _PokeMenuState extends State<PokeMenu> {
   FavoritesPrincipal favoritesPrincipal;
   PokeCompare compare;
   About about;
+  LocationsPrincipal locationsPrincipal;
 
   int index;
   String titulo;
@@ -54,27 +56,28 @@ class _PokeMenuState extends State<PokeMenu> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              child: Text("PokéMagic",
-                  style: TextStyle(fontSize: 23, color: Colors.white)),
-              duration: Duration(seconds: 1),
-              decoration: BoxDecoration(
-                color: Colors.cyan,
-                // image: DecorationImage(
-                //     image: AssetImage("assets/icon.png"),
-                //     fit: BoxFit.contain,
-                //     alignment: Alignment.centerRight)
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text("PokéMagic",
+                      style: TextStyle(fontSize: 23, color: Colors.white)),
+                  Container(child: Image.asset("assets/icon.png", height: 100))
+                ],
               ),
+              duration: Duration(seconds: 1),
+              decoration: BoxDecoration(color: Colors.cyan),
             ),
             tile("Pokémons", 1, iconData: Icons.home),
             tile("Moves", 2, iconData: Icons.flash_on),
             tile("Abilities", 3, iconData: Icons.local_florist),
             tile("Items", 4, iconData: Icons.local_offer),
-            tile("Types", 5, iconData: Icons.category),
+            tile("Locations", 5, iconData: Icons.location_on),
+            tile("Types", 6, iconData: Icons.category),
             Divider(thickness: 1),
-            tile("Favorites", 6),
-            tile("Compare", 7, iconData: Icons.equalizer),
+            tile("Favorites", 7),
+            tile("Compare", 8, iconData: Icons.equalizer),
             Divider(thickness: 1),
-            tile("About", 8, iconData: Icons.info),
+            tile("About", 9, iconData: Icons.info),
           ],
         ),
       ),
@@ -97,14 +100,18 @@ class _PokeMenuState extends State<PokeMenu> {
         if (itensPricipal == null) itensPricipal = ItensPricipal();
         return itensPricipal;
       case 5:
+        if (locationsPrincipal == null)
+          locationsPrincipal = LocationsPrincipal();
+        return locationsPrincipal;
+      case 6:
         if (typePricipal == null) typePricipal = TypePricipal();
         return typePricipal;
-      case 6:
-        return FavoritesPrincipal();
       case 7:
+        return FavoritesPrincipal();
+      case 8:
         if (compare == null) compare = PokeCompare();
         return compare;
-      case 8:
+      case 9:
         if (about == null) about = About();
         return about;
 
@@ -114,17 +121,21 @@ class _PokeMenuState extends State<PokeMenu> {
   }
 
   Widget tile(String nome, int i, {IconData iconData = Icons.star}) {
-    return ListTile(
-      trailing: Icon(iconData),
-      title: Text(nome),
-      selected: index == i,
-      onTap: () {
-        setState(() {
-          index = i;
-          titulo = nome;
-          Navigator.pop(context);
-        });
-      },
-    );
+    return Container(
+        color: index == i ? Colors.cyan[100] : Colors.transparent,
+        child: ListTile(
+          title: Row(children: [
+            Icon(iconData, color: Colors.grey[800]),
+            SizedBox(width: 10),
+            Text(nome, style: TextStyle(color: Colors.grey[800]))
+          ]),
+          onTap: () {
+            setState(() {
+              index = i;
+              titulo = nome;
+              Navigator.pop(context);
+            });
+          },
+        ));
   }
 }

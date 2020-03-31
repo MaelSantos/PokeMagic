@@ -3,24 +3,14 @@ import 'package:poke_magic/model/comum.dart';
 class Evolutions {
   List<Evolution> evolution;
 
-  //(427-9) 210,222,225,226,227,230,231,238,251 dando erro
-
   static final Evolutions _instance = Evolutions.internal();
   factory Evolutions() => _instance;
   Evolutions.internal();
 
   static Evolutions fromJson(Map<String, dynamic> json) {
     _instance.evolution = List();
-    for (int i = 1; i <= 428; i++)
-      if (i != 210 &&
-          i != 222 &&
-          i != 225 &&
-          i != 226 &&
-          i != 227 &&
-          i != 230 &&
-          i != 231 &&
-          i != 238) if (json['$i'] != null)
-        _instance.evolution.add(Evolution.fromJson(json['$i']));
+    for (dynamic j in json.values)
+      _instance.evolution.add(Evolution.fromJson(j));
     return _instance;
   }
 

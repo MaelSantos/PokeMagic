@@ -17,7 +17,9 @@ class PokeEvolucao extends StatelessWidget {
     try {
       evolution = evolutions.evolution.firstWhere(escolherEvolucao);
     } catch (e) {
-      if (evolution == null) evolution = evolutions.evolution[250];
+      if (evolution == null)
+        evolution = Evolution(
+            chain: Chain(species: Trigger(name: pokemon.name), evolvesTo: []));
     }
   }
 
@@ -83,12 +85,14 @@ class PokeEvolucao extends StatelessWidget {
     return Container(
         width: MediaQuery.of(context).size.width * 0.25,
         child: PokeCard(poke, size: 10, onSelecionar: () {
-          Propaganda.popUp();
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      PokeView(poke, favoritesPrincipal: favoritesPrincipal)));
+          if (poke.name != pokemon.name) {
+            Propaganda.popUp();
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PokeView(poke,
+                        favoritesPrincipal: favoritesPrincipal)));
+          }
         }));
   }
 
@@ -151,9 +155,6 @@ class PokeEvolucao extends StatelessWidget {
 
           if (list[0].minHappiness != null) gatilho = "happiness";
 
-          if (list[0].location != null)
-            motivo = "location: " + list[0].location.name;
-
           if (list[0].knownMoveType != null)
             motivo = "move " + list[0].knownMoveType.name;
 
@@ -186,17 +187,22 @@ class PokeEvolucao extends StatelessWidget {
                 ? motivo += "\n" + list[0].timeOfDay
                 : motivo = list[0].timeOfDay;
           }
-
+          if (list[0].location != null)
+            motivo.isNotEmpty
+                ? motivo += "\n" + list[0].location.name
+                : motivo = list[0].location.name;
           break;
         case "use-item":
           motivo = list[0].item.name;
           if (list[0].gender != null)
             motivo += "\n" + (list[0].gender == 1 ? "female ♀" : "male ♂");
+          if (list[0].location != null) motivo += "\n" + list[0].location.name;
           break;
         case "trade":
           // gatilho = "negotiation";
           if (list[0].heldItem != null)
             motivo = "holding item: " + list[0].heldItem.name;
+          if (list[0].location != null) motivo += list[0].location.name;
           break;
         default:
       }

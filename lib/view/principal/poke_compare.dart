@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/model/weaknesses.dart';
 import 'package:poke_magic/util/format.dart';
+import 'package:poke_magic/util/propaganda.dart';
 import 'package:poke_magic/view/componentes/bar_custom.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:poke_magic/view/componentes/poke_button.dart';
 import 'package:poke_magic/view/componentes/poke_card.dart';
+import 'package:poke_magic/view/segundario/poke_view.dart';
 import 'package:searchable_dropdown/searchable_dropdown.dart';
 
 class PokeCompare extends StatefulWidget {
@@ -29,13 +31,15 @@ class _PokeCompareState extends State<PokeCompare> {
             child: Column(
               children: [
                 gerarContainer(
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                      gerarSearch(pokemon1, 1, context),
-                      gerarSearch(pokemon2, 2, context),
-                    ])),
+                    child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              gerarSearch(pokemon1, 1, context),
+                              gerarSearch(pokemon2, 2, context),
+                            ]))),
                 pokemon1 == null || pokemon2 == null
                     ? Center(child: Text("Select Pokémons"))
                     : compare()
@@ -46,15 +50,17 @@ class _PokeCompareState extends State<PokeCompare> {
   Widget compare() {
     return Column(children: [
       gerarContainer(
-          child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          gerarFixa(pokemon1, type1),
-          VerticalDivider(thickness: 2, color: Colors.black),
-          gerarFixa(pokemon2, type2),
-        ],
-      )),
+          child: FittedBox(
+              fit: BoxFit.contain,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  gerarFixa(pokemon1, type1),
+                  VerticalDivider(thickness: 2, color: Colors.black),
+                  gerarFixa(pokemon2, type2),
+                ],
+              ))),
       gerarContainer(
           child: Column(
         children: [
@@ -104,15 +110,23 @@ class _PokeCompareState extends State<PokeCompare> {
   }
 
   Widget imagemSprite(String url, BuildContext context) {
-    return Container(
-        height: 30,
-        child: CachedNetworkImage(
-          imageUrl: url,
-          placeholder: (context, url) => CircularProgressIndicator(),
-          errorWidget: (context, url, error) =>
-              Center(child: Text("No Sprite")),
-          fit: BoxFit.contain,
-        ));
+    if (url != "#351_f2" &&
+        url != "#351_f3" &&
+        url != "#351_f4" &&
+        url != "#555_f2" &&
+        url != "#670_f2" &&
+        url != "#745_f3")
+      return Container(
+          height: 30,
+          child: CachedNetworkImage(
+            imageUrl: formatID(url),
+            placeholder: (context, url) => CircularProgressIndicator(),
+            errorWidget: (context, url, error) =>
+                Center(child: Text("No Sprite")),
+            fit: BoxFit.contain,
+          ));
+    else
+      return Container(height: 30, child: Image.asset("assets/temp/$url.png"));
   }
 
   Widget gerarFixa(Pokemon p, Weakness t) {
@@ -120,7 +134,11 @@ class _PokeCompareState extends State<PokeCompare> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        PokeCard(p, sombras: true),
+        PokeCard(p, sombras: true, fitbox: true, onSelecionar: () {
+          Propaganda.popUp();
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => PokeView(p)));
+        }),
         Divider(thickness: 2),
         Text("Weakness by type"),
         Text("Weakness: ${t.types.where((e) => e.damage > 1).length}"),
@@ -145,7 +163,7 @@ class _PokeCompareState extends State<PokeCompare> {
                   children: [
                     Text(p.name),
                     SizedBox(width: 5),
-                    imagemSprite(formatID(p.number), context)
+                    imagemSprite(p.number, context)
                   ],
                 ),
                 value: p))

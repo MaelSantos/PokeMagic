@@ -9,9 +9,12 @@ class Pokedex {
 
   static Pokedex fromJson(Map<String, dynamic> json) {
     _instance.pokemons = List();
-    for (int i = 1; i <= json.length; i++)
-      _instance.pokemons
-          .add(json['$i'] != null ? Pokemon.fromJson(json['$i']) : null);
+
+    for (dynamic j in json.values) _instance.pokemons.add(Pokemon.fromJson(j));
+
+    // for (int i = 1; i <= json.length; i++)
+    //   _instance.pokemons
+    //       .add(json['$i'] != null ? Pokemon.fromJson(json['$i']) : null);
     return _instance;
   }
 
@@ -60,7 +63,7 @@ class Pokemon {
       this.number});
 
   @override
-  String toString(){
+  String toString() {
     return name;
   }
 

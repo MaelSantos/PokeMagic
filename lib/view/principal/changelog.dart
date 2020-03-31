@@ -9,15 +9,22 @@ class Changelog extends StatelessWidget {
           title: Text("Changelog"),
         ),
         body: SingleChildScrollView(
+            child: Container(
+          margin: EdgeInsets.all(8),
           child: Column(
             children: [
+              gerarFixa("Version 1.0.2", [
+                "News: Added 114 new Pokémon details",
+                "News: Added EV provided",
+                "News: Added locations and routes (Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos)",
+              ]),
               gerarFixa("Version 1.0.1", [
                 "News: Added comparison function between Pokémon status",
                 "Fixed: graphics improvements"
               ])
             ],
           ),
-        ));
+        )));
   }
 
   Widget gerarFixa(String versao, List<String> modificacoes) {

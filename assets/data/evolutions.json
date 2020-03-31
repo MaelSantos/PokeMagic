@@ -519,6 +519,55 @@
         },
         "id": 7
     },
+    "7_2": {
+        "baby_trigger_item": null,
+        "chain": {
+            "evolves_to": [
+                {
+                    "evolution_details": [
+                        {
+                            "gender": null,
+                            "held_item": null,
+                            "item": null,
+                            "known_move": null,
+                            "known_move_type": null,
+                            "location": {
+                                "name": "alola",
+                                "url": "https://pokeapi.co/api/v2/evolution-trigger/x/"
+                            },
+                            "min_affection": null,
+                            "min_beauty": null,
+                            "min_happiness": null,
+                            "min_level": 20,
+                            "needs_overworld_rain": false,
+                            "party_species": null,
+                            "party_type": null,
+                            "relative_physical_stats": null,
+                            "time_of_day": "night",
+                            "trade_species": null,
+                            "trigger": {
+                                "name": "level-up",
+                                "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+                            },
+                            "turn_upside_down": false
+                        }
+                    ],
+                    "evolves_to": [],
+                    "is_baby": false,
+                    "species": {
+                        "name": "raticate-alola",
+                        "url": "https://pokeapi.co/api/v2/pokemon-species/20/"
+                    }
+                }
+            ],
+            "is_baby": false,
+            "species": {
+                "name": "rattata-alola",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/19/"
+            }
+        },
+        "id": 7
+    },
     "8": {
         "baby_trigger_item": null,
         "chain": {
@@ -676,6 +725,44 @@
                                 "name": "raichu",
                                 "url": "https://pokeapi.co/api/v2/pokemon-species/26/"
                             }
+                        },
+                        {
+                            "evolution_details": [
+                                {
+                                    "gender": null,
+                                    "held_item": null,
+                                    "item": {
+                                        "name": "thunder-stone",
+                                        "url": "https://pokeapi.co/api/v2/item/83/"
+                                    },
+                                    "known_move": null,
+                                    "known_move_type": null,
+                                    "location": {
+                                        "name": "alola",
+                                        "url": "https://pokeapi.co/api/v2/location/x/"
+                                    },
+                                    "min_affection": null,
+                                    "min_beauty": null,
+                                    "min_happiness": null,
+                                    "min_level": null,
+                                    "needs_overworld_rain": false,
+                                    "party_species": null,
+                                    "party_type": null,
+                                    "relative_physical_stats": null,
+                                    "time_of_day": "",
+                                    "trade_species": null,
+                                    "trigger": {
+                                        "name": "use-item",
+                                        "url": "https://pokeapi.co/api/v2/evolution-trigger/3/"
+                                    },
+                                    "turn_upside_down": false
+                                }
+                            ],
+                            "is_baby": false,
+                            "species": {
+                                "name": "raichu-alola",
+                                "url": "https://pokeapi.co/api/v2/pokemon-species/26/"
+                            }
                         }
                     ],
                     "is_baby": false,
@@ -734,6 +821,58 @@
             "is_baby": false,
             "species": {
                 "name": "sandshrew",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/27/"
+            }
+        },
+        "id": 11
+    },
+    "11_2": {
+        "baby_trigger_item": null,
+        "chain": {
+            "evolves_to": [
+                {
+                    "evolution_details": [
+                        {
+                            "gender": null,
+                            "held_item": null,
+                            "item": {
+                                "name": "ice-stone",
+                                "url": "https://pokeapi.co/api/v2/item/x/"
+                            },
+                            "known_move": null,
+                            "known_move_type": null,
+                            "location": {
+                                "name": "alola",
+                                "url": "https://pokeapi.co/api/v2/item/x/"
+                            },
+                            "min_affection": null,
+                            "min_beauty": null,
+                            "min_happiness": null,
+                            "min_level": null,
+                            "needs_overworld_rain": false,
+                            "party_species": null,
+                            "party_type": null,
+                            "relative_physical_stats": null,
+                            "time_of_day": "",
+                            "trade_species": null,
+                            "trigger": {
+                                "name": "use-item",
+                                "url": "https://pokeapi.co/api/v2/evolution-trigger/3/"
+                            },
+                            "turn_upside_down": false
+                        }
+                    ],
+                    "evolves_to": [],
+                    "is_baby": false,
+                    "species": {
+                        "name": "sandslash-alola",
+                        "url": "https://pokeapi.co/api/v2/pokemon-species/28/"
+                    }
+                }
+            ],
+            "is_baby": false,
+            "species": {
+                "name": "sandshrew-alola",
                 "url": "https://pokeapi.co/api/v2/pokemon-species/27/"
             }
         },
@@ -1030,6 +1169,58 @@
             "species": {
                 "name": "vulpix",
                 "url": "https://pokeapi.co/api/v2/pokemon-species/37/"
+            }
+        },
+        "id": 15
+    },
+    "15_2": {
+        "baby_trigger_item": null,
+        "chain": {
+            "evolves_to": [
+                {
+                    "evolution_details": [
+                        {
+                            "gender": null,
+                            "held_item": null,
+                            "item": {
+                                "name": "ice-stone",
+                                "url": "https://pokeapi.co/api/v2/item/x/"
+                            },
+                            "known_move": null,
+                            "known_move_type": null,
+                            "location": {
+                                "name": "alola",
+                                "url": "https://pokeapi.co/api/v2/location/x/"
+                            },
+                            "min_affection": null,
+                            "min_beauty": null,
+                            "min_happiness": null,
+                            "min_level": null,
+                            "needs_overworld_rain": false,
+                            "party_species": null,
+                            "party_type": null,
+                            "relative_physical_stats": null,
+                            "time_of_day": "",
+                            "trade_species": null,
+                            "trigger": {
+                                "name": "use-item",
+                                "url": "https://pokeapi.co/api/v2/evolution-trigger/3/"
+                            },
+                            "turn_upside_down": false
+                        }
+                    ],
+                    "evolves_to": [],
+                    "is_baby": false,
+                    "species": {
+                        "name": "ninetales-alola",
+                        "url": "https://pokeapi.co/api/v2/pokemon-species/28/"
+                    }
+                }
+            ],
+            "is_baby": false,
+            "species": {
+                "name": "vulpix-alola",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/27/"
             }
         },
         "id": 15
@@ -1450,6 +1641,55 @@
         },
         "id": 21
     },
+    "21_2": {
+        "baby_trigger_item": null,
+        "chain": {
+            "evolves_to": [
+                {
+                    "evolution_details": [
+                        {
+                            "gender": null,
+                            "held_item": null,
+                            "item": null,
+                            "known_move": null,
+                            "known_move_type": null,
+                            "location": {
+                                "name": "alola",
+                                "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+                            },
+                            "min_affection": null,
+                            "min_beauty": null,
+                            "min_happiness": null,
+                            "min_level": 26,
+                            "needs_overworld_rain": false,
+                            "party_species": null,
+                            "party_type": null,
+                            "relative_physical_stats": null,
+                            "time_of_day": "",
+                            "trade_species": null,
+                            "trigger": {
+                                "name": "level-up",
+                                "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+                            },
+                            "turn_upside_down": false
+                        }
+                    ],
+                    "evolves_to": [],
+                    "is_baby": false,
+                    "species": {
+                        "name": "dugtrio-alola",
+                        "url": "https://pokeapi.co/api/v2/pokemon-species/51/"
+                    }
+                }
+            ],
+            "is_baby": false,
+            "species": {
+                "name": "diglett-alola",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/50/"
+            }
+        },
+        "id": 21
+    },
     "22": {
         "baby_trigger_item": null,
         "chain": {
@@ -1491,6 +1731,55 @@
             "is_baby": false,
             "species": {
                 "name": "meowth",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/52/"
+            }
+        },
+        "id": 22
+    },
+    "22_2": {
+        "baby_trigger_item": null,
+        "chain": {
+            "evolves_to": [
+                {
+                    "evolution_details": [
+                        {
+                            "gender": null,
+                            "held_item": null,
+                            "item": null,
+                            "known_move": null,
+                            "known_move_type": null,
+                            "location": {
+                                "name": "alola",
+                                "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+                            },
+                            "min_affection": null,
+                            "min_beauty": null,
+                            "min_happiness": 220,
+                            "min_level": null,
+                            "needs_overworld_rain": false,
+                            "party_species": null,
+                            "party_type": null,
+                            "relative_physical_stats": null,
+                            "time_of_day": "",
+                            "trade_species": null,
+                            "trigger": {
+                                "name": "level-up",
+                                "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+                            },
+                            "turn_upside_down": false
+                        }
+                    ],
+                    "evolves_to": [],
+                    "is_baby": false,
+                    "species": {
+                        "name": "persian-alola",
+                        "url": "https://pokeapi.co/api/v2/pokemon-species/53/"
+                    }
+                }
+            ],
+            "is_baby": false,
+            "species": {
+                "name": "meowth-alola",
                 "url": "https://pokeapi.co/api/v2/pokemon-species/52/"
             }
         },
@@ -2119,6 +2408,91 @@
         },
         "id": 31
     },
+    "31_2": {
+        "baby_trigger_item": null,
+        "chain": {
+            "evolves_to": [
+                {
+                    "evolution_details": [
+                        {
+                            "gender": null,
+                            "held_item": null,
+                            "item": null,
+                            "known_move": null,
+                            "known_move_type": null,
+                            "location": {
+                                "name": "alola",
+                                "url": "https://pokeapi.co/api/v2/location/x/"
+                            },
+                            "min_affection": null,
+                            "min_beauty": null,
+                            "min_happiness": null,
+                            "min_level": 25,
+                            "needs_overworld_rain": false,
+                            "party_species": null,
+                            "party_type": null,
+                            "relative_physical_stats": null,
+                            "time_of_day": "",
+                            "trade_species": null,
+                            "trigger": {
+                                "name": "level-up",
+                                "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+                            },
+                            "turn_upside_down": false
+                        }
+                    ],
+                    "evolves_to": [
+                        {
+                            "evolution_details": [
+                                {
+                                    "gender": null,
+                                    "held_item": null,
+                                    "item": null,
+                                    "known_move": null,
+                                    "known_move_type": null,
+                                    "location": {
+                                        "name": "alola",
+                                        "url": "https://pokeapi.co/api/v2/location/x/"
+                                    },
+                                    "min_affection": null,
+                                    "min_beauty": null,
+                                    "min_happiness": null,
+                                    "min_level": null,
+                                    "needs_overworld_rain": false,
+                                    "party_species": null,
+                                    "party_type": null,
+                                    "relative_physical_stats": null,
+                                    "time_of_day": "",
+                                    "trade_species": null,
+                                    "trigger": {
+                                        "name": "trade",
+                                        "url": "https://pokeapi.co/api/v2/evolution-trigger/2/"
+                                    },
+                                    "turn_upside_down": false
+                                }
+                            ],
+                            "is_baby": false,
+                            "species": {
+                                "name": "golem-alola",
+                                "url": "https://pokeapi.co/api/v2/pokemon-species/76/"
+                            }
+                        }
+                    ],
+                    "is_baby": false,
+                    "species": {
+                        "name": "graveler-alola",
+                        "url": "https://pokeapi.co/api/v2/pokemon-species/75/"
+                    }
+                }
+            ],
+            "is_baby": false,
+            "species": {
+                "name": "geodude-alola",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/74/"
+            }
+        },
+        "id": 31
+    },
     "32": {
         "baby_trigger_item": null,
         "chain": {
@@ -2554,6 +2928,55 @@
         },
         "id": 38
     },
+    "38_2": {
+        "baby_trigger_item": null,
+        "chain": {
+            "evolves_to": [
+                {
+                    "evolution_details": [
+                        {
+                            "gender": null,
+                            "held_item": null,
+                            "item": null,
+                            "known_move": null,
+                            "known_move_type": null,
+                            "location": {
+                                "name": "alola",
+                                "url": "https://pokeapi.co/api/v2/evolution-trigger/x/"
+                            },
+                            "min_affection": null,
+                            "min_beauty": null,
+                            "min_happiness": null,
+                            "min_level": 38,
+                            "needs_overworld_rain": false,
+                            "party_species": null,
+                            "party_type": null,
+                            "relative_physical_stats": null,
+                            "time_of_day": "",
+                            "trade_species": null,
+                            "trigger": {
+                                "name": "level-up",
+                                "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+                            },
+                            "turn_upside_down": false
+                        }
+                    ],
+                    "evolves_to": [],
+                    "is_baby": false,
+                    "species": {
+                        "name": "muk-alola",
+                        "url": "https://pokeapi.co/api/v2/pokemon-species/89/"
+                    }
+                }
+            ],
+            "is_baby": false,
+            "species": {
+                "name": "grimer-alola",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/88/"
+            }
+        },
+        "id": 38
+    },
     "39": {
         "baby_trigger_item": null,
         "chain": {
@@ -2908,6 +3331,45 @@
                         "name": "exeggutor",
                         "url": "https://pokeapi.co/api/v2/pokemon-species/103/"
                     }
+                },
+                {
+                    "evolution_details": [
+                        {
+                            "gender": null,
+                            "held_item": null,
+                            "item": {
+                                "name": "leaf-stone",
+                                "url": "https://pokeapi.co/api/v2/item/85/"
+                            },
+                            "known_move": null,
+                            "known_move_type": null,
+                            "location": {
+                                "name": "alola",
+                                "url": "https://pokeapi.co/api/v2/evolution-trigger/x/"
+                            },
+                            "min_affection": null,
+                            "min_beauty": null,
+                            "min_happiness": null,
+                            "min_level": null,
+                            "needs_overworld_rain": false,
+                            "party_species": null,
+                            "party_type": null,
+                            "relative_physical_stats": null,
+                            "time_of_day": "",
+                            "trade_species": null,
+                            "trigger": {
+                                "name": "use-item",
+                                "url": "https://pokeapi.co/api/v2/evolution-trigger/3/"
+                            },
+                            "turn_upside_down": false
+                        }
+                    ],
+                    "evolves_to": [],
+                    "is_baby": false,
+                    "species": {
+                        "name": "exeggutor-alola",
+                        "url": "https://pokeapi.co/api/v2/pokemon-species/103/"
+                    }
                 }
             ],
             "is_baby": false,
@@ -2946,14 +3408,27 @@
                                 "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
                             },
                             "turn_upside_down": false
-                        },
+                        }
+                    ],
+                    "evolves_to": [],
+                    "is_baby": false,
+                    "species": {
+                        "name": "marowak",
+                        "url": "https://pokeapi.co/api/v2/pokemon-species/105/"
+                    }
+                },
+                {
+                    "evolution_details": [
                         {
                             "gender": null,
                             "held_item": null,
                             "item": null,
                             "known_move": null,
                             "known_move_type": null,
-                            "location": null,
+                            "location": {
+                                "name": "alola",
+                                "url": "https://pokeapi.co/api/v2/evolution-trigger/x/"
+                            },
                             "min_affection": null,
                             "min_beauty": null,
                             "min_happiness": null,
@@ -2974,7 +3449,7 @@
                     "evolves_to": [],
                     "is_baby": false,
                     "species": {
-                        "name": "marowak",
+                        "name": "marowak-alola",
                         "url": "https://pokeapi.co/api/v2/pokemon-species/105/"
                     }
                 }
@@ -11727,7 +12202,7 @@
             "evolves_to": [],
             "is_baby": false,
             "species": {
-                "name": "phione", 
+                "name": "phione",
                 "url": "https://pokeapi.co/api/v2/pokemon-species/489/"
             }
         },
@@ -17495,7 +17970,17 @@
                                 "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
                             },
                             "turn_upside_down": false
-                        },
+                        }
+                    ],
+                    "evolves_to": [],
+                    "is_baby": false,
+                    "species": {
+                        "name": "lycanroc",
+                        "url": "https://pokeapi.co/api/v2/pokemon-species/745/"
+                    }
+                },
+                {
+                    "evolution_details": [
                         {
                             "gender": null,
                             "held_item": null,
@@ -17523,7 +18008,40 @@
                     "evolves_to": [],
                     "is_baby": false,
                     "species": {
-                        "name": "lycanroc",
+                        "name": "lycanroc-midnight",
+                        "url": "https://pokeapi.co/api/v2/pokemon-species/745/"
+                    }
+                },
+                {
+                    "evolution_details": [
+                        {
+                            "gender": null,
+                            "held_item": null,
+                            "item": null,
+                            "known_move": null,
+                            "known_move_type": null,
+                            "location": null,
+                            "min_affection": null,
+                            "min_beauty": null,
+                            "min_happiness": null,
+                            "min_level": 25,
+                            "needs_overworld_rain": false,
+                            "party_species": null,
+                            "party_type": null,
+                            "relative_physical_stats": null,
+                            "time_of_day": "dusk",
+                            "trade_species": null,
+                            "trigger": {
+                                "name": "level-up",
+                                "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+                            },
+                            "turn_upside_down": false
+                        }
+                    ],
+                    "evolves_to": [],
+                    "is_baby": false,
+                    "species": {
+                        "name": "lycanroc-dusk",
                         "url": "https://pokeapi.co/api/v2/pokemon-species/745/"
                     }
                 }

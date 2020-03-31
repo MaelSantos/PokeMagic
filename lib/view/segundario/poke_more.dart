@@ -82,6 +82,18 @@ class PokeMore extends StatelessWidget {
                         .toList()),
               ],
             )),
+            Text("EV provided"),
+            gerarContainer(
+              child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: pokemon.stats.reversed
+                          .where((p) => p.effort > 0)
+                          .map((e) => PokeButton("+${e.effort} ${e.stat.name}"))
+                          .toList())),
+            ),
             Text("Sprites"),
             gerarContainer(
                 child: Row(

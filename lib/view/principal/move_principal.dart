@@ -43,7 +43,7 @@ class _MovePricipalState extends State<MovePricipal> {
       retorno = move.moves.where((m) {
         bool ret = true;
 
-        if (pesquisa.text.isNotEmpty)
+        if (pesquisa.text.trim().isNotEmpty)
           ret = m.type.name == filtro && m.name.contains(pesquisa.text);
         else
           ret = m.type.name == filtro ? true : false;
@@ -189,7 +189,7 @@ class _MovePricipalState extends State<MovePricipal> {
         ],
         onChanged: (p) {
           setState(() {
-            if (p == "all")
+            if (p == "all" && pesquisa.text.trim().isEmpty)
               isFiltro = false;
             else
               isFiltro = true;
