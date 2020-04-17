@@ -79,7 +79,7 @@ class _PokeCompareState extends State<PokeCompare> {
           VerticalDivider(thickness: 2),
           Container(
             height: MediaQuery.of(context).size.width * 0.75,
-            child: BarCustom([
+            child: BarCustom(statsList: [
               BarCustom.createSampleData(pokemon1.stats.reversed.toList(),
                   cor: charts.MaterialPalette.cyan.shadeDefault),
               BarCustom.createSampleData(pokemon2.stats.reversed.toList(),
@@ -88,7 +88,7 @@ class _PokeCompareState extends State<PokeCompare> {
           ),
           Container(
               height: MediaQuery.of(context).size.width * 0.20,
-              child: BarCustom([
+              child: BarCustom(statsList: [
                 BarCustom.createTotalData(pokemon1.stats.reversed.toList(),
                     cor: charts.MaterialPalette.cyan.shadeDefault),
                 BarCustom.createTotalData(pokemon2.stats.reversed.toList(),
@@ -100,13 +100,7 @@ class _PokeCompareState extends State<PokeCompare> {
   }
 
   Weakness getType(Pokemon p) {
-    Weakness type;
-    if (p.types.length > 1)
-      type =
-          weaknesses.toTwoWeakness(p.types[1].type.name, p.types[0].type.name);
-    else
-      type = weaknesses.toWeakness(p.types[0].type.name);
-    return type;
+    return weaknesses.toPokeWeakness(p);
   }
 
   Widget imagemSprite(String url, BuildContext context) {

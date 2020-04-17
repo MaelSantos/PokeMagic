@@ -1,0 +1,442 @@
+{
+    "1": {
+        "decreased_stat": null,
+        "hates_flavor": null,
+        "id": 1,
+        "increased_stat": null,
+        "likes_flavor": null,
+        "name": "hardy"
+    },
+    "2": {
+        "decreased_stat": {
+            "name": "attack",
+            "url": "https://pokeapi.co/api/v2/stat/2/"
+        },
+        "hates_flavor": {
+            "name": "spicy",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/1/"
+        },
+        "id": 2,
+        "increased_stat": {
+            "name": "defense",
+            "url": "https://pokeapi.co/api/v2/stat/3/"
+        },
+        "likes_flavor": {
+            "name": "sour",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/5/"
+        },
+        "name": "bold"
+    },
+    "3": {
+        "decreased_stat": {
+            "name": "attack",
+            "url": "https://pokeapi.co/api/v2/stat/2/"
+        },
+        "hates_flavor": {
+            "name": "spicy",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/1/"
+        },
+        "id": 3,
+        "increased_stat": {
+            "name": "special-attack",
+            "url": "https://pokeapi.co/api/v2/stat/4/"
+        },
+        "likes_flavor": {
+            "name": "dry",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/2/"
+        },
+        "name": "modest"
+    },
+    "4": {
+        "decreased_stat": {
+            "name": "attack",
+            "url": "https://pokeapi.co/api/v2/stat/2/"
+        },
+        "hates_flavor": {
+            "name": "spicy",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/1/"
+        },
+        "id": 4,
+        "increased_stat": {
+            "name": "special-defense",
+            "url": "https://pokeapi.co/api/v2/stat/5/"
+        },
+        "likes_flavor": {
+            "name": "bitter",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/4/"
+        },
+        "name": "calm"
+    },
+    "5": {
+        "decreased_stat": {
+            "name": "attack",
+            "url": "https://pokeapi.co/api/v2/stat/2/"
+        },
+        "hates_flavor": {
+            "name": "spicy",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/1/"
+        },
+        "id": 5,
+        "increased_stat": {
+            "name": "speed",
+            "url": "https://pokeapi.co/api/v2/stat/6/"
+        },
+        "likes_flavor": {
+            "name": "sweet",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/3/"
+        },
+        "name": "timid"
+    },
+    "6": {
+        "decreased_stat": {
+            "name": "defense",
+            "url": "https://pokeapi.co/api/v2/stat/3/"
+        },
+        "hates_flavor": {
+            "name": "sour",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/5/"
+        },
+        "id": 6,
+        "increased_stat": {
+            "name": "attack",
+            "url": "https://pokeapi.co/api/v2/stat/2/"
+        },
+        "likes_flavor": {
+            "name": "spicy",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/1/"
+        },
+        "name": "lonely"
+    },
+    "7": {
+        "decreased_stat": null,
+        "hates_flavor": null,
+        "id": 7,
+        "increased_stat": null,
+        "likes_flavor": null,
+        "name": "docile"
+    },
+    "8": {
+        "decreased_stat": {
+            "name": "defense",
+            "url": "https://pokeapi.co/api/v2/stat/3/"
+        },
+        "hates_flavor": {
+            "name": "sour",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/5/"
+        },
+        "id": 8,
+        "increased_stat": {
+            "name": "special-attack",
+            "url": "https://pokeapi.co/api/v2/stat/4/"
+        },
+        "likes_flavor": {
+            "name": "dry",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/2/"
+        },
+        "name": "mild"
+    },
+    "9": {
+        "decreased_stat": {
+            "name": "defense",
+            "url": "https://pokeapi.co/api/v2/stat/3/"
+        },
+        "hates_flavor": {
+            "name": "sour",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/5/"
+        },
+        "id": 9,
+        "increased_stat": {
+            "name": "special-defense",
+            "url": "https://pokeapi.co/api/v2/stat/5/"
+        },
+        "likes_flavor": {
+            "name": "bitter",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/4/"
+        },
+        "name": "gentle"
+    },
+    "10": {
+        "decreased_stat": {
+            "name": "defense",
+            "url": "https://pokeapi.co/api/v2/stat/3/"
+        },
+        "hates_flavor": {
+            "name": "sour",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/5/"
+        },
+        "id": 10,
+        "increased_stat": {
+            "name": "speed",
+            "url": "https://pokeapi.co/api/v2/stat/6/"
+        },
+        "likes_flavor": {
+            "name": "sweet",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/3/"
+        },
+        "name": "hasty"
+    },
+    "11": {
+        "decreased_stat": {
+            "name": "special-attack",
+            "url": "https://pokeapi.co/api/v2/stat/4/"
+        },
+        "hates_flavor": {
+            "name": "dry",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/2/"
+        },
+        "id": 11,
+        "increased_stat": {
+            "name": "attack",
+            "url": "https://pokeapi.co/api/v2/stat/2/"
+        },
+        "likes_flavor": {
+            "name": "spicy",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/1/"
+        },
+        "name": "adamant"
+    },
+    "12": {
+        "decreased_stat": {
+            "name": "special-attack",
+            "url": "https://pokeapi.co/api/v2/stat/4/"
+        },
+        "hates_flavor": {
+            "name": "dry",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/2/"
+        },
+        "id": 12,
+        "increased_stat": {
+            "name": "defense",
+            "url": "https://pokeapi.co/api/v2/stat/3/"
+        },
+        "likes_flavor": {
+            "name": "sour",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/5/"
+        },
+        "name": "impish"
+    },
+    "13": {
+        "decreased_stat": null,
+        "hates_flavor": null,
+        "id": 13,
+        "increased_stat": null,
+        "likes_flavor": null,
+        "name": "bashful"
+    },
+    "14": {
+        "decreased_stat": {
+            "name": "special-attack",
+            "url": "https://pokeapi.co/api/v2/stat/4/"
+        },
+        "hates_flavor": {
+            "name": "dry",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/2/"
+        },
+        "id": 14,
+        "increased_stat": {
+            "name": "special-defense",
+            "url": "https://pokeapi.co/api/v2/stat/5/"
+        },
+        "likes_flavor": {
+            "name": "bitter",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/4/"
+        },
+        "name": "careful"
+    },
+    "15": {
+        "decreased_stat": {
+            "name": "special-defense",
+            "url": "https://pokeapi.co/api/v2/stat/5/"
+        },
+        "hates_flavor": {
+            "name": "bitter",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/4/"
+        },
+        "id": 15,
+        "increased_stat": {
+            "name": "special-attack",
+            "url": "https://pokeapi.co/api/v2/stat/4/"
+        },
+        "likes_flavor": {
+            "name": "dry",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/2/"
+        },
+        "name": "rash"
+    },
+    "16": {
+        "decreased_stat": {
+            "name": "special-attack",
+            "url": "https://pokeapi.co/api/v2/stat/4/"
+        },
+        "hates_flavor": {
+            "name": "dry",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/2/"
+        },
+        "id": 16,
+        "increased_stat": {
+            "name": "speed",
+            "url": "https://pokeapi.co/api/v2/stat/6/"
+        },
+        "likes_flavor": {
+            "name": "sweet",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/3/"
+        },
+        "name": "jolly"
+    },
+    "17": {
+        "decreased_stat": {
+            "name": "special-defense",
+            "url": "https://pokeapi.co/api/v2/stat/5/"
+        },
+        "hates_flavor": {
+            "name": "bitter",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/4/"
+        },
+        "id": 17,
+        "increased_stat": {
+            "name": "attack",
+            "url": "https://pokeapi.co/api/v2/stat/2/"
+        },
+        "likes_flavor": {
+            "name": "spicy",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/1/"
+        },
+        "name": "naughty"
+    },
+    "18": {
+        "decreased_stat": {
+            "name": "special-defense",
+            "url": "https://pokeapi.co/api/v2/stat/5/"
+        },
+        "hates_flavor": {
+            "name": "bitter",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/4/"
+        },
+        "id": 18,
+        "increased_stat": {
+            "name": "defense",
+            "url": "https://pokeapi.co/api/v2/stat/3/"
+        },
+        "likes_flavor": {
+            "name": "sour",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/5/"
+        },
+        "name": "lax"
+    },
+    "19": {
+        "decreased_stat": null,
+        "hates_flavor": null,
+        "id": 19,
+        "increased_stat": null,
+        "likes_flavor": null,
+        "name": "quirky"
+    },
+    "20": {
+        "decreased_stat": {
+            "name": "special-defense",
+            "url": "https://pokeapi.co/api/v2/stat/5/"
+        },
+        "hates_flavor": {
+            "name": "bitter",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/4/"
+        },
+        "id": 20,
+        "increased_stat": {
+            "name": "speed",
+            "url": "https://pokeapi.co/api/v2/stat/6/"
+        },
+        "likes_flavor": {
+            "name": "sweet",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/3/"
+        },
+        "name": "naive"
+    },
+    "21": {
+        "decreased_stat": {
+            "name": "speed",
+            "url": "https://pokeapi.co/api/v2/stat/6/"
+        },
+        "hates_flavor": {
+            "name": "sweet",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/3/"
+        },
+        "id": 21,
+        "increased_stat": {
+            "name": "attack",
+            "url": "https://pokeapi.co/api/v2/stat/2/"
+        },
+        "likes_flavor": {
+            "name": "spicy",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/1/"
+        },
+        "name": "brave"
+    },
+    "22": {
+        "decreased_stat": {
+            "name": "speed",
+            "url": "https://pokeapi.co/api/v2/stat/6/"
+        },
+        "hates_flavor": {
+            "name": "sweet",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/3/"
+        },
+        "id": 22,
+        "increased_stat": {
+            "name": "defense",
+            "url": "https://pokeapi.co/api/v2/stat/3/"
+        },
+        "likes_flavor": {
+            "name": "sour",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/5/"
+        },
+        "name": "relaxed"
+    },
+    "23": {
+        "decreased_stat": {
+            "name": "speed",
+            "url": "https://pokeapi.co/api/v2/stat/6/"
+        },
+        "hates_flavor": {
+            "name": "sweet",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/3/"
+        },
+        "id": 23,
+        "increased_stat": {
+            "name": "special-attack",
+            "url": "https://pokeapi.co/api/v2/stat/4/"
+        },
+        "likes_flavor": {
+            "name": "dry",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/2/"
+        },
+        "name": "quiet"
+    },
+    "24": {
+        "decreased_stat": {
+            "name": "speed",
+            "url": "https://pokeapi.co/api/v2/stat/6/"
+        },
+        "hates_flavor": {
+            "name": "sweet",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/3/"
+        },
+        "id": 24,
+        "increased_stat": {
+            "name": "special-defense",
+            "url": "https://pokeapi.co/api/v2/stat/5/"
+        },
+        "likes_flavor": {
+            "name": "bitter",
+            "url": "https://pokeapi.co/api/v2/berry-flavor/4/"
+        },
+        "name": "sassy"
+    },
+    "25": {
+        "decreased_stat": null,
+        "hates_flavor": null,
+        "id": 25,
+        "increased_stat": null,
+        "likes_flavor": null,
+        "name": "serious"
+    }
+}

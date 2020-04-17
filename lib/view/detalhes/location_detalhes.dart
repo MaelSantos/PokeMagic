@@ -9,15 +9,8 @@ import 'package:poke_magic/view/segundario/poke_view.dart';
 
 class LocationDetalhes extends StatelessWidget {
   final Location location;
-  List<Pokemon> pokemons;
 
-  LocationDetalhes(this.location) {
-    pokemons = Pokedex().pokemons.where((p) {
-      for (PokemonEncounters e in location.pokemonEncounters)
-        if (p.name == e.pokemon.name) return true;
-      return false;
-    }).toList();
-  }
+  LocationDetalhes(this.location);
 
   @override
   Widget build(BuildContext context) {
@@ -41,63 +34,63 @@ class LocationDetalhes extends StatelessWidget {
                     Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        children: List.generate(
-                          location.pokemonEncounters.length,
-                          (i) => gerarContainer(
-                              child: FittedBox(
-                                  child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Column(children: [
-                                Text("Method:"),
-                                Column(
-                                    children: location.pokemonEncounters[i]
-                                        .versionDetails.encounterDetails
-                                        .map((e) =>
-                                            PokeButton("${e.method.name} "))
-                                        .toList()),
-                              ]),
-                              VerticalDivider(),
-                              Column(children: [
-                                Text("Chance:"),
-                                PokeButton(
-                                  "${location.pokemonEncounters[i].versionDetails.maxChance}%",
-                                  cor: location.pokemonEncounters[i]
-                                              .versionDetails.maxChance >=
-                                          50
-                                      ? Colors.green
-                                      : location
-                                                      .pokemonEncounters[i]
-                                                      .versionDetails
-                                                      .maxChance >
-                                                  35 &&
-                                              location
-                                                      .pokemonEncounters[i]
-                                                      .versionDetails
-                                                      .maxChance <
-                                                  50
-                                          ? Colors.orange
-                                          : Colors.red,
-                                ),
-                              ]),
-                              PokeCard(pokemons[i], sombras: true,
-                                  onSelecionar: () {
-                                Propaganda.popUp();
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            PokeView(pokemons[i])));
-                              })
-                            ],
-                          ))),
-                        ))
+                        children: location.pokemonEncounters
+                            .map(
+                              (e) => gerarContainer(
+                                  child: FittedBox(
+                                      child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Column(children: [
+                                    Text("Method:"),
+                                    Column(
+                                        children: e
+                                            .versionDetails.encounterDetails
+                                            .map((e) =>
+                                                PokeButton("${e.method.name} "))
+                                            .toList()),
+                                  ]),
+                                  VerticalDivider(),
+                                  Column(children: [
+                                    Text("Chance:"),
+                                    PokeButton(
+                                      "${e.versionDetails.maxChance}%",
+                                      cor: e.versionDetails.maxChance >= 50
+                                          ? Colors.green
+                                          : e.versionDetails.maxChance > 35 &&
+                                                  e.versionDetails.maxChance <
+                                                      50
+                                              ? Colors.orange
+                                              : Colors.red,
+                                    ),
+                                  ]),
+                                  pokeCard(e.pokemon.name, context),
+                                ],
+                              ))),
+                            )
+                            .toList())
                   ],
                 )
               ],
             ),
           ),
         ));
+  }
+
+  Widget pokeCard(String nome, BuildContext context) {
+    try {
+      Pokemon p = Pokedex().toFormPokemon(nome);
+
+      return PokeCard(p, sombras: true, onSelecionar: () {
+        Propaganda.popUp();
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => PokeView(p)));
+      });
+    } catch (e) {
+      return Container(
+        child: Text(nome),
+      );
+    }
   }
 }

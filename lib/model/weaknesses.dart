@@ -1,3 +1,5 @@
+import 'package:poke_magic/model/pokedex.dart';
+
 class Weaknesses {
   List<Weakness> weakness;
 
@@ -25,8 +27,8 @@ class Weaknesses {
   Weakness toWeakness(String t1) => weakness.firstWhere((w) => w.name == t1);
 
   Weakness toTwoWeakness(String t1, String t2) {
-    Weakness type1 = weakness.firstWhere((w) => w.name == t1);
-    Weakness type2 = weakness.firstWhere((w) => w.name == t2);
+    Weakness type1 = toWeakness(t1);
+    Weakness type2 = toWeakness(t2);
 
     Weakness type = Weakness(types: List());
     type.name = type1.name + " X " + type2.name;
@@ -36,6 +38,12 @@ class Weaknesses {
           damage: type1.types[i].damage * type2.types[i].damage));
     }
     return type;
+  }
+
+  Weakness toPokeWeakness(Pokemon pokemon) {
+    return pokemon.types.length > 1
+        ? toTwoWeakness(pokemon.types[1].type.name, pokemon.types[0].type.name)
+        : toWeakness(pokemon.types[0].type.name);
   }
 }
 

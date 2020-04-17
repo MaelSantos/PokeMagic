@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:poke_magic/util/propaganda.dart';
 import 'package:poke_magic/view/principal/abilities_principal.dart';
 import 'package:poke_magic/view/principal/about.dart';
+import 'package:poke_magic/view/principal/compare.dart';
 import 'package:poke_magic/view/principal/favorites_principal.dart';
 import 'package:poke_magic/view/principal/itens_principal.dart';
 import 'package:poke_magic/view/principal/locations_principal.dart';
 import 'package:poke_magic/view/principal/move_principal.dart';
-import 'package:poke_magic/view/principal/poke_compare.dart';
+import 'package:poke_magic/view/principal/nature_principal.dart';
 import 'package:poke_magic/view/principal/poke_principal.dart';
+import 'package:poke_magic/view/principal/team_builder.dart';
 import 'package:poke_magic/view/principal/type_principal.dart';
 
 class PokeMenu extends StatefulWidget {
@@ -21,11 +23,13 @@ class _PokeMenuState extends State<PokeMenu> {
   MovePricipal movePricipal;
   AbilitiesPricipal abilitiesPricipal;
   ItensPricipal itensPricipal;
+  LocationsPrincipal locationsPrincipal;
   TypePricipal typePricipal;
+  NaturePricipal naturePricipal;
   FavoritesPrincipal favoritesPrincipal;
   PokeCompare compare;
+  TeamBuilder teamBuilder;
   About about;
-  LocationsPrincipal locationsPrincipal;
 
   int index;
   String titulo;
@@ -69,15 +73,17 @@ class _PokeMenuState extends State<PokeMenu> {
             ),
             tile("Pokémons", 1, iconData: Icons.home),
             tile("Moves", 2, iconData: Icons.flash_on),
-            tile("Abilities", 3, iconData: Icons.local_florist),
+            tile("Abilities", 3, iconData: Icons.extension), //flare
             tile("Items", 4, iconData: Icons.local_offer),
             tile("Locations", 5, iconData: Icons.location_on),
             tile("Types", 6, iconData: Icons.category),
+            tile("Natures", 7, iconData: Icons.local_florist),
             Divider(thickness: 1),
-            tile("Favorites", 7),
-            tile("Compare", 8, iconData: Icons.equalizer),
+            tile("Favorites", 8),
+            tile("Compare", 9, iconData: Icons.equalizer),
+            tile("Team Builder", 10, iconData: Icons.group),
             Divider(thickness: 1),
-            tile("About", 9, iconData: Icons.info),
+            tile("About", 11, iconData: Icons.info),
           ],
         ),
       ),
@@ -107,11 +113,17 @@ class _PokeMenuState extends State<PokeMenu> {
         if (typePricipal == null) typePricipal = TypePricipal();
         return typePricipal;
       case 7:
-        return FavoritesPrincipal();
+        if (naturePricipal == null) naturePricipal = NaturePricipal();
+        return naturePricipal;
       case 8:
+        return FavoritesPrincipal();
+      case 9:
         if (compare == null) compare = PokeCompare();
         return compare;
-      case 9:
+      case 10:
+        if (teamBuilder == null) teamBuilder = TeamBuilder();
+        return teamBuilder;
+      case 11:
         if (about == null) about = About();
         return about;
 

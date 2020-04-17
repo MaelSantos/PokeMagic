@@ -101,13 +101,13 @@ class PokeDetalhes extends StatelessWidget {
                     style: TextStyle(fontSize: 16)),
                 Container(
                   height: 190,
-                  child: BarCustom([
+                  child: BarCustom(statsList: [
                     BarCustom.createSampleData(pokemon.stats.reversed.toList()),
                   ]),
                 ),
                 Container(
                   height: 60,
-                  child: BarCustom([
+                  child: BarCustom(statsList: [
                     BarCustom.createTotalData(pokemon.stats.reversed.toList()),
                   ]),
                 ),

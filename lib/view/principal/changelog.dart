@@ -13,6 +13,10 @@ class Changelog extends StatelessWidget {
           margin: EdgeInsets.all(8),
           child: Column(
             children: [
+              gerarFixa("Version 1.0.3", [
+                "News: Added Natures",
+                "News: Added Team Builder",
+              ]),
               gerarFixa("Version 1.0.2", [
                 "News: Added 114 new Pokémon details",
                 "News: Added EV provided",
@@ -31,7 +35,7 @@ class Changelog extends StatelessWidget {
     return gerarContainer(
         child: Column(
       children: [
-        Text(versao, textAlign: TextAlign.center),
+        Text(versao),
         Divider(thickness: 2),
         Column(
             mainAxisAlignment: MainAxisAlignment.start,

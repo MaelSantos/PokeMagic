@@ -1,4 +1,5 @@
 import 'package:poke_magic/model/comum.dart';
+import 'package:poke_magic/model/weaknesses.dart';
 
 class Pokedex {
   List<Pokemon> pokemons;
@@ -9,12 +10,7 @@ class Pokedex {
 
   static Pokedex fromJson(Map<String, dynamic> json) {
     _instance.pokemons = List();
-
     for (dynamic j in json.values) _instance.pokemons.add(Pokemon.fromJson(j));
-
-    // for (int i = 1; i <= json.length; i++)
-    //   _instance.pokemons
-    //       .add(json['$i'] != null ? Pokemon.fromJson(json['$i']) : null);
     return _instance;
   }
 
@@ -34,6 +30,14 @@ class Pokedex {
       return null;
     }
   }
+
+  Pokemon toFormPokemon(String poke) {
+    try {
+      return pokemons.firstWhere((p) => p.forms.first.name == poke);
+    } catch (e) {
+      return null;
+    }
+  }
 }
 
 class Pokemon {
@@ -48,6 +52,7 @@ class Pokemon {
   List<PokemonTypes> types;
   int weight;
   String number;
+  Weakness get weakness => Weaknesses().toPokeWeakness(this);
 
   Pokemon(
       {this.abilities,

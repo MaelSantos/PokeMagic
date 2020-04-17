@@ -67,6 +67,7 @@ class PokeButtonState extends State<PokeButton> {
   @override
   Widget build(BuildContext context) {
     return FittedBox(
+        alignment: Alignment.center,
         fit: BoxFit.contain,
         child: FilterChip(
           labelPadding: EdgeInsets.zero,

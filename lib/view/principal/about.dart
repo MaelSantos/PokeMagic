@@ -21,7 +21,7 @@ class About extends StatelessWidget {
                 children: [
                   Image.asset("assets/icon.png", height: 150),
                   SizedBox(height: 10),
-                  Text("PokéMagic 1.0.2", textAlign: TextAlign.center)
+                  Text("PokéMagic 1.0.3", textAlign: TextAlign.center)
                 ],
               )),
               SizedBox(height: 10),

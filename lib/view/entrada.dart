@@ -9,6 +9,7 @@ import 'package:poke_magic/model/forms.dart';
 import 'package:poke_magic/model/itens.dart';
 import 'package:poke_magic/model/locations.dart';
 import 'package:poke_magic/model/moves.dart';
+import 'package:poke_magic/model/natures.dart';
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/model/types.dart';
 import 'package:poke_magic/model/weaknesses.dart';
@@ -28,6 +29,7 @@ class EntradaState extends State<Entrada> {
   Forms forms;
   Itens itens;
   Locations locations;
+  Natures natures;
 
   void navigationToNextPage() async {
     Configuracao configuracao = await Configuracao.getId(1);
@@ -53,10 +55,11 @@ class EntradaState extends State<Entrada> {
     moves = Moves.fromJson(await carregarJson("assets/data/moves.json"));
     evolutions = Evolutions.fromJson(await carregarJson("assets/data/evolutions.json"));
     abilitys = Abilitys.fromJson(await carregarJson("assets/data/abilitys.json"));
-    itens = Itens.fromJson(await carregarJson("assets/data/itens.json"));
     types = Types.fromJson(await carregarJson("assets/data/types.json"));
+    itens = Itens.fromJson(await carregarJson("assets/data/itens.json"));
     weaknesses = Weaknesses.fromJson(await carregarJson("assets/data/weakness.json"));
     forms = Forms.fromJson(await carregarJson("assets/data/forms.json"));
+    natures = Natures.fromJson(await carregarJson("assets/data/nature.json"));
     locations = Locations.fromJson(await carregarJson("assets/data/locations.json"));
   }
 
@@ -79,13 +82,14 @@ class EntradaState extends State<Entrada> {
         backgroundColor: Colors.cyan,
         body: Center(
             child: Container(
-                height: 250,
-                width: 200,
+                height: MediaQuery.of(context).size.height / 2,
+                width: MediaQuery.of(context).size.width / 2,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Image.asset("assets/icon.png", fit: BoxFit.contain),
+                    SizedBox(height: 5),
                     Text("PokéMagic", style: TextStyle(fontSize: 25))
                   ],
                 ))));

@@ -14,11 +14,7 @@ class PokeMore extends StatelessWidget {
   Weakness type;
 
   PokeMore(this.pokemon) {
-    if (pokemon.types.length > 1)
-      type = weaknesses.toTwoWeakness(
-          pokemon.types[1].type.name, pokemon.types[0].type.name);
-    else
-      type = weaknesses.toWeakness(pokemon.types[0].type.name);
+    type = weaknesses.toPokeWeakness(pokemon);
 
     formas = forms.forms
         .where((f) => f.pokemon.name.contains(pokemon.name))
