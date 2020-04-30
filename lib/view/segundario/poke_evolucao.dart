@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poke_magic/model/forms.dart' as forma;
 import 'package:poke_magic/model/evolutions.dart';
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/view/componentes/poke_card.dart';
@@ -10,7 +11,8 @@ class PokeEvolucao extends StatelessWidget {
   final Pokemon pokemon;
   Evolutions get evolutions => Evolutions();
   Evolution evolution;
-
+  // forma.Forms forms = forma.Forms();
+  // List<forma.Form> formas;
   FavoritesPrincipalState favoritesPrincipal;
 
   PokeEvolucao(this.pokemon, {this.favoritesPrincipal}) {
@@ -21,6 +23,11 @@ class PokeEvolucao extends StatelessWidget {
         evolution = Evolution(
             chain: Chain(species: Trigger(name: pokemon.name), evolvesTo: []));
     }
+
+    // formas = forma.Forms()
+    //     .forms
+    //     .where((f) => f.pokemon.name.contains(pokemon.name))
+    //     .toList();
   }
 
   bool escolherEvolucao(Evolution e) {
@@ -51,33 +58,37 @@ class PokeEvolucao extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.all(5),
-        child: Center(
-            child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                evolution.chain != null
-                    ? pokeCard(evolution.chain.species.name, context)
-                    : Container(),
-              ]),
-              evolution.chain.evolvesTo.isNotEmpty
-                  ? SingleChildScrollView(
-                      child: Column(
-                          children: nextEvolution(
-                              context, evolution.chain.evolvesTo, true)))
-                  : Container(),
-              evolution.chain.evolvesTo.isNotEmpty &&
-                      evolution.chain.evolvesTo[0].evolvesToTo.isNotEmpty
-                  ? Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: nextEvolution(
-                          context, evolution.chain.evolvesTo, false))
-                  : Container(),
-            ],
-          ),
-        )));
+        alignment: Alignment.center,
+        child: evolution.chain.species.name != "eevee"
+            ? FittedBox(child: normal(context))
+            : normal(context));
+  }
+
+  Widget normal(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          evolution.chain != null
+              ? pokeCard(evolution.chain.species.name, context)
+              : Container(),
+        ]),
+        evolution.chain.evolvesTo.isNotEmpty
+            ? SingleChildScrollView(
+                child: Column(
+                    children: nextEvolution(
+                        context, evolution.chain.evolvesTo, true)))
+            : Container(),
+        evolution.chain.evolvesTo.isNotEmpty &&
+                evolution.chain.evolvesTo[0].evolvesToTo.isNotEmpty
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children:
+                    nextEvolution(context, evolution.chain.evolvesTo, false))
+            : Container(),
+      ],
+    );
   }
 
   Widget pokeCard(String nome, BuildContext context) {
@@ -210,11 +221,12 @@ class PokeEvolucao extends StatelessWidget {
 
     colunas.add(Container(
         width: MediaQuery.of(context).size.width * 0.18,
+        alignment: Alignment.center,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("---->", textAlign: TextAlign.center),
+              Icon(Icons.arrow_forward),
               Text("$gatilho", textAlign: TextAlign.center),
               Text("$motivo", textAlign: TextAlign.center)
             ])));

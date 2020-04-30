@@ -132,15 +132,16 @@ class PokeMore extends StatelessWidget {
   }
 
   Widget imagemSprite(String url, BuildContext context) {
-    return Container(
-        height: 120,
-        width: MediaQuery.of(context).size.width / 3,
-        child: CachedNetworkImage(
-          imageUrl: url,
-          placeholder: (context, url) => CircularProgressIndicator(),
-          errorWidget: (context, url, error) =>
-              Center(child: Text("No Sprite")),
-          fit: BoxFit.contain,
-        ));
+    return FittedBox(
+        child: Container(
+            height: 120,
+            width: MediaQuery.of(context).size.width / 3,
+            child: CachedNetworkImage(
+              imageUrl: url,
+              placeholder: (context, url) => CircularProgressIndicator(),
+              errorWidget: (context, url, error) =>
+                  Center(child: Text("No Sprite")),
+              fit: BoxFit.contain,
+            )));
   }
 }

@@ -17,8 +17,7 @@ String formatItem(String i) {
   return "https://www.serebii.net/itemdex/sprites/pgl/${i.toLowerCase()}.png";
 }
 
-Widget gerarContainer(
-    {double tamanho = 60, Color cor = Colors.black, @required Widget child}) {
+Widget gerarContainer({@required Widget child}) {
   return Container(
       decoration: BoxDecoration(
         color: Colors.white,

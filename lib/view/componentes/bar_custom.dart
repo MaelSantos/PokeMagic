@@ -23,16 +23,18 @@ class BarCustom extends StatelessWidget {
         barRendererDecorator: charts.BarLabelDecorator<String>(
             labelAnchor: charts.BarLabelAnchor.end),
       ),
+      // barGroupingType: charts.BarGroupingType.grouped,
+      // behaviors: [charts.SeriesLegend()],
       // domainAxis:
       //     charts.OrdinalAxisSpec(renderSpec: charts.NoneRenderSpec(), ),
     );
   }
 
   static charts.Series<Stats, String> createSampleData(List<Stats> list,
-      {charts.Color cor}) {
+      {charts.Color cor, String id = "Stats"}) {
     if (cor == null) cor = charts.MaterialPalette.red.shadeDefault;
     return charts.Series<Stats, String>(
-      id: "Stats",
+      id: id,
       colorFn: (_, __) => cor,
       domainFn: (Stats s, _) => s.stat.name,
       measureFn: (Stats s, _) => s.baseStat,
@@ -46,7 +48,7 @@ class BarCustom extends StatelessWidget {
   }
 
   static charts.Series<Stats, String> createTotalData(List<Stats> list,
-      {charts.Color cor}) {
+      {charts.Color cor, String id = "Stats"}) {
     int soma = 0;
     list.forEach((e) {
       soma += e.baseStat;
@@ -57,7 +59,7 @@ class BarCustom extends StatelessWidget {
     if (cor == null) cor = charts.MaterialPalette.red.shadeDefault;
 
     return charts.Series<Stats, String>(
-      id: "Stats",
+      id: id,
       colorFn: (_, __) => cor,
       domainFn: (Stats s, _) => s.stat.name,
       measureFn: (Stats s, _) => s.baseStat,

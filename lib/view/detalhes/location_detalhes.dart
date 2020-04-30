@@ -21,6 +21,7 @@ class LocationDetalhes extends StatelessWidget {
         body: SingleChildScrollView(
           child: Container(
             margin: EdgeInsets.all(8),
+            // padding: EdgeInsets.all(8),
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -35,40 +36,7 @@ class LocationDetalhes extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: location.pokemonEncounters
-                            .map(
-                              (e) => gerarContainer(
-                                  child: FittedBox(
-                                      child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Column(children: [
-                                    Text("Method:"),
-                                    Column(
-                                        children: e
-                                            .versionDetails.encounterDetails
-                                            .map((e) =>
-                                                PokeButton("${e.method.name} "))
-                                            .toList()),
-                                  ]),
-                                  VerticalDivider(),
-                                  Column(children: [
-                                    Text("Chance:"),
-                                    PokeButton(
-                                      "${e.versionDetails.maxChance}%",
-                                      cor: e.versionDetails.maxChance >= 50
-                                          ? Colors.green
-                                          : e.versionDetails.maxChance > 35 &&
-                                                  e.versionDetails.maxChance <
-                                                      50
-                                              ? Colors.orange
-                                              : Colors.red,
-                                    ),
-                                  ]),
-                                  pokeCard(e.pokemon.name, context),
-                                ],
-                              ))),
-                            )
+                            .map((e) => cardLocation(e, context))
                             .toList())
                   ],
                 )
@@ -78,11 +46,47 @@ class LocationDetalhes extends StatelessWidget {
         ));
   }
 
+  Widget cardLocation(PokemonEncounters e, BuildContext context) {
+    return gerarContainer(
+        child: Container(
+            // height: 150,
+            child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SingleChildScrollView(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+              Text("Method:"),
+              Column(
+                  children: e.versionDetails.encounterDetails
+                      .map((e) => PokeButton("${e.method.name}"))
+                      .toList())
+            ])),
+        Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Text("Chance:"),
+          PokeButton(
+            "${e.versionDetails.maxChance}%",
+            cor: e.versionDetails.maxChance >= 50
+                ? Colors.green
+                : e.versionDetails.maxChance > 35 &&
+                        e.versionDetails.maxChance < 50
+                    ? Colors.orange
+                    : Colors.red,
+          ),
+        ]),
+        pokeCard(e.pokemon.name, context),
+      ],
+    )));
+  }
+
   Widget pokeCard(String nome, BuildContext context) {
     try {
       Pokemon p = Pokedex().toFormPokemon(nome);
 
-      return PokeCard(p, sombras: true, onSelecionar: () {
+      return PokeCard(p, sombras: true, fitbox: true, onSelecionar: () {
         Propaganda.popUp();
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => PokeView(p)));

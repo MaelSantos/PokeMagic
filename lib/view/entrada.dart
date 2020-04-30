@@ -82,16 +82,18 @@ class EntradaState extends State<Entrada> {
         backgroundColor: Colors.cyan,
         body: Center(
             child: Container(
+                // color: Colors.blue,
                 height: MediaQuery.of(context).size.height / 2,
                 width: MediaQuery.of(context).size.width / 2,
-                child: Column(
+                child: FittedBox(
+                    child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Image.asset("assets/icon.png", fit: BoxFit.contain),
                     SizedBox(height: 5),
-                    Text("PokéMagic", style: TextStyle(fontSize: 25))
+                    // Text("MagicDex", style: TextStyle(fontSize: 25))
                   ],
-                ))));
+                )))));
   }
 }

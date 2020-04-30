@@ -9,7 +9,7 @@ class PokeMagic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "PokéMagic",
+        title: "MagicDex",
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             appBarTheme: AppBarTheme(
@@ -19,9 +19,9 @@ class PokeMagic extends StatelessWidget {
                 )),
             textTheme: TextTheme(
                 button: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
-                subtitle1: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
-                bodyText1: TextStyle(fontSize: 14, fontFamily: "FredokaOne"),
-                bodyText2: TextStyle(fontSize: 14, fontFamily: "FredokaOne"))),
+                subtitle1: TextStyle(fontSize: 13, fontFamily: "FredokaOne"),
+                bodyText1: TextStyle(fontSize: 13, fontFamily: "FredokaOne"),
+                bodyText2: TextStyle(fontSize: 13, fontFamily: "FredokaOne"))),
         home: Entrada(),
         routes: {
           "/Menu": (BuildContext context) => PokeMenu(),

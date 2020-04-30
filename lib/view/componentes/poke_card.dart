@@ -41,7 +41,7 @@ class PokeCard extends StatelessWidget {
                         border:
                             sombras ? null : Border.all(color: Colors.black12)),
                     child: fitbox
-                        ? FittedBox(fit: BoxFit.contain, child: principal())
+                        ? FittedBox(child: principal())
                         : principal()))));
   }
 

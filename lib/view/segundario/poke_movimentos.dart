@@ -27,20 +27,20 @@ class PokeMoveState extends State<PokeMove> {
   PokeMoveState(this.pokemon) {
     filtro = "level-up";
 
-    btnLevel = PokeButton("level-up", selecionado: true, selecionavel: true,
+    btnLevel = PokeButton("Level-Up", selecionado: true, selecionavel: true,
         onSelecionado: (b) {
       filtro = "level-up";
       selecionar(b);
     });
-    btnMachine = PokeButton("machine", selecionavel: true, onSelecionado: (b) {
+    btnMachine = PokeButton("Machine", selecionavel: true, onSelecionado: (b) {
       filtro = "machine";
       selecionar(b);
     });
-    btnEgg = PokeButton("egg", selecionavel: true, onSelecionado: (b) {
+    btnEgg = PokeButton("Egg", selecionavel: true, onSelecionado: (b) {
       filtro = "egg";
       selecionar(b);
     });
-    btnTutor = PokeButton("tutor", selecionavel: true, onSelecionado: (b) {
+    btnTutor = PokeButton("Tutor", selecionavel: true, onSelecionado: (b) {
       filtro = "tutor";
       selecionar(b);
     });
@@ -139,74 +139,7 @@ class PokeMoveState extends State<PokeMove> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: all
                             .where((m) => m.tipo == filtro)
-                            .map((t) => InkWell(
-                                borderRadius: BorderRadius.circular(15),
-                                onTap: () {
-                                  Propaganda.popUp();
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              MoveDetalhes(t)));
-                                },
-                                child: Card(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                    elevation: 3,
-                                    child: Container(
-                                        height: 100,
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: Colors.black45),
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  Text(t.nivel != 0
-                                                      ? t.nivel.toString()
-                                                      : "-"),
-                                                  Text(t.name.toUpperCase()),
-                                                  // Text(t.name),
-                                                  Text(t.power != null
-                                                      ? t.power.toString()
-                                                      : "-"),
-                                                  Text(t.accuracy != null
-                                                      ? t.accuracy.toString()
-                                                      : "-"),
-                                                  Text(t.pp != null
-                                                      ? t.pp.toString()
-                                                      : "-"),
-                                                ]),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text("Type: "),
-                                                containerColor(
-                                                  t.type.name,
-                                                  formatColorExist(t.type.name),
-                                                ),
-                                                containerColor(
-                                                  t.damageClass.name,
-                                                  formatColorMove(
-                                                      t.damageClass.name),
-                                                )
-                                              ],
-                                            ),
-                                          ],
-                                        )))))
+                            .map((move) => moveCard(move))
                             .toList()),
                   ))),
         ],
@@ -221,5 +154,53 @@ class PokeMoveState extends State<PokeMove> {
         width: tamanho,
         margin: EdgeInsets.all(5),
         child: Text(conteudo, style: TextStyle(color: cor)));
+  }
+
+  Widget moveCard(Move move) {
+    return InkWell(
+        borderRadius: BorderRadius.circular(15),
+        onTap: () {
+          Propaganda.popUp();
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => MoveDetalhes(move)));
+        },
+        child: Card(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            elevation: 3,
+            child: Container(
+                padding: EdgeInsets.only(top: 20, bottom: 20),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black45),
+                    borderRadius: BorderRadius.circular(15)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(move.nivel != 0 ? move.nivel.toString() : "-"),
+                          Text(move.name.toUpperCase()),
+                          Text(
+                              "${move.power != null ? move.power.toString() : "-"}"),
+                          Text(
+                              "${move.accuracy != null ? move.accuracy.toString() : "-"}"),
+                          Text("${move.pp != null ? move.pp.toString() : "-"}")
+                        ]),
+                    SizedBox(height: 5),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Type: "),
+                        containerColor(
+                            move.type.name, formatColorExist(move.type.name)),
+                        containerColor(move.damageClass.name,
+                            formatColorMove(move.damageClass.name)),
+                      ],
+                    ),
+                  ],
+                ))));
   }
 }

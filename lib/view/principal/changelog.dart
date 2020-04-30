@@ -13,6 +13,9 @@ class Changelog extends StatelessWidget {
           margin: EdgeInsets.all(8),
           child: Column(
             children: [
+              gerarFixa("Version 1.0.4", [
+                "Fixed: Bug Fixes",
+              ]),
               gerarFixa("Version 1.0.3", [
                 "News: Added Natures",
                 "News: Added Team Builder",

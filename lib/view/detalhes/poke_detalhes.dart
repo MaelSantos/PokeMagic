@@ -42,8 +42,8 @@ class PokeDetalhes extends StatelessWidget {
                                 pokemon.number != "#555_f2" &&
                                 pokemon.number != "#670_f2" &&
                                 pokemon.number != "#745_f3"
-                            ? imagemNet()
-                            : imagemAsset())),
+                            ? imagemNet(context)
+                            : imagemAsset(context))),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -100,7 +100,7 @@ class PokeDetalhes extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 16)),
                 Container(
-                  height: 190,
+                  height: 180,
                   child: BarCustom(statsList: [
                     BarCustom.createSampleData(pokemon.stats.reversed.toList()),
                   ]),
@@ -117,25 +117,25 @@ class PokeDetalhes extends StatelessWidget {
     );
   }
 
-  Widget imagemNet() {
+  Widget imagemNet(BuildContext context) {
     return Container(
       width: 200,
-      height: 175,
+      height: 180,
       child: CachedNetworkImage(
         imageUrl: formatID(pokemon.number),
         placeholder: (context, url) => CircularProgressIndicator(),
         errorWidget: (context, url, error) => Icon(Icons.error),
-        // fit: BoxFit.contain,
-        fit: BoxFit.cover,
+        fit: BoxFit.fitWidth,
+        // fit: BoxFit.cover,
       ),
     );
   }
 
-  Widget imagemAsset() {
+  Widget imagemAsset(BuildContext context) {
     Widget ret;
     ret = Container(
         width: 200,
-        height: 175,
+        height: 180,
         child: Image.asset("assets/temp/${pokemon.number}.png"));
     return ret;
   }

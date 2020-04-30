@@ -37,7 +37,7 @@ class _PokeMenuState extends State<PokeMenu> {
   @override
   void initState() {
     pokePricipal = PokePricipal();
-    titulo = "PokéMagic";
+    titulo = "MagicDex";
     index = 1;
     super.initState();
 
@@ -63,7 +63,7 @@ class _PokeMenuState extends State<PokeMenu> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text("PokéMagic",
+                  Text("MagicDex",
                       style: TextStyle(fontSize: 23, color: Colors.white)),
                   Container(child: Image.asset("assets/icon.png", height: 100))
                 ],

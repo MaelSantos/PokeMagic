@@ -40,10 +40,6 @@ class _TeamBuilderState extends State<TeamBuilder> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           gerarContainer(child: gerarSearch(context)),
-          // types != null ? avaliacao() : Container(),
-          // Text("fraqueza: $fraqueza"),
-          // Text("resistencia: $resistencia"),
-          // Text("normal: $normal"),
           pokemons != null
               ? gerarContainer(
                   child: Column(children: [
@@ -57,7 +53,7 @@ class _TeamBuilderState extends State<TeamBuilder> {
                   child: Column(children: [
                   Text("Sum Damage by Type"),
                   Container(
-                      height: MediaQuery.of(context).size.width * 0.85,
+                      height: MediaQuery.of(context).size.width+50,
                       child: BarCustom(
                           statsList: [BarCustom.createSampleDataType(types)]))
                 ]))
@@ -174,9 +170,8 @@ class _TeamBuilderState extends State<TeamBuilder> {
   }
 
   List<DataRow> datarow() {
-    types = List();
-
     List<DataRow> row = List();
+    types = List();
     for (Pokemon p in pokemons) {
       row.add(DataRow(cells: datacell(p)));
     }
@@ -189,6 +184,7 @@ class _TeamBuilderState extends State<TeamBuilder> {
               : t.damage < 6 ? Colors.green : Colors.cyan)));
     }
     row.add(DataRow(cells: cell));
+
     return row;
   }
 
@@ -236,13 +232,14 @@ class _TeamBuilderState extends State<TeamBuilder> {
       else
         normal++;
     }
-    setState(() {});
+
     return cell;
   }
 
   Widget calcularTypes() {
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       Text("Average by Type"),
+      avaliacao(),
       gerarContainer(
           child: Column(
         children: [

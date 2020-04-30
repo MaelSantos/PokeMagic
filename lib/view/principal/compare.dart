@@ -78,21 +78,25 @@ class _PokeCompareState extends State<PokeCompare> {
           ),
           VerticalDivider(thickness: 2),
           Container(
-            height: MediaQuery.of(context).size.width * 0.75,
+            height: MediaQuery.of(context).size.width * 0.85,
             child: BarCustom(statsList: [
               BarCustom.createSampleData(pokemon1.stats.reversed.toList(),
-                  cor: charts.MaterialPalette.cyan.shadeDefault),
+                  cor: charts.MaterialPalette.cyan.shadeDefault,
+                  id: pokemon1.name),
               BarCustom.createSampleData(pokemon2.stats.reversed.toList(),
-                  cor: charts.MaterialPalette.teal.shadeDefault),
+                  cor: charts.MaterialPalette.teal.shadeDefault,
+                  id: pokemon2.name),
             ]),
           ),
           Container(
               height: MediaQuery.of(context).size.width * 0.20,
               child: BarCustom(statsList: [
                 BarCustom.createTotalData(pokemon1.stats.reversed.toList(),
-                    cor: charts.MaterialPalette.cyan.shadeDefault),
+                    cor: charts.MaterialPalette.cyan.shadeDefault,
+                    id: pokemon1.name),
                 BarCustom.createTotalData(pokemon2.stats.reversed.toList(),
-                    cor: charts.MaterialPalette.teal.shadeDefault),
+                    cor: charts.MaterialPalette.teal.shadeDefault,
+                    id: pokemon2.name),
               ])),
         ],
       ))

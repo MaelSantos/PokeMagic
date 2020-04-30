@@ -21,7 +21,7 @@ class About extends StatelessWidget {
                 children: [
                   Image.asset("assets/icon.png", height: 150),
                   SizedBox(height: 10),
-                  Text("PokéMagic 1.0.3", textAlign: TextAlign.center)
+                  Text("MagicDex 1.0.4", textAlign: TextAlign.center)
                 ],
               )),
               SizedBox(height: 10),
@@ -70,7 +70,7 @@ class About extends StatelessWidget {
                                 fontWeight: FontWeight.bold, fontSize: 16))),
                     SizedBox(height: 10),
                     Text(
-                        "PokéMagic is an unofficial application, made by fans, is free and is NOT affiliated, "
+                        "Magidex is an unofficial application, made by fans, is free and is NOT affiliated, "
                         "endorsed or supported by Nintendo, GAME FREAK or The Pokémon company in any way. "
                         "Some images used in this application are protected by copyright and are supported for fair use. "
                         "Pokémon and Pokémon character names are trademarks of Nintendo. "
