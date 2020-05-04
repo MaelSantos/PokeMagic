@@ -1,6 +1,7 @@
 import 'package:path/path.dart';
 import 'package:poke_magic/util/tabela_configuracao.dart';
 import 'package:poke_magic/util/tabela_favoritos.dart';
+import 'package:poke_magic/util/tabela_time.dart';
 import 'package:sqflite/sqflite.dart';
 
 class SqlUtil {
@@ -31,6 +32,7 @@ class SqlUtil {
   void createTable(Database db, int newVersion) async {
     await db.execute(TabelaFavorito.createTable);
     await db.execute(TabelaConfiguracao.createTable);
+    await db.execute(TabelaTime.createTable);
   }
 
   void updateTable(Database db, int oldVersion, int newVersion) async {

@@ -13,6 +13,9 @@ class Changelog extends StatelessWidget {
           margin: EdgeInsets.all(8),
           child: Column(
             children: [
+              gerarFixa("Version 1.0.5", [
+                "Fixed: Bug Fixes",
+              ]),
               gerarFixa("Version 1.0.4", [
                 "Fixed: Bug Fixes",
               ]),

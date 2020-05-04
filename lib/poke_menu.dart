@@ -10,7 +10,7 @@ import 'package:poke_magic/view/principal/locations_principal.dart';
 import 'package:poke_magic/view/principal/move_principal.dart';
 import 'package:poke_magic/view/principal/nature_principal.dart';
 import 'package:poke_magic/view/principal/poke_principal.dart';
-import 'package:poke_magic/view/principal/team_builder.dart';
+import 'package:poke_magic/view/principal/team_list.dart';
 import 'package:poke_magic/view/principal/type_principal.dart';
 
 class PokeMenu extends StatefulWidget {
@@ -28,7 +28,7 @@ class _PokeMenuState extends State<PokeMenu> {
   NaturePricipal naturePricipal;
   FavoritesPrincipal favoritesPrincipal;
   PokeCompare compare;
-  TeamBuilder teamBuilder;
+  TeamList teamBuilder;
   About about;
 
   int index;
@@ -121,7 +121,7 @@ class _PokeMenuState extends State<PokeMenu> {
         if (compare == null) compare = PokeCompare();
         return compare;
       case 10:
-        if (teamBuilder == null) teamBuilder = TeamBuilder();
+        if (teamBuilder == null) teamBuilder = TeamList();
         return teamBuilder;
       case 11:
         if (about == null) about = About();

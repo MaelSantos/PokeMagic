@@ -12,6 +12,12 @@ class PokeMagic extends StatelessWidget {
         title: "MagicDex",
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+            dialogTheme: DialogTheme(
+                titleTextStyle:
+                    TextStyle(fontFamily: "FredokaOne", color: Colors.black)),
+            snackBarTheme: SnackBarThemeData(
+                contentTextStyle:
+                    TextStyle(fontSize: 13, fontFamily: "FredokaOne")),
             appBarTheme: AppBarTheme(
                 color: Colors.cyan,
                 textTheme: TextTheme(

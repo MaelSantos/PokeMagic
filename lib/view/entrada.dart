@@ -51,13 +51,13 @@ class EntradaState extends State<Entrada> {
   }
 
   carregarPokedex() async {
+    weaknesses = Weaknesses.fromJson(await carregarJson("assets/data/weakness.json"));
     pokedex = Pokedex.fromJson(await carregarJson("assets/data/pokedex.json"));
     moves = Moves.fromJson(await carregarJson("assets/data/moves.json"));
     evolutions = Evolutions.fromJson(await carregarJson("assets/data/evolutions.json"));
     abilitys = Abilitys.fromJson(await carregarJson("assets/data/abilitys.json"));
     types = Types.fromJson(await carregarJson("assets/data/types.json"));
     itens = Itens.fromJson(await carregarJson("assets/data/itens.json"));
-    weaknesses = Weaknesses.fromJson(await carregarJson("assets/data/weakness.json"));
     forms = Forms.fromJson(await carregarJson("assets/data/forms.json"));
     natures = Natures.fromJson(await carregarJson("assets/data/nature.json"));
     locations = Locations.fromJson(await carregarJson("assets/data/locations.json"));

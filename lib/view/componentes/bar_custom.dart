@@ -76,9 +76,17 @@ class BarCustom extends StatelessWidget {
       {charts.Color cor}) {
     if (cor == null) cor = charts.MaterialPalette.red.shadeDefault;
 
+    var red = charts.ColorUtil.fromDartColor(Colors.red);
+    var green = charts.ColorUtil.fromDartColor(Colors.green);
+    var cyan = charts.ColorUtil.fromDartColor(Colors.cyan);
+
     return charts.Series<Type, String>(
       id: "Types",
-      colorFn: (_, __) => charts.MaterialPalette.cyan.shadeDefault,
+      colorFn: (s, __) => charts.ColorUtil.fromDartColor(Colors.cyan),
+      areaColorFn: (s, __) => s.damage > 6 ? red : s.damage < 6 ? green : cyan,
+      // fillColorFn: (s, __) => s.damage > 6 ? red : s.damage < 6 ? green : cyan,
+      // seriesColor:  s.damage > 6 ? red : s.damage < 6 ? green : cyan,
+      // patternColorFn: (s, __) => s.damage > 6 ? red : s.damage < 6 ? green : cyan,
       domainFn: (Type s, _) => s.name,
       measureFn: (Type s, _) => s.damage,
       data: list,

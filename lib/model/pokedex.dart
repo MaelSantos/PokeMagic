@@ -52,7 +52,8 @@ class Pokemon {
   List<PokemonTypes> types;
   int weight;
   String number;
-  Weakness get weakness => Weaknesses().toPokeWeakness(this);
+  Weakness weakness;
+  // Weakness weakness = Weaknesses().toPokeWeakness(this);
 
   Pokemon(
       {this.abilities,
@@ -109,6 +110,7 @@ class Pokemon {
     }
     weight = json['weight'];
     number = json['num'];
+    weakness = Weaknesses().toPokeWeakness(this);
   }
 
   Map<String, dynamic> toJson() {

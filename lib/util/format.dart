@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 String formatID(String i) {
@@ -40,6 +41,28 @@ Widget containerColor(String conteudo, Color cor) {
         conteudo,
         style: TextStyle(color: Colors.white),
       ));
+}
+
+Widget imagemSprite(String url, BuildContext context, {double tamanho = 30}) {
+  if (url != "#351_f2" &&
+      url != "#351_f3" &&
+      url != "#351_f4" &&
+      url != "#555_f2" &&
+      url != "#670_f2" &&
+      url != "#745_f3")
+    return Container(
+        height: tamanho,
+        width: tamanho,
+        child: CachedNetworkImage(
+          imageUrl: formatID(url),
+          placeholder: (context, url) => CircularProgressIndicator(),
+          errorWidget: (context, url, error) =>
+              Center(child: Text("No Sprite")),
+          fit: BoxFit.contain,
+        ));
+  else
+    return Container(
+        height: tamanho, child: Image.asset("assets/temp/$url.png"));
 }
 
 Map<String, Color> colors = {
