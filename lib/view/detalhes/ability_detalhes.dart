@@ -73,14 +73,14 @@ class AbilityDetalhes extends StatelessWidget {
 
       try {
         pokemon = Pokedex().pokemons.firstWhere((a) =>
-            (p.pokemon.name == a.name || (p.pokemon.name == a.forms[0].name)));
+            (p.pokemon.name == a.name.toLowerCase() ));//|| (p.pokemon.name == a.forms[0].name)
       } catch (e) {
         pokemon = null;
       }
 
-      if (pokemon != null && !nomes.contains(pokemon.name))
+      if (pokemon != null && !nomes.contains(pokemon.name.toLowerCase()))
         nomes.add(pokemon.name);
-      else if (pokemon != null && nomes.contains(pokemon.name)) pokemon = null;
+      else if (pokemon != null && nomes.contains(pokemon.name.toLowerCase())) pokemon = null;
       if (pokemon != null) {
         pokecards.add(PokeCard(pokemon, axis: Axis.vertical, onSelecionar: () {
           Propaganda.popUp();

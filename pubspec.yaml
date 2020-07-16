@@ -1,7 +1,7 @@
 name: poke_magic
 description: Pokédex.
 
-version: 1.0.5+9
+version: 1.0.6+10
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   path_provider: ^1.6.7
-  cached_network_image: ^2.1.0+1
+  cached_network_image: ^2.2.0+1
   charts_flutter: ^0.9.0
   firebase_admob: ^0.9.3+2
   url_launcher: ^5.4.5
@@ -44,7 +44,7 @@ flutter:
     - assets/temp/#351_f2.png
     - assets/temp/#351_f3.png
     - assets/temp/#351_f4.png
-    - assets/temp/#555_f2.png
+    - assets/temp/#555_f3.png
     - assets/temp/#670_f2.png
     - assets/temp/#745_f3.png
 

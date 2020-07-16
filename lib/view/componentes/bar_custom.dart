@@ -1,6 +1,5 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
-import 'package:poke_magic/model/comum.dart';
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/model/weaknesses.dart';
 
@@ -33,10 +32,11 @@ class BarCustom extends StatelessWidget {
   static charts.Series<Stats, String> createSampleData(List<Stats> list,
       {charts.Color cor, String id = "Stats"}) {
     if (cor == null) cor = charts.MaterialPalette.red.shadeDefault;
+
     return charts.Series<Stats, String>(
       id: id,
       colorFn: (_, __) => cor,
-      domainFn: (Stats s, _) => s.stat.name,
+      domainFn: (Stats s, _) => s.stat,
       measureFn: (Stats s, _) => s.baseStat,
       data: list,
       labelAccessorFn: (Stats sales, _) => "${sales.baseStat}",
@@ -48,22 +48,22 @@ class BarCustom extends StatelessWidget {
   }
 
   static charts.Series<Stats, String> createTotalData(List<Stats> list,
-      {charts.Color cor, String id = "Stats"}) {
+      {charts.Color cor, String id = "Total Stats"}) {
     int soma = 0;
     list.forEach((e) {
       soma += e.baseStat;
     });
-    list.clear();
-    list.add(Stats(stat: Comum(name: "total"), baseStat: soma));
+    List<Stats> temp = List();
+    temp.add(Stats(stat: "Total", baseStat: soma));
 
     if (cor == null) cor = charts.MaterialPalette.red.shadeDefault;
 
     return charts.Series<Stats, String>(
       id: id,
       colorFn: (_, __) => cor,
-      domainFn: (Stats s, _) => s.stat.name,
+      domainFn: (Stats s, _) => s.stat,
       measureFn: (Stats s, _) => s.baseStat,
-      data: list,
+      data: temp,
       labelAccessorFn: (Stats sales, _) => "${sales.baseStat}",
       insideLabelStyleAccessorFn: (Stats sales, _) => charts.TextStyleSpec(
           color: charts.MaterialPalette.white, fontFamily: "FredokaOne"),

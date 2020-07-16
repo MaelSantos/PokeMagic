@@ -13,23 +13,28 @@ class Changelog extends StatelessWidget {
           margin: EdgeInsets.all(8),
           child: Column(
             children: [
+              gerarFixa("Version 1.0.6", [
+                "New: Added Generation 8 Pokemon",
+                "New: Gigantamax shapes added",
+              ]),
               gerarFixa("Version 1.0.5", [
+                "New: Team Builder refactoring",
                 "Fixed: Bug Fixes",
               ]),
               gerarFixa("Version 1.0.4", [
                 "Fixed: Bug Fixes",
               ]),
               gerarFixa("Version 1.0.3", [
-                "News: Added Natures",
-                "News: Added Team Builder",
+                "New: Added Natures",
+                "New: Added Team Builder",
               ]),
               gerarFixa("Version 1.0.2", [
-                "News: Added 114 new Pokémon details",
-                "News: Added EV provided",
-                "News: Added locations and routes (Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos)",
+                "New: Added 114 new Pokémon details",
+                "New: Added EV provided",
+                "New: Added locations and routes (Kanto, Johto, Hoenn, Sinnoh, Unova, Kalos)",
               ]),
               gerarFixa("Version 1.0.1", [
-                "News: Added comparison function between Pokémon status",
+                "New: Added comparison function between Pokémon status",
                 "Fixed: graphics improvements"
               ])
             ],
@@ -40,8 +45,10 @@ class Changelog extends StatelessWidget {
   Widget gerarFixa(String versao, List<String> modificacoes) {
     return gerarContainer(
         child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(versao),
+        Center(child: Text(versao, textAlign: TextAlign.center)),
         Divider(thickness: 2),
         Column(
             mainAxisAlignment: MainAxisAlignment.start,

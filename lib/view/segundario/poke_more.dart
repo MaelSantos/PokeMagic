@@ -17,7 +17,7 @@ class PokeMore extends StatelessWidget {
     type = weaknesses.toPokeWeakness(pokemon);
 
     formas = forms.forms
-        .where((f) => f.pokemon.name.contains(pokemon.name))
+        .where((f) => f.pokemon.name.contains(pokemon.name.toLowerCase()))
         .toList();
   }
 
@@ -85,9 +85,9 @@ class PokeMore extends StatelessWidget {
                   child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: pokemon.stats.reversed
-                          .where((p) => p.effort > 0)
-                          .map((e) => PokeButton("+${e.effort} ${e.stat.name}"))
+                      children: pokemon.stats
+                          .where((p) => p.ev > 0)
+                          .map((e) => PokeButton("+${e.ev} ${e.stat}"))
                           .toList())),
             ),
             Text("Sprites"),
@@ -138,7 +138,8 @@ class PokeMore extends StatelessWidget {
             width: MediaQuery.of(context).size.width / 3,
             child: CachedNetworkImage(
               imageUrl: url,
-              placeholder: (context, url) => CircularProgressIndicator(),
+              progressIndicatorBuilder: (context, url, download) =>
+                  CircularProgressIndicator(value: download.progress),
               errorWidget: (context, url, error) =>
                   Center(child: Text("No Sprite")),
               fit: BoxFit.contain,

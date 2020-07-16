@@ -33,7 +33,8 @@ class ItemDetalhes extends StatelessWidget {
                 CachedNetworkImage(
                   height: 50,
                   imageUrl: item.sprites.defaultt,
-                  placeholder: (context, url) => CircularProgressIndicator(),
+                  progressIndicatorBuilder: (context, url, download) =>
+                      CircularProgressIndicator(value: download.progress),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                   fit: BoxFit.contain,
                 ),

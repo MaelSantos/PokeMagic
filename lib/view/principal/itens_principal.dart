@@ -111,9 +111,12 @@ class _ItensPrincipalState extends State<ItensPricipal> {
                                               CachedNetworkImage(
                                                 imageUrl: itens[index]
                                                     .sprites
-                                                    .defaultt, //formatItem(itens[index].name),
-                                                placeholder: (context, url) =>
-                                                    CircularProgressIndicator(),
+                                                    .defaultt,
+                                                progressIndicatorBuilder:
+                                                    (context, url, download) =>
+                                                        CircularProgressIndicator(
+                                                            value: download
+                                                                .progress),
                                                 errorWidget:
                                                     (context, url, error) =>
                                                         Icon(Icons.error),

@@ -84,7 +84,7 @@ class LocationDetalhes extends StatelessWidget {
 
   Widget pokeCard(String nome, BuildContext context) {
     try {
-      Pokemon p = Pokedex().toFormPokemon(nome);
+      Pokemon p = Pokedex().toPokemon(nome);
 
       return PokeCard(p, sombras: true, fitbox: true, onSelecionar: () {
         Propaganda.popUp();

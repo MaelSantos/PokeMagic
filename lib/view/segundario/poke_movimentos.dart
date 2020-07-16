@@ -6,16 +6,16 @@ import 'package:poke_magic/view/componentes/poke_button.dart';
 import 'package:poke_magic/view/detalhes/move_detalhes.dart';
 import 'package:poke_magic/util/propaganda.dart';
 
-class PokeMove extends StatefulWidget {
+class PokeMovimento extends StatefulWidget {
   final Pokemon pokemon;
 
-  PokeMove(this.pokemon);
+  PokeMovimento(this.pokemon);
 
   @override
   State<StatefulWidget> createState() => PokeMoveState(pokemon);
 }
 
-class PokeMoveState extends State<PokeMove> {
+class PokeMoveState extends State<PokeMovimento> {
   final Pokemon pokemon;
   Moves get movimentos => Moves();
 
@@ -25,31 +25,31 @@ class PokeMoveState extends State<PokeMove> {
   PokeButton btnLevel, btnEgg, btnMachine, btnTutor;
 
   PokeMoveState(this.pokemon) {
-    filtro = "level-up";
+    filtro = "Level-Up";
 
     btnLevel = PokeButton("Level-Up", selecionado: true, selecionavel: true,
         onSelecionado: (b) {
-      filtro = "level-up";
+      filtro = "Level-Up";
       selecionar(b);
     });
     btnMachine = PokeButton("Machine", selecionavel: true, onSelecionado: (b) {
-      filtro = "machine";
+      filtro = "Machine";
       selecionar(b);
     });
     btnEgg = PokeButton("Egg", selecionavel: true, onSelecionado: (b) {
-      filtro = "egg";
+      filtro = "Egg";
       selecionar(b);
     });
     btnTutor = PokeButton("Tutor", selecionavel: true, onSelecionado: (b) {
-      filtro = "tutor";
+      filtro = "Tutor";
       selecionar(b);
     });
 
     all = movimentos.moves.where((a) {
-      for (PokemonMove b in pokemon.moves) {
-        if (a.name == b.move.name) {
-          a.nivel = b.versionGroupDetails.levelLearnedAt;
-          a.tipo = b.versionGroupDetails.moveLearnMethod.name;
+      for (PokeMove b in pokemon.moves.all) {
+        if (a.name == b.move.toLowerCase()) {
+          a.nivel = b.level;
+          a.tipo = b.method;
           return true;
         }
       }
@@ -68,25 +68,25 @@ class PokeMoveState extends State<PokeMove> {
 
   void selecionar(bool b) {
     switch (filtro) {
-      case "level-up":
+      case "Level-Up":
         btnLevel.selecionar(true);
         btnEgg.selecionar(false);
         btnMachine.selecionar(false);
         btnTutor.selecionar(false);
         break;
-      case "egg":
+      case "Egg":
         btnLevel.selecionar(false);
         btnEgg.selecionar(true);
         btnMachine.selecionar(false);
         btnTutor.selecionar(false);
         break;
-      case "machine":
+      case "Machine":
         btnLevel.selecionar(false);
         btnEgg.selecionar(false);
         btnMachine.selecionar(true);
         btnTutor.selecionar(false);
         break;
-      case "tutor":
+      case "Tutor":
         btnLevel.selecionar(false);
         btnEgg.selecionar(false);
         btnMachine.selecionar(false);

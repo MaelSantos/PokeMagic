@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:poke_magic/model/forms.dart' as forma;
+// import 'package:poke_magic/model/forms.dart' as forma;
 import 'package:poke_magic/model/evolutions.dart';
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:poke_magic/view/componentes/poke_card.dart';
@@ -33,21 +33,25 @@ class PokeEvolucao extends StatelessWidget {
   bool escolherEvolucao(Evolution e) {
     bool ret = false;
 
-    if (e.chain.species.name == pokemon.name)
+    if (e.chain.species.name == pokemon.name.toLowerCase())
       ret = true;
     else if (e.chain.evolvesTo.isNotEmpty) {
       for (EvolvesTo a in e.chain.evolvesTo) {
         if (ret)
           break;
         else
-          a.species.name == pokemon.name ? ret = true : ret = false;
+          a.species.name == pokemon.name.toLowerCase()
+              ? ret = true
+              : ret = false;
 
         if (a.evolvesToTo.isNotEmpty)
           for (EvolvesToTo b in a.evolvesToTo) {
             if (ret)
               break;
             else
-              b.species.name == pokemon.name ? ret = true : ret = false;
+              b.species.name == pokemon.name.toLowerCase()
+                  ? ret = true
+                  : ret = false;
           }
       }
     }

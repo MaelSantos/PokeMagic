@@ -18,7 +18,7 @@ String formatItem(String i) {
   return "https://www.serebii.net/itemdex/sprites/pgl/${i.toLowerCase()}.png";
 }
 
-Widget gerarContainer({@required Widget child}) {
+Widget gerarContainer({@required Widget child, double spacing = 10}) {
   return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -27,7 +27,7 @@ Widget gerarContainer({@required Widget child}) {
       ),
       alignment: Alignment.center,
       margin: EdgeInsets.all(5),
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(spacing),
       child: child);
 }
 
@@ -98,7 +98,7 @@ Map<String, Color> colorsMove = {
 };
 
 Color formatColorExist(String cor) {
-  return colors[cor];
+  return colors[cor.toLowerCase()];
 }
 
 Color formatColorMove(String cor) {

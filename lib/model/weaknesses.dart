@@ -24,7 +24,7 @@ class Weaknesses {
     return data;
   }
 
-  Weakness toWeakness(String t1) => weakness.firstWhere((w) => w.name == t1);
+  Weakness toWeakness(String t1) => weakness.firstWhere((w) => w.name == t1.toLowerCase());
 
   Weakness toTwoWeakness(String t1, String t2) {
     Weakness type1 = toWeakness(t1);
@@ -42,8 +42,8 @@ class Weaknesses {
 
   Weakness toPokeWeakness(Pokemon pokemon) {
     return pokemon.types.length > 1
-        ? toTwoWeakness(pokemon.types[1].type.name, pokemon.types[0].type.name)
-        : toWeakness(pokemon.types[0].type.name);
+        ? toTwoWeakness(pokemon.types[0], pokemon.types[1])
+        : toWeakness(pokemon.types[0]);
   }
 }
 

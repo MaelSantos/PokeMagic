@@ -72,16 +72,12 @@ class ListBuilderState extends State<TeamList> {
               child: AlertDialog(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),
-                title: Text("Options: ${time.nome}"),
+                title: Text("Options - ${time.nome}"),
                 actions: [
                   IconButton(
                       icon: Icon(Icons.edit),
                       tooltip: "Edit team",
                       onPressed: () {
-                        // time.remove();
-                        // times.remove(time);
-                        // setState(() {});
-                        // Navigator.of(context).pop();
                         Propaganda.popUp();
                         Navigator.push(
                             context,

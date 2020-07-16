@@ -36,14 +36,14 @@ class _TeamBuilderState extends State<TeamBuilder> {
 
   @override
   void initState() {
-    txtNome = FieldCustom("Name Team");
+    txtNome = FieldCustom("New Team");
     if (time != null) {
       indexs = time.indexs;
       txtNome.controlador.text = time.nome;
       pokemons = indexs.map((i) => pokedex.pokemons[i]).toList();
     } else {
       indexs = List();
-      txtNome.controlador.text = "Team";
+      txtNome.controlador.text = "New Team";
     }
     super.initState();
   }

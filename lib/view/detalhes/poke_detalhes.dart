@@ -39,7 +39,7 @@ class PokeDetalhes extends StatelessWidget {
                         child: pokemon.number != "#351_f2" &&
                                 pokemon.number != "#351_f3" &&
                                 pokemon.number != "#351_f4" &&
-                                pokemon.number != "#555_f2" &&
+                                pokemon.number != "#555_f3" &&
                                 pokemon.number != "#670_f2" &&
                                 pokemon.number != "#745_f3"
                             ? imagemNet(context)
@@ -49,24 +49,23 @@ class PokeDetalhes extends StatelessWidget {
                   children: [
                     Text(titulo, style: TextStyle(fontSize: 23)),
                     Text(
-                        "Height: ${(pokemon.height * 0.1).toStringAsPrecision(pokemon.height.toString().length)} m"),
+                        "Height: ${(pokemon.id > 807 ? pokemon.height * 10 : pokemon.height * 0.1).toStringAsPrecision(2)} m"),
                     Text(
-                        "Weight: ${(pokemon.weight * 0.1).toStringAsPrecision(pokemon.weight.toString().length)} kg"),
+                        "Weight: ${pokemon.weight == 0 ? '?' : (pokemon.id > 807 ? pokemon.weight * 10 : pokemon.weight * 0.1).toStringAsPrecision(2)} kg"),
                     Text("Types", style: TextStyle(fontSize: 16)),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: pokemon.types.reversed
-                      .map((t) => PokeButton(t.type.name,
-                              cor: formatColorExist(t.type.name),
+                  children: pokemon.types
+                      .map((t) => PokeButton(t, cor: formatColorExist(t),
                               onSelecionado: (b) {
                             Propaganda.popUp();
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => TypeDetalhes(
-                                        Types().toType(t.type.name))));
+                                        Types().toType(t.toLowerCase()))));
                           }))
                       .toList(),
                 ),
@@ -79,17 +78,17 @@ class PokeDetalhes extends StatelessWidget {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: pokemon.abilities.reversed
-                            .map((t) => PokeButton(t.ability.name,
-                                    isEscondido: t.isHidden,
+                        children: pokemon.abilities
+                            .map((t) =>
+                                PokeButton(t.ability, isEscondido: t.isHidden,
                                     onSelecionado: (b) {
                                   Propaganda.popUp();
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => AbilityDetalhes(
-                                              Abilitys()
-                                                  .toAbility(t.ability.name),
+                                              Abilitys().toAbility(
+                                                  t.ability.toLowerCase()),
                                               favoritesPrincipal:
                                                   favoritesPrincipal)));
                                 }))
@@ -101,15 +100,13 @@ class PokeDetalhes extends StatelessWidget {
                     style: TextStyle(fontSize: 16)),
                 Container(
                   height: 180,
-                  child: BarCustom(statsList: [
-                    BarCustom.createSampleData(pokemon.stats.reversed.toList()),
-                  ]),
+                  child: BarCustom(
+                      statsList: [BarCustom.createSampleData(pokemon.stats)]),
                 ),
                 Container(
                   height: 60,
-                  child: BarCustom(statsList: [
-                    BarCustom.createTotalData(pokemon.stats.reversed.toList()),
-                  ]),
+                  child: BarCustom(
+                      statsList: [BarCustom.createTotalData(pokemon.stats)]),
                 ),
               ],
             ),
@@ -123,7 +120,8 @@ class PokeDetalhes extends StatelessWidget {
       height: 180,
       child: CachedNetworkImage(
         imageUrl: formatID(pokemon.number),
-        placeholder: (context, url) => CircularProgressIndicator(),
+        progressIndicatorBuilder: (context, url, download) =>
+            CircularProgressIndicator(value: download.progress),
         errorWidget: (context, url, error) => Icon(Icons.error),
         fit: BoxFit.fitWidth,
         // fit: BoxFit.cover,

@@ -9,7 +9,7 @@ class PokeCard extends StatelessWidget {
   final Axis axis;
   final bool fitbox;
   final bool sombras;
-  String number;
+  String number = "";
   double size;
 
   PokeCard(this.pokemon,
@@ -18,7 +18,7 @@ class PokeCard extends StatelessWidget {
       this.axis = Axis.horizontal,
       this.fitbox = false,
       this.sombras = false}) {
-    if (pokemon.number.contains("_f"))
+    if (pokemon.number != null && pokemon.number.contains("_f"))
       number = pokemon.number.substring(0, pokemon.number.length - 3);
     else
       number = pokemon.number;
@@ -29,20 +29,17 @@ class PokeCard extends StatelessWidget {
     return InkWell(
         borderRadius: BorderRadius.circular(15),
         onTap: onSelecionar,
-        child: Hero(
-            tag: formatID(pokemon.number),
-            child: Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                elevation: sombras ? 0 : 3,
-                child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border:
-                            sombras ? null : Border.all(color: Colors.black12)),
-                    child: fitbox
-                        ? FittedBox(child: principal())
-                        : principal()))));
+        // child: Hero(
+        //     tag: formatID(pokemon.number),
+        child: Card(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            elevation: sombras ? 0 : 3,
+            child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    border: sombras ? null : Border.all(color: Colors.black12)),
+                child: fitbox ? FittedBox(child: principal()) : principal())));
   }
 
   Widget principal() {
@@ -76,7 +73,8 @@ class PokeCard extends StatelessWidget {
         height: 130,
         child: CachedNetworkImage(
           imageUrl: formatID(pokemon.number),
-          placeholder: (context, url) => CircularProgressIndicator(),
+          progressIndicatorBuilder: (context, url, download) =>
+              CircularProgressIndicator(value: download.progress),
           errorWidget: (context, url, error) => Icon(Icons.error),
           fit: BoxFit.contain,
         ));
@@ -95,24 +93,22 @@ class PokeCard extends StatelessWidget {
 
   List<Widget> conteudo() {
     return [
-      Text(
-          "$number - ${pokemon.name.replaceRange(0, 1, pokemon.name[0].toUpperCase())}",
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: size)),
+      Text("$number - ${pokemon.name}",
+          textAlign: TextAlign.center, style: TextStyle(fontSize: size)),
       SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: pokemon.types.reversed
+            children: pokemon.types
                 .map((t) => Container(
                       padding: EdgeInsets.all(4),
                       margin: EdgeInsets.all(4),
                       decoration: BoxDecoration(
-                          color: formatColorExist(t.type.name),
+                          color: formatColorExist(t),
                           borderRadius: BorderRadius.circular(15)),
                       child: Text(
-                        t.type.name,
+                        t,
                         style: TextStyle(color: Colors.white, fontSize: size),
                       ),
                     ))

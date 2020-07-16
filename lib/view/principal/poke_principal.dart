@@ -1,5 +1,6 @@
 import 'package:poke_magic/model/pokedex.dart';
 import 'package:flutter/material.dart';
+import 'package:poke_magic/util/format.dart';
 import 'package:poke_magic/view/componentes/field_custom.dart';
 import 'package:poke_magic/view/componentes/poke_card.dart';
 import 'package:poke_magic/view/segundario/poke_view.dart';
@@ -16,7 +17,7 @@ class _PokeViewState extends State<PokePricipal> {
   List<Pokemon> get pokemons => _filtroPoke();
   int get pokemonCont => pokedex.pokemons.length;
   bool isFiltro;
-  String filtro;
+  String filtro, filtro2;
   int get contFiltro => pokemons.length;
 
   FieldCustom pesquisa;
@@ -25,9 +26,10 @@ class _PokeViewState extends State<PokePricipal> {
   void initState() {
     isFiltro = false;
     filtro = "all";
+    filtro2 = "all";
     pesquisa = FieldCustom("Search", iconData: Icons.search, onDigitar: (s) {
       setState(() {
-        if (s.isEmpty && filtro == "all")
+        if (s.isEmpty && filtro == "all" && filtro2 == "all")
           isFiltro = false;
         else
           isFiltro = true;
@@ -43,16 +45,31 @@ class _PokeViewState extends State<PokePricipal> {
       retorno = pokedex.pokemons.where((p) {
         bool ret = true;
 
-        for (PokemonTypes t in p.types) {
-          ret = t.type.name == filtro ? true : false;
-          if (pesquisa.text.trim().isNotEmpty)
-            ret = t.type.name == filtro && p.name.contains(pesquisa.text)
-                ? true
-                : false;
-          if (ret) break;
-        }
-        if (filtro == "all" && pesquisa.text.isNotEmpty)
-          ret = p.name.contains(pesquisa.text);
+        if (filtro != "all")
+          for (String t in p.types) {
+            if (filtro2 != "all")
+              ret = t.toLowerCase() == filtro && p.generation == filtro2;
+            else
+              ret = t.toLowerCase() == filtro;
+
+            if (pesquisa.text.trim().isNotEmpty) {
+              if (filtro2 != "all")
+                ret = t.toLowerCase() == filtro &&
+                    p.generation == filtro2 &&
+                    p.name.toLowerCase().contains(pesquisa.text);
+              else
+                ret = t.toLowerCase() == filtro &&
+                    p.name.toLowerCase().contains(pesquisa.text);
+            }
+            if (ret) break;
+          }
+        else if (pesquisa.text.trim().isNotEmpty) {
+          if (filtro2 != "all")
+            ret = p.generation == filtro2 &&
+                p.name.toLowerCase().contains(pesquisa.text);
+          else
+            ret = p.name.toLowerCase().contains(pesquisa.text);
+        } else if (filtro2 != "all") ret = p.generation == filtro2;
 
         return ret;
       }).toList();
@@ -71,10 +88,7 @@ class _PokeViewState extends State<PokePricipal> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    _down(),
-                    pesquisa,
-                  ],
+                  children: [_down(), _gen(), pesquisa],
                 )),
             pokemons == null
                 ? Center(
@@ -85,6 +99,7 @@ class _PokeViewState extends State<PokePricipal> {
                     crossAxisCount: 2,
                     children: List.generate(isFiltro ? contFiltro : pokemonCont,
                         (index) {
+                      // if (index < pokedex.pokemons.length)
                       return PokeCard(
                         pokemons[index],
                         fitbox: true,
@@ -99,10 +114,43 @@ class _PokeViewState extends State<PokePricipal> {
                           }
                         },
                       );
+                      // else
+                      //   return emBreve(index, context);
                     }),
                   ))
           ],
         ));
+  }
+
+  Widget emBreve(int i, BuildContext context) {
+    return InkWell(
+        borderRadius: BorderRadius.circular(15),
+        onTap: () {
+          Scaffold.of(context).showSnackBar(SnackBar(
+              content: Text("Coming Soon"), duration: Duration(seconds: 3)));
+        },
+        child: Card(
+            elevation: 3,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            child: Stack(
+              children: [
+                Align(
+                    child: Opacity(
+                        opacity: 0.5,
+                        child: FittedBox(
+                            child: Container(
+                                padding: EdgeInsets.all(4),
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      imagemSprite("${i - 114}", context,
+                                          tamanho: 130),
+                                      Text("#${i - 114}"),
+                                    ]))))),
+                Align(child: Text("Coming Soon")),
+              ],
+            )));
   }
 
   DropdownButton _down() => DropdownButton<String>(
@@ -129,7 +177,7 @@ class _PokeViewState extends State<PokePricipal> {
         ],
         onChanged: (p) {
           setState(() {
-            if (p == "all" && pesquisa.text.trim().isEmpty)
+            if (p == "all" && filtro2 == "all" && pesquisa.text.trim().isEmpty)
               isFiltro = false;
             else
               isFiltro = true;
@@ -137,5 +185,29 @@ class _PokeViewState extends State<PokePricipal> {
           });
         },
         value: filtro,
+      );
+
+  DropdownButton _gen() => DropdownButton<String>(
+        items: [
+          DropdownMenuItem(value: "all", child: Text("All")),
+          DropdownMenuItem(value: "I", child: Text("Gen I")),
+          DropdownMenuItem(value: "II", child: Text("Gen II")),
+          DropdownMenuItem(value: "III", child: Text("Gen III")),
+          DropdownMenuItem(value: "IV", child: Text("Gen IV")),
+          DropdownMenuItem(value: "V", child: Text("Gen V")),
+          DropdownMenuItem(value: "VI", child: Text("Gen VI")),
+          DropdownMenuItem(value: "VII", child: Text("Gen VII")),
+          DropdownMenuItem(value: "VIII", child: Text("Gen VIII")),
+        ],
+        onChanged: (p) {
+          setState(() {
+            if (p == "all" && filtro == "all" && pesquisa.text.trim().isEmpty)
+              isFiltro = false;
+            else
+              isFiltro = true;
+            filtro2 = p;
+          });
+        },
+        value: filtro2,
       );
 }

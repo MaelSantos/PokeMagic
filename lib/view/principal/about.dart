@@ -21,7 +21,7 @@ class About extends StatelessWidget {
                 children: [
                   Image.asset("assets/icon.png", height: 150),
                   SizedBox(height: 10),
-                  Text("MagicDex 1.0.5", textAlign: TextAlign.center)
+                  Text("MagicDex 1.0.6", textAlign: TextAlign.center)
                 ],
               )),
               SizedBox(height: 10),

@@ -80,33 +80,29 @@ class TeamAnalyze extends StatelessWidget {
 
   Widget gerarLegenda() {
     return gerarContainer(
-        child: Column(
+        child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            PokeButton("Good", cor: Colors.green),
-            PokeButton("Neutral", cor: Colors.cyan),
-            PokeButton("Bad", cor: Colors.red)
-          ],
-        )
+        PokeButton("Good", cor: Colors.green),
+        PokeButton("Neutral", cor: Colors.cyan),
+        PokeButton("Bad", cor: Colors.red)
       ],
     ));
   }
 
   Widget tablePoke(BuildContext context) {
     return gerarContainer(
+        spacing: 5,
         child: FittedBox(
-            // scrollDirection: Axis.horizontal,
             child: DataTable(
-                columnSpacing: 15,
+                columnSpacing: 5,
                 columns: datacolum(context),
                 rows: datarow())));
   }
 
   List<DataColumn> datacolum(BuildContext context) {
     List<DataColumn> column = List();
-    column.add(DataColumn(label: Text("Types")));
+    column.add(DataColumn(label: Text("")));
 
     column.addAll(pokemons
         .map((p) => DataColumn(label: imagemSprite(p.number, context)))

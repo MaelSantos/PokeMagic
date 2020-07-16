@@ -68,11 +68,9 @@ class _PokeCompareState extends State<PokeCompare> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                  "${pokemon1.name.replaceRange(0, 1, pokemon1.name[0].toUpperCase())}:"),
+              Text("${pokemon1.name}:"),
               PokeButton("", cor: Colors.cyan),
-              Text(
-                  "${pokemon2.name.replaceRange(0, 1, pokemon2.name[0].toUpperCase())}:"),
+              Text("${pokemon2.name}:"),
               PokeButton("", cor: Colors.teal),
             ],
           ),
@@ -80,10 +78,10 @@ class _PokeCompareState extends State<PokeCompare> {
           Container(
             height: MediaQuery.of(context).size.width * 0.85,
             child: BarCustom(statsList: [
-              BarCustom.createSampleData(pokemon1.stats.reversed.toList(),
+              BarCustom.createSampleData(pokemon1.stats,
                   cor: charts.MaterialPalette.cyan.shadeDefault,
                   id: pokemon1.name),
-              BarCustom.createSampleData(pokemon2.stats.reversed.toList(),
+              BarCustom.createSampleData(pokemon2.stats,
                   cor: charts.MaterialPalette.teal.shadeDefault,
                   id: pokemon2.name),
             ]),
@@ -91,10 +89,10 @@ class _PokeCompareState extends State<PokeCompare> {
           Container(
               height: MediaQuery.of(context).size.width * 0.20,
               child: BarCustom(statsList: [
-                BarCustom.createTotalData(pokemon1.stats.reversed.toList(),
+                BarCustom.createTotalData(pokemon1.stats,
                     cor: charts.MaterialPalette.cyan.shadeDefault,
                     id: pokemon1.name),
-                BarCustom.createTotalData(pokemon2.stats.reversed.toList(),
+                BarCustom.createTotalData(pokemon2.stats,
                     cor: charts.MaterialPalette.teal.shadeDefault,
                     id: pokemon2.name),
               ])),
@@ -118,7 +116,8 @@ class _PokeCompareState extends State<PokeCompare> {
           height: 30,
           child: CachedNetworkImage(
             imageUrl: formatID(url),
-            placeholder: (context, url) => CircularProgressIndicator(),
+            progressIndicatorBuilder: (context, url, download) =>
+                CircularProgressIndicator(value: download.progress),
             errorWidget: (context, url, error) =>
                 Center(child: Text("No Sprite")),
             fit: BoxFit.contain,

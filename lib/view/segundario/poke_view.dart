@@ -24,7 +24,7 @@ class PokeView extends StatefulWidget {
 class _PokeViewState extends State<PokeView> {
   Widget corrente;
   PokeDetalhes pokeDetalhes;
-  PokeMove pokeMove;
+  PokeMovimento pokeMove;
   PokeEvolucao pokeEvolucao;
   PokeMore pokeMore;
 
@@ -74,36 +74,36 @@ class _PokeViewState extends State<PokeView> {
         actions: [
           Builder(
             builder: (context) => Container(
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                child: FlatButton.icon(
-                    onPressed: () {
-                      setState(() {
-                        isFavorite = !isFavorite;
-                        if (isFavorite) {
-                          favorito = Favorito();
-                          favorito.nome = pokemon.name;
-                          favorito.save();
-                          icondata = Icons.star;
-                          if (favoritesPrincipal != null)
-                            favoritesPrincipal.add(favorito);
-                          Scaffold.of(context).showSnackBar(SnackBar(
-                              content: Text("Favorited Pokemon $titulo"),
-                              duration: Duration(seconds: 3)));
-                        } else {
-                          favorito.remove();
-                          icondata = Icons.star_border;
-                          if (favoritesPrincipal != null)
-                            favoritesPrincipal.remove(favorito);
-                          favorito = null;
-                          Scaffold.of(context).showSnackBar(SnackBar(
-                              content: Text("Favorite Pokemon $titulo Removed"),
-                              duration: Duration(seconds: 3)));
-                        }
-                      });
-                    },
-                    icon: Icon(icondata, color: Colors.white),
-                    label: Text(""))),
+                margin: EdgeInsets.only(right: 8),
+                child: IconButton(
+                  icon: Icon(icondata, color: Colors.white),
+                  tooltip: "Favorite",
+                  onPressed: () {
+                    setState(() {
+                      isFavorite = !isFavorite;
+                      if (isFavorite) {
+                        favorito = Favorito();
+                        favorito.nome = pokemon.name;
+                        favorito.save();
+                        icondata = Icons.star;
+                        if (favoritesPrincipal != null)
+                          favoritesPrincipal.add(favorito);
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                            content: Text("Favorited $titulo"),
+                            duration: Duration(seconds: 3)));
+                      } else {
+                        favorito.remove();
+                        icondata = Icons.star_border;
+                        if (favoritesPrincipal != null)
+                          favoritesPrincipal.remove(favorito);
+                        favorito = null;
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                            content: Text("Favorite $titulo Removed"),
+                            duration: Duration(seconds: 3)));
+                      }
+                    });
+                  },
+                )),
           )
         ],
       ),
@@ -146,7 +146,7 @@ class _PokeViewState extends State<PokeView> {
           corrente = pokeDetalhes;
           break;
         case 1:
-          if (pokeMove == null) pokeMove = PokeMove(pokemon);
+          if (pokeMove == null) pokeMove = PokeMovimento(pokemon);
           corrente = pokeMove;
           break;
         case 2:

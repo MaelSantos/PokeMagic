@@ -63,9 +63,9 @@ class EntradaState extends State<Entrada> {
     locations = Locations.fromJson(await carregarJson("assets/data/locations.json"));
   }
 
-  Future<Map<String, dynamic>> carregarJson(String url) async {
+  Future<dynamic> carregarJson(String url) async {
     String raw = await rootBundle.loadString(url);
-    Map<String, dynamic> data = await json.decode(raw);
+    var data = await json.decode(raw);
     return data;
   }
 
